@@ -1,7 +1,11 @@
 This package was debianized by Thom May on
-Wed, 23 Oct 2002 16:21:08 +0100.
+Wed, 23 Oct 2002 16:21:08 +0100, and was co-maintained by him and
+Andres Salomon <dilinger@debian.org>.
 
-This package is also maintained by Andres Salomon <dilinger@debian.org>
+As of Fri Aug 17 16:40:06 UTC 2007, this package was adopted by the
+Debian Pkg-Perl group. Modifications and packaging information added
+to this package by the Perl group are covered by the same license as
+the package itself, the Apache License 2.0
 
 It was downloaded from http://perl.apache.org/dist/
 

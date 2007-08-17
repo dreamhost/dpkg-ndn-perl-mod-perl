@@ -1,3 +1,17 @@
+libapache2-mod-perl2 (2.0.2-5) unstable; urgency=low
+
+  * New Maintainer: the Debian pkg-perl group (Closes: #438168)
+  * Updated copyright information including the copyright for the
+    packaging information
+  * Integrated the bugreport helper mp2bug to the /usr/share/bug way of
+    life, so its output is automatically included in our users' reports
+  * Bumping up standards-version from 3.6.1 to 3.7.2 (Only change
+    needed: Moving mp2bug)
+  * Added debian/watch
+  * Moved libapache2-mod-perl2-doc to section: doc
+
+ -- Gunnar Wolf <gwolf@debian.org>  Fri, 17 Aug 2007 14:29:02 -0500
+
 libapache2-mod-perl2 (2.0.2-2.4) unstable; urgency=high
 
   * Non-maintainer upload.
@@ -11,7 +25,7 @@ libapache2-mod-perl2 (2.0.2-2.4) unstable; urgency=high
 
  -- Steve Langasek <vorlon@debian.org>  Tue, 27 Mar 2007 01:48:55 -0700
 
-libapache2-mod-perl2 (2.0.2-2.3) unstable; urgency=high
+libapache2-mod-perl2 (2.0.2-2.3) UNRELEASED; urgency=high
 
   * Non-maintainer upload. Thanks to Kjetil Kjernsmo for noticing the issues.
   * Fix segfault if localizing %ENV. Closes: #384622

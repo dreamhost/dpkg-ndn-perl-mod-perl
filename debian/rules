@@ -20,11 +20,18 @@ DEB_MAKEMAKER_USER_FLAGS := MP_USE_GTOP=1 \
 		#deleted for new build
 		#MP_AP_PREFIX=/usr \
 
+BUILDDIR = $(CURDIR)/debian/libapache2-mod-perl2
+
 install/libapache2-mod-perl2::
 	install $(CURDIR)/src/modules/perl/mod_perl.so debian/libapache2-mod-perl2/usr/lib/apache2/modules/mod_perl.so
 	install -m644 $(CURDIR)/debian/perl.load debian/libapache2-mod-perl2/etc/apache2/mods-available
-	rm -rf debian/libapache2-mod-perl2/usr/man
-	rm -f debian/libapache2-mod-perl2/usr/share/man/man3/mod_perl.3pm
+	rm -rf $(BUILDDIR)/usr/man
+	rm -f $(BUILDDIR)/usr/share/man/man3/mod_perl.3pm
+
+	# mp2bug goes into the /usr/share/bug infrastructure!
+	mv $(BUILDDIR)/usr/bin/mp2bug $(BUILDDIR)/usr/share/libapache2-mod-perl2/
+	install -m755 $(CURDIR)/debian/libapache2-mod-perl2.bug $(BUILDDIR)/usr/share/bug/
+	mv $(BUILDDIR)/usr/share/bug/libapache2-mod-perl2.bug $(BUILDDIR)/usr/share/bug/libapache2-mod-perl2
 
 install/libapache2-mod-perl2-dev::
 	install -m644 $(CURDIR)/xs/*.h debian/libapache2-mod-perl2-dev/usr/include/apache2

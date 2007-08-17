@@ -4,3 +4,5 @@ usr/lib/perl5/Apache
 usr/lib/perl5/Bundle
 usr/man/man3
 etc/apache2/mods-available
+usr/share/libapache2-mod-perl2
+usr/share/bug
