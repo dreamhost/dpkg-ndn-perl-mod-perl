@@ -13,8 +13,10 @@ libapache2-mod-perl2 (2.0.2-5) unstable; urgency=low
     insteaed of arch: any
   * Applied upstream patch fixing CVE-2007-1349 DoS caused by improperly
     quoted regex (Closes: #433549)
+  * Moved the generated manpages from section 3 to 3pm
+  * Finally, lintian- and linda-clean, yay! :D
 
- -- Gunnar Wolf <gwolf@debian.org>  Fri, 17 Aug 2007 18:07:56 -0500
+ -- Gunnar Wolf <gwolf@debian.org>  Fri, 17 Aug 2007 18:27:25 -0500
 
 libapache2-mod-perl2 (2.0.2-2.4) unstable; urgency=high
 
