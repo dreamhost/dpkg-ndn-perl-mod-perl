@@ -1,0 +1,11 @@
+--- lib/Apache2/Build.pm.orig	2005-04-20 08:55:55.806157776 +0000
++++ lib/Apache2/Build.pm	2005-04-20 08:56:28.165238448 +0000
+@@ -419,7 +419,7 @@
+         $xlibs .= ' -lintl';
+     }
+ 
+-    return " -lgtop -lgtop_sysdeps -lgtop_common $xlibs";
++    return " -lgtop-2.0 -lgtop_sysdeps-2.0 -lgtop_common-2.0 $xlibs";
+ }
+ 
+ sub gtop_ldopts {

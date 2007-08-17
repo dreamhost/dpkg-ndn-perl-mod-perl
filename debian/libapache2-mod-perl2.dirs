@@ -1,0 +1,6 @@
+usr/lib/apache2/modules
+usr/lib/perl5
+usr/lib/perl5/Apache
+usr/lib/perl5/Bundle
+usr/man/man3
+etc/apache2/mods-available
