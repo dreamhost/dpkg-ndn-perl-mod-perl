@@ -9,8 +9,12 @@ libapache2-mod-perl2 (2.0.2-5) unstable; urgency=low
     needed: Moving mp2bug)
   * Added debian/watch
   * Moved libapache2-mod-perl2-doc to section: doc
+  * the -dev and -doc generated binary packages are now arch: all
+    insteaed of arch: any
+  * Applied upstream patch fixing CVE-2007-1349 DoS caused by improperly
+    quoted regex (Closes: #433549)
 
- -- Gunnar Wolf <gwolf@debian.org>  Fri, 17 Aug 2007 14:29:02 -0500
+ -- Gunnar Wolf <gwolf@debian.org>  Fri, 17 Aug 2007 18:07:56 -0500
 
 libapache2-mod-perl2 (2.0.2-2.4) unstable; urgency=high
 

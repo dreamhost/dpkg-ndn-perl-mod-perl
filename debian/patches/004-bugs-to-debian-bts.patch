@@ -1,0 +1,18 @@
+Index: lib/ModPerl/TestReport.pm
+===================================================================
+--- lib/ModPerl/TestReport.pm	(revision 6891)
++++ lib/ModPerl/TestReport.pm	(working copy)
+@@ -96,7 +96,11 @@
+     return $package;
+ }
+ 
+-sub report_to { 'modperl@perl.apache.org' }
++# We are reporting to the Debian BTS, not directly to the upstream (Apache)
++sub report_to { 'submit@bugs.debian.org' }
++sub postit_note {
++    # No, no postit notes required :) This report will be typically
++    # embedded in reportbug's, so...
++}
+ 
+-
+ 1;

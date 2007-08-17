@@ -21,7 +21,7 @@ Description: Integration of perl with the Apache2 web server
  based web sites - for example, http://slashdot.org.
  
 Package: libapache2-mod-perl2-dev
-Architecture: any
+Architecture: all
 Depends: libapache2-mod-perl2
 Description: Integration of perl with the Apache2 web server - development files
  mod_perl allows the use of Perl for just about anything
@@ -33,7 +33,7 @@ Description: Integration of perl with the Apache2 web server - development files
  C-based modules integrating with mod_perl.
 
 Package: libapache2-mod-perl2-doc
-Architecture: any
+Architecture: all
 Section: doc
 Description: Integration of perl with the Apache2 web server - documentation
  mod_perl allows the use of Perl for just about anything
