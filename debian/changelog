@@ -1,3 +1,9 @@
+libapache2-mod-perl2 (2.0.2-6) UNRELEASED; urgency=low
+
+  * Added recommendation on libbsd-resource-perl (Closes: #357438)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Sat, 18 Aug 2007 19:49:12 -0500
+
 libapache2-mod-perl2 (2.0.2-5) unstable; urgency=low
 
   * New Maintainer: the Debian pkg-perl group (Closes: #438168)
