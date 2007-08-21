@@ -6,12 +6,16 @@ Uploaders: Gunnar Wolf <gwolf@debian.org>, Damyan Ivanov <dmn@debian.org>
 Standards-Version: 3.7.2.2
 XS-Vcs-Svn: svn://svn.debian.org/pkg-perl/trunk/libapache2-mod-perl2/
 XS-Vcs-Browser: http://svn.debian.org/wsvn/pkg-perl/trunk/libapache2-mod-perl2/
-Build-Depends: perl (>= 5.8.7-3), libperl-dev (>= 5.8.7-3), apache2-threaded-dev (>= 2.2.3-1) | apache2-prefork-dev (>= 2.2.3-1), debhelper (>> 4.1.0), libwww-perl, libdevel-symdump-perl, libhtml-parser-perl, libgdbm-dev, libgtop2-dev, quilt
+Build-Depends: perl (>= 5.8.7-3), libperl-dev (>= 5.8.7-3),
+ apache2-threaded-dev (>= 2.2.3-1) | apache2-prefork-dev (>= 2.2.3-1),
+ debhelper (>> 4.1.0), libwww-perl, libdevel-symdump-perl, libhtml-parser-perl,
+ libgdbm-dev, libgtop2-dev, quilt
 Build-Conflicts: libapache2-mod-perl2 (<= 1.999.22-1)
 
 Package: libapache2-mod-perl2
 Architecture: any
-Depends: apache2.2-common, ${perl:Depends}, libwww-perl, libmime-base64-perl, libdevel-symdump-perl, liburi-perl, ${shlibs:Depends}, netbase
+Depends: apache2.2-common, ${perl:Depends}, libwww-perl, libmime-base64-perl,
+ libdevel-symdump-perl, liburi-perl, ${shlibs:Depends}, netbase
 Recommends: libbsd-resource-perl
 Description: Integration of perl with the Apache2 web server
  mod_perl allows the use of Perl for just about anything
