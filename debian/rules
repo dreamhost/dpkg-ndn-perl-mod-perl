@@ -54,6 +54,13 @@ clean-patched: unpatch
 
 	dh_clean build-stamp install-stamp
 
+	dh_clean .mypacklist Apache-Test/Makefile.old Apache-Test/t/REPORT \
+		 Apache-Test/t/cgi-bin/cookies.pl ModPerl-Registry/Makefile.old \
+		 t/conf/perlsection.conf
+	[ ! -d t/htdocs/hooks ] || rm -r t/htdocs/hooks
+	[ ! -d lib/Apache ] || rm -r lib/Apache
+	[ ! -d t/htdocs/perlio/text ] || rm -r t/htdocs/perlio/test
+
 install: build install-stamp
 install-stamp:
 	dh_testdir
