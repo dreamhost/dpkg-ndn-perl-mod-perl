@@ -4,3 +4,4 @@
 004-bugs-to-debian-bts.patch
 005-regex-DoS-bug-433549.patch
 006_man_section_and_build_warnings.patch
+007_test_head_content_length_on_empty_content_2.2.patch
