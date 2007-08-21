@@ -1,9 +1,10 @@
-libapache2-mod-perl2 (2.0.2-6) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.3-1) UNRELEASED; urgency=low
 
   [ Gunnar Wolf ]
   * Added recommendation on libbsd-resource-perl (Closes: #357438)
 
   [ Damyan Ivanov ]
+  * New upstream release
   * Transformed debian/rules from CDBS to debhelper
   * Converted patches from simple-patchsys to quilt
     Added quilt to Build-Depends
@@ -13,7 +14,7 @@ libapache2-mod-perl2 (2.0.2-6) UNRELEASED; urgency=low
   * Run $(MAKE) test, but don't abort if they fail
   * Add myself to Uploaders
 
- -- Damyan Ivanov <dmn@debian.org>  Sun, 19 Aug 2007 19:12:34 +0300
+ -- Damyan Ivanov <dmn@debian.org>  Tue, 21 Aug 2007 13:22:40 +0300
 
 libapache2-mod-perl2 (2.0.2-5) unstable; urgency=low
 
