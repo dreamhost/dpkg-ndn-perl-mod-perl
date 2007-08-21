@@ -2,7 +2,7 @@ Source: libapache2-mod-perl2
 Section: perl
 Priority: optional
 Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
-Uploaders: Gunnar Wolf <gwolf@debian.org>
+Uploaders: Gunnar Wolf <gwolf@debian.org>, Damyan Ivanov <dmn@debian.org>
 Standards-Version: 3.7.2.2
 XS-Vcs-Svn: svn://svn.debian.org/pkg-perl/trunk/libapache2-mod-perl2/
 XS-Vcs-Browser: http://svn.debian.org/wsvn/pkg-perl/trunk/libapache2-mod-perl2/
