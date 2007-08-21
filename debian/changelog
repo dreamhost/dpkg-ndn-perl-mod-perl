@@ -1,3 +1,19 @@
+libapache2-mod-perl2 (2.0.3-1) UNRELEASED; urgency=low
+
+  * New upstream release
+    + refreshed patches
+      001-gtop2.patch
+      004-bugs-to-debian-bts.patch
+      005-regex-DoS-bug-433549.patch
+      006_man_section_and_build_warnings.patch - one hunk dropped
+    + dropped patches applied upstream
+      002-crash-404051.patch -- applied upstream
+      003-segfault-local-ENV-bug-384622.patch -- applied upstream
+      007_test_head_content_length_on_empty_content_2.2.patch -- upstream
+      contains better fix
+
+ -- Damyan Ivanov <dmn@debian.org>  Tue, 21 Aug 2007 13:41:42 +0300
+
 libapache2-mod-perl2 (2.0.2-6) UNRELEASED; urgency=low
 
   [ Gunnar Wolf ]

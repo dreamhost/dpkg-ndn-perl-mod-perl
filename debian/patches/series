@@ -1,7 +1,4 @@
 001-gtop2.patch
-002-crash-404051.patch
-003-segfault-local-ENV-bug-384622.patch
 004-bugs-to-debian-bts.patch
 005-regex-DoS-bug-433549.patch
 006_man_section_and_build_warnings.patch
-007_test_head_content_length_on_empty_content_2.2.patch
