@@ -13,8 +13,10 @@ libapache2-mod-perl2 (2.0.3-1) UNRELEASED; urgency=low
       contains better fix
   * Add dh_slibdeps to arch-dep target
   * Wrapped (Build-)Depends lists
+  * Added apache2, libcompress-zlib-perl and libbsd-resource-perl to
+    Build-Depends to allow tests to be run on buildds
 
- -- Damyan Ivanov <dmn@debian.org>  Tue, 21 Aug 2007 14:43:04 +0300
+ -- Damyan Ivanov <dmn@debian.org>  Tue, 21 Aug 2007 15:39:39 +0300
 
 libapache2-mod-perl2 (2.0.2-6) UNRELEASED; urgency=low
 

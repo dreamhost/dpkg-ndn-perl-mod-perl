@@ -9,7 +9,8 @@ XS-Vcs-Browser: http://svn.debian.org/wsvn/pkg-perl/trunk/libapache2-mod-perl2/
 Build-Depends: perl (>= 5.8.7-3), libperl-dev (>= 5.8.7-3),
  apache2-threaded-dev (>= 2.2.3-1) | apache2-prefork-dev (>= 2.2.3-1),
  debhelper (>> 4.1.0), libwww-perl, libdevel-symdump-perl, libhtml-parser-perl,
- libgdbm-dev, libgtop2-dev, quilt
+ libgdbm-dev, libgtop2-dev, quilt,
+ apache2, libcompress-zlib-perl, libbsd-resource-perl
 Build-Conflicts: libapache2-mod-perl2 (<= 1.999.22-1)
 
 Package: libapache2-mod-perl2
