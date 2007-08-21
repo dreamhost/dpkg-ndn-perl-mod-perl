@@ -1,7 +1,5 @@
-Index: lib/ModPerl/TestReport.pm
-===================================================================
---- lib/ModPerl/TestReport.pm	(revision 6891)
-+++ lib/ModPerl/TestReport.pm	(working copy)
+--- dir.orig/lib/ModPerl/TestReport.pm	(revision 6891)
++++ dir/lib/ModPerl/TestReport.pm	(working copy)
 @@ -96,7 +96,11 @@
      return $package;
  }

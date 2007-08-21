@@ -1,5 +1,5 @@
---- lib/Apache2/SizeLimit.pm~	2005-10-21 00:04:43.000000000 +0000
-+++ lib/Apache2/SizeLimit.pm	2006-12-23 17:13:33.000000000 +0000
+--- dir.orig/lib/Apache2/SizeLimit.pm~	2005-10-21 00:04:43.000000000 +0000
++++ dir/lib/Apache2/SizeLimit.pm	2006-12-23 17:13:33.000000000 +0000
 @@ -110,7 +110,7 @@
  sub linux_smaps_size_check {
  

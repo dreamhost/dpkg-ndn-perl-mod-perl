@@ -1,6 +1,8 @@
---- lib/Apache2/Build.pm.orig	2005-04-20 08:55:55.806157776 +0000
-+++ lib/Apache2/Build.pm	2005-04-20 08:56:28.165238448 +0000
-@@ -419,7 +419,7 @@
+Index: libapache2-mod-perl2/lib/Apache2/Build.pm
+===================================================================
+--- libapache2-mod-perl2.orig/lib/Apache2/Build.pm	2007-08-18 09:32:30.000000000 +0300
++++ libapache2-mod-perl2/lib/Apache2/Build.pm	2007-08-18 14:59:09.000000000 +0300
+@@ -447,7 +447,7 @@
          $xlibs .= ' -lintl';
      }
  

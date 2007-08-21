@@ -1,7 +1,5 @@
-Index: lib/ModPerl/BuildMM.pm
-===================================================================
---- lib/ModPerl/BuildMM.pm	(revision 6891)
-+++ lib/ModPerl/BuildMM.pm	(working copy)
+--- dir.orig/lib/ModPerl/BuildMM.pm	(revision 6891)
++++ dir/lib/ModPerl/BuildMM.pm	(working copy)
 @@ -193,6 +193,9 @@
      # allow 'make -j'
      require ExtUtils::MakeMaker;
