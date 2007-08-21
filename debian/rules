@@ -110,6 +110,7 @@ binary-arch: build install
 	dh_install -a
 	mv $(LA2MP2)/usr/bin/mp2bug $(LA2MP2)/usr/share/libapache2-mod-perl2/
 	install -m755 debian/libapache2-mod-perl2.bug $(LA2MP2)/usr/share/bug/libapache2-mod-perl2
+	dh_shlibdeps
 	dh_strip -a
 	dh_perl -a
 	dh_compress -a
