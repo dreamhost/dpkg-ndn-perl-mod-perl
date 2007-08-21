@@ -43,7 +43,7 @@ build-stamp:
 		MP_APXS=/usr/bin/apxs2 \
 		MP_INCLUDE_DIR=/usr/include/apr-1.0
 	$(MAKE) OPTIMIZE="$(CFLAGS)" LD_RUN_PATH=""
-	$(MAKE) test || true
+	LANG=C $(MAKE) test || true
 	# run the tests, but do not abort if some fail
 
 	touch $@

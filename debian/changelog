@@ -15,8 +15,10 @@ libapache2-mod-perl2 (2.0.3-1) UNRELEASED; urgency=low
   * Wrapped (Build-)Depends lists
   * Added apache2, libcompress-zlib-perl and libbsd-resource-perl to
     Build-Depends to allow tests to be run on buildds
+  * Put LANG=C in front of '$(MAKE) test' to avoid locale side effects (in
+    dates etc)
 
- -- Damyan Ivanov <dmn@debian.org>  Tue, 21 Aug 2007 15:39:39 +0300
+ -- Damyan Ivanov <dmn@debian.org>  Tue, 21 Aug 2007 16:41:01 +0300
 
 libapache2-mod-perl2 (2.0.2-6) UNRELEASED; urgency=low
 
