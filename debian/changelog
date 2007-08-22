@@ -1,3 +1,16 @@
+libapache2-mod-perl2 (2.0.3-2) UNRELEASED; urgency=low
+
+  * Upload to unstable
+    + Closes: #401737 -- Please package latest libapache2-mod-perl2
+      - Closes: #398675 -- Rejects configuration in a Perl configuration
+                           section that works fine as a regular configuration
+                           directive
+      - Closes: #399639 -- Data pushed onto @PerlSections is ignored
+    + Closes: #406742 -- clean rule does not clean properly
+    + Closes: #357438 -- Apache2::Resource uses BSD::Resource
+
+ -- Damyan Ivanov <dmn@debian.org>  Wed, 22 Aug 2007 15:38:51 +0300
+
 libapache2-mod-perl2 (2.0.3-1) experimental; urgency=low
 
   * New upstream release
