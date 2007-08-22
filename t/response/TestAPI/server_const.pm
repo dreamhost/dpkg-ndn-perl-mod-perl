@@ -19,6 +19,7 @@ my $cfg = Apache::Test::config;
 my $root  = $cfg->{vars}->{serverroot};
 my $built = $cfg->{httpd_info}->{BUILT};
 my $version = $cfg->{httpd_info}->{VERSION};
+$version =~ s/\s.*//;
 
 sub handler {
 
