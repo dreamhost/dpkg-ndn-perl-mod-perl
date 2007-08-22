@@ -22,8 +22,9 @@ libapache2-mod-perl2 (2.0.3-1) experimental; urgency=low
     + Add new 008_fix_version_check_in_t_response_TestAPI_server_const_pm.patch
       to fix the server_const test
     + Fail if $(MAKE) test fails
+    + Add cleaning after tests to clean target
 
- -- Damyan Ivanov <dmn@debian.org>  Wed, 22 Aug 2007 12:53:17 +0300
+ -- Damyan Ivanov <dmn@debian.org>  Wed, 22 Aug 2007 13:12:39 +0300
 
 libapache2-mod-perl2 (2.0.2-6) UNRELEASED; urgency=low
 

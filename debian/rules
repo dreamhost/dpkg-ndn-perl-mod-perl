@@ -58,10 +58,13 @@ clean: unpatch
 	[ ! -f Makefile ] || $(MAKE) realclean
 
 	dh_clean .mypacklist Apache-Test/Makefile.old Apache-Test/t/REPORT \
-		 Apache-Test/t/cgi-bin/cookies.pl ModPerl-Registry/Makefile.old \
-		 t/conf/perlsection.conf t/htdocs/perlio/test
+		 Apache-Test/t/cgi-bin/cookies.pl \
+		 Apache-Test/t/cgi-bin/next_available_port.pl\
+		 ModPerl-Registry/Makefile.old t/conf/perlsection.conf \
+		 t/htdocs/perlio/test
 	[ ! -d t/htdocs/hooks ] || rm -r t/htdocs/hooks
 	[ ! -d lib/Apache ] || rm -r lib/Apache
+	[ ! -d WrapXS ] || rm -r WrapXS
 
 .PHONY: install
 install: build install-stamp
