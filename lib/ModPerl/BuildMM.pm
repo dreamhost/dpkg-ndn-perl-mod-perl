@@ -281,7 +281,7 @@ sub ModPerl::BuildMM::MY::postamble {
                 $man =~ s!/!::!g;
 
                 push @target,
-                    '$(NOECHO) $(POD2MAN_EXE) --section=3pm ' .
+                    '$(NOECHO) $(POD2MAN_EXE) --section=3 ' .
                     "$podpath \$(INST_MAN3DIR)/$man.\$(MAN3EXT)"
             }
         }

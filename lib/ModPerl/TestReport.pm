@@ -97,11 +97,7 @@ sub package2filename {
     return $package;
 }
 
-# We are reporting to the Debian BTS, not directly to the upstream (Apache)
-sub report_to { 'submit@bugs.debian.org' }
-sub postit_note {
-    # No, no postit notes required :) This report will be typically
-    # embedded in reportbug's, so...
-}
+sub report_to { 'modperl@perl.apache.org' }
+
 
 1;
