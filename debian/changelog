@@ -1,5 +1,6 @@
-libapache2-mod-perl2 (2.0.3-2) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.3-2) unstable; urgency=low
 
+  [ Damyan Ivanov ]
   * Upload to unstable
     + Closes: #401737 -- Please package latest libapache2-mod-perl2
       - Closes: #398675 -- Rejects configuration in a Perl configuration
@@ -9,7 +10,10 @@ libapache2-mod-perl2 (2.0.3-2) UNRELEASED; urgency=low
     + Closes: #406742 -- clean rule does not clean properly
     + Closes: #357438 -- Apache2::Resource uses BSD::Resource
 
- -- Damyan Ivanov <dmn@debian.org>  Wed, 22 Aug 2007 15:38:51 +0300
+  [ Gunnar Wolf ]
+  * Added netbase to build-dependencies, fixing FTBFS (Closes: #439281)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Wed, 29 Aug 2007 11:38:42 +0200
 
 libapache2-mod-perl2 (2.0.3-1) experimental; urgency=low
 
