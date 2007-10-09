@@ -1,8 +1,10 @@
 libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
 
-  * debian/control: Added: Homepage field (source stanza).
+  * debian/control: Added: Vcs-Svn field (source stanza); Vcs-Browser
+    field (source stanza); Homepage field (source stanza). Removed: XS-
+    Vcs-Svn fields.
 
- -- gregor herrmann <gregor+debian@comodo.priv.at>  Tue, 09 Oct 2007 21:20:37 +0200
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Tue, 09 Oct 2007 22:27:16 +0200
 
 libapache2-mod-perl2 (2.0.3-2) unstable; urgency=low
 
