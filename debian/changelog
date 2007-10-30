@@ -11,7 +11,7 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
     to allow parallel building. Fixes a misbuild with dpkg-buildpackage -j
     found by Daniel Schepler.
 
- -- Frank Lichtenheld <djpig@debian.org>  Tue, 30 Oct 2007 09:53:04 +0100
+ -- Frank Lichtenheld <djpig@debian.org>  Tue, 30 Oct 2007 09:57:01 +0100
 
 libapache2-mod-perl2 (2.0.3-2) unstable; urgency=low
 
