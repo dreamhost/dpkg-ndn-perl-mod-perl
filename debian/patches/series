@@ -3,3 +3,4 @@
 005-regex-DoS-bug-433549.patch
 006_man_section_and_build_warnings.patch
 008_fix_version_check_in_t_response_TestAPI_server_const_pm.patch
+009-allow-parallel-build.patch

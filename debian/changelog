@@ -1,10 +1,17 @@
 libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
 
+  [ gregor herrmann ]
   * debian/control: Added: Vcs-Svn field (source stanza); Vcs-Browser
     field (source stanza); Homepage field (source stanza). Removed: XS-
     Vcs-Svn fields.
 
- -- gregor herrmann <gregor+debian@comodo.priv.at>  Tue, 09 Oct 2007 22:27:16 +0200
+  [ Frank Lichtenheld ]
+  * debian/rules: Fix some typos and some dependencies
+  * debian/patches/009-allow-parallel-build.patch: Fix Makefile.PL
+    to allow parallel building. Fixes a misbuild with dpkg-buildpackage -j
+    found by Daniel Schepler.
+
+ -- Frank Lichtenheld <djpig@debian.org>  Tue, 30 Oct 2007 09:53:04 +0100
 
 libapache2-mod-perl2 (2.0.3-2) unstable; urgency=low
 
