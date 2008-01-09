@@ -79,7 +79,7 @@ install-stamp: build
 	# As this is a architecture dependent package, we are not
 	# supposed to install stuff to /usr/share. MakeMaker creates
 	# the dirs, we delete them from the deb:
-	rmdir --ignore-fail-on-non-empty --parents $(TMP)/usr/share/perl5
+	[ ! -d $(TMP)/usr/share/perl5 ] || rmdir --ignore-fail-on-non-empty --parents --verbose $(TMP)/usr/share/perl5
 
 	touch $@
 
@@ -156,7 +156,7 @@ binary: binary-indep binary-arch
 ### 	install -m644 $(CURDIR)/debian/perl.load debian/libapache2-mod-perl2/etc/apache2/mods-available
 ### 	rm -rf $(BUILDDIR)/usr/man
 ### 	rm -f $(BUILDDIR)/usr/share/man/man3/mod_perl.3pm
-### 	rm -rf $(BUILDDIR)/usr/share/perl5
+### 	[ ! -d $(BUILDDIR)/usr/share/perl5 ] || rmdir --ignore-fail-on-non-empty --parents --verbose $(BUILDDIR)/usr/share/perl5
 ### 
 ### 	# mp2bug goes into the /usr/share/bug infrastructure!
 ### 	mv $(BUILDDIR)/usr/bin/mp2bug $(BUILDDIR)/usr/share/libapache2-mod-perl2/

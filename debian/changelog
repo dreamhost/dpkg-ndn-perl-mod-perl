@@ -4,6 +4,7 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
   * debian/control: Added: Vcs-Svn field (source stanza); Vcs-Browser
     field (source stanza); Homepage field (source stanza). Removed: XS-
     Vcs-Svn fields.
+  * debian/rules: delete /usr/share/perl5 only if it exists.
 
   [ Frank Lichtenheld ]
   * debian/rules: Fix some typos and some dependencies
