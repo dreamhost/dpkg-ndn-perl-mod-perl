@@ -16,6 +16,7 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
   * add 010-svn-fix-perl5.10-build.patch. Closes: #462994
   * debian/rules:
     + replace debian/stamp-patched with $(QUILT_STAMPFN)
+    + make install-stamp depend on build-stamp, not build
 
  -- Frank Lichtenheld <djpig@debian.org>  Tue, 30 Oct 2007 09:57:01 +0100
 

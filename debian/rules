@@ -69,7 +69,7 @@ clean: unpatch
 .PHONY: install
 install: install-stamp
 
-install-stamp: build
+install-stamp: build-stamp
 	dh_testdir
 	dh_testroot
 	dh_clean -k
