@@ -11,6 +11,7 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
   * debian/patches/009-allow-parallel-build.patch: Fix Makefile.PL
     to allow parallel building. Fixes a misbuild with dpkg-buildpackage -j
     found by Daniel Schepler.
+  * Standards-Version: 3.7.3 (no changes)
 
   [ Damyan Ivanov ]
   * add 010-svn-fix-perl5.10-build.patch. Closes: #462994
