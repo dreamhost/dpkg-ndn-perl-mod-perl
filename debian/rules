@@ -28,7 +28,7 @@ endif
 .PHONY: build
 build: build-stamp
 
-build-stamp: debian/stamp-patched
+build-stamp: $(QUILT_STAMPFN)
 	dh_testdir
 
 	# Add commands to compile the package here
