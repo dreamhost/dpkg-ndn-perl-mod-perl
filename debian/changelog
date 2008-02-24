@@ -21,6 +21,7 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
     + make install-stamp depend on build-stamp, not build
     + remove commented-out cdbs make rules
   * Use http://perl.apache.org/ for Homepage
+  * Reformat NEWS.Debian, following DevRef 6.3.4. Thanks, lintian.
 
  -- Frank Lichtenheld <djpig@debian.org>  Tue, 30 Oct 2007 09:57:01 +0100
 
