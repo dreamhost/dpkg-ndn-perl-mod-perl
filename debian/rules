@@ -80,6 +80,8 @@ install-stamp: build-stamp
 	# supposed to install stuff to /usr/share. MakeMaker creates
 	# the dirs, we delete them from the deb:
 	[ ! -d $(TMP)/usr/share/perl5 ] || rmdir --ignore-fail-on-non-empty --parents --verbose $(TMP)/usr/share/perl5
+	
+	[ ! -d $(TMP)/usr/bin ] || rmdir --ignore-fail-on-non-empty --parents --verbose $(TMP)/usr/bin
 
 	touch $@
 
