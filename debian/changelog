@@ -35,8 +35,9 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
   * Don't ship an empty /usr/bin directory.
   * Fix the 'clean' target, broken when Makefile.PL got unpatched.
   * Add myself to Uploaders.
-  * Remove those Debian patches included upstream from the source package;
-    they had not been applied since 2.0.3-1.
+  * debian/patches:
+    + remove those Debian patches included upstream from the source package,
+      as they had not been applied since 2.0.3-1.
 
  -- Frank Lichtenheld <djpig@debian.org>  Tue, 30 Oct 2007 09:57:01 +0100
 
