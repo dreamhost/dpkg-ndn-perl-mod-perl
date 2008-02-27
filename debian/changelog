@@ -1,8 +1,5 @@
 libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
 
-  TODO: one test failure with Perl 5.10
-   t/modules/apache_status.................# Failed test 1 in t/modules/apache_status.t at line 26
-
   [ gregor herrmann ]
   * debian/control: Added: Vcs-Svn field (source stanza); Vcs-Browser
     field (source stanza); Homepage field (source stanza). Removed: XS-
@@ -37,6 +34,8 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
       as they had not been applied since 2.0.3-1.
     + 010-svn-fix-bleadperl.patch: more Perl 5.10 fixes from upstream SVN.
     + 012-svn-more-perl5.10-fixes.patch: as above.
+    + 013-test-apache-status.patch: make the apache_status.t test work with
+      Perl 5.10 too. Upstream SVN r614146.
 
  -- Niko Tyni <ntyni@debian.org>  Wed, 27 Feb 2008 22:15:01 +0200
 
