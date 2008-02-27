@@ -38,6 +38,7 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
   * debian/patches:
     + remove those Debian patches included upstream from the source package,
       as they had not been applied since 2.0.3-1.
+    + 010-svn-fix-bleadperl.patch: more Perl 5.10 fixes from upstream SVN.
 
  -- Frank Lichtenheld <djpig@debian.org>  Tue, 30 Oct 2007 09:57:01 +0100
 
