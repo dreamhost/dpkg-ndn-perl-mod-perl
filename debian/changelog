@@ -27,6 +27,7 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
 
   [ Niko Tyni ]
   * Don't ship an empty /usr/bin directory.
+  * Fix the 'clean' target, broken when Makefile.PL got unpatched.
 
  -- Frank Lichtenheld <djpig@debian.org>  Tue, 30 Oct 2007 09:57:01 +0100
 

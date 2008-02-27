@@ -55,7 +55,9 @@ clean: unpatch
 	dh_clean build-stamp install-stamp
 
 	# Add commands to clean up after the build process here
-	[ ! -f Makefile ] || $(MAKE) realclean
+
+	# unpatch modifies Makefile.PL, rendering Makefile out of date
+	if [ -f Makefile ] ; then touch Makefile && $(MAKE) realclean ; fi
 
 	dh_clean .mypacklist Apache-Test/Makefile.old Apache-Test/t/REPORT \
 		 Apache-Test/t/cgi-bin/cookies.pl \
