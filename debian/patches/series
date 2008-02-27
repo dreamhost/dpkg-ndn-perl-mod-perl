@@ -6,3 +6,4 @@
 009-allow-parallel-build.patch
 010-svn-fix-bleadperl.patch
 011-svn-fix-perl5.10-build.patch
+012-svn-more-perl5.10-fixes.patch 
