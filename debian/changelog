@@ -1,10 +1,7 @@
 libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
 
-  TODO: 010-svn-fix-perl5.10-build.patch doesn't fix it all?
-   modperl_interp.c: In function 'modperl_interp_unselect':
-   modperl_interp.c:294: error: 'XPVMG' has no member named 'xmg_magic'
-   modperl_interp.c: In function 'modperl_interp_select':
-   modperl_interp.c:509: error: 'XPVMG' has no member named 'xmg_magic'
+  TODO: one test failure with Perl 5.10
+   t/modules/apache_status.................# Failed test 1 in t/modules/apache_status.t at line 26
 
   [ gregor herrmann ]
   * debian/control: Added: Vcs-Svn field (source stanza); Vcs-Browser
@@ -41,7 +38,7 @@ libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
     + 010-svn-fix-bleadperl.patch: more Perl 5.10 fixes from upstream SVN.
     + 012-svn-more-perl5.10-fixes.patch: as above.
 
- -- Frank Lichtenheld <djpig@debian.org>  Tue, 30 Oct 2007 09:57:01 +0100
+ -- Niko Tyni <ntyni@debian.org>  Wed, 27 Feb 2008 22:15:01 +0200
 
 libapache2-mod-perl2 (2.0.3-2) unstable; urgency=low
 
