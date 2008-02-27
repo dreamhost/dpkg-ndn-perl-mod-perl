@@ -111,6 +111,7 @@ binary-arch: build install
 	dh_installchangelogs -a Changes
 	dh_install -a
 	mv $(LA2MP2)/usr/bin/mp2bug $(LA2MP2)/usr/share/libapache2-mod-perl2/
+	rmdir --ignore-fail-on-non-empty --parents $(LA2MP2)/usr/bin/
 	install -m755 debian/libapache2-mod-perl2.bug $(LA2MP2)/usr/share/bug/libapache2-mod-perl2
 	dh_shlibdeps -a
 	dh_strip -a
