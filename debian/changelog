@@ -1,5 +1,11 @@
 libapache2-mod-perl2 (2.0.3-3) UNRELEASED; urgency=low
 
+  TODO: 010-svn-fix-perl5.10-build.patch doesn't fix it all?
+   modperl_interp.c: In function 'modperl_interp_unselect':
+   modperl_interp.c:294: error: 'XPVMG' has no member named 'xmg_magic'
+   modperl_interp.c: In function 'modperl_interp_select':
+   modperl_interp.c:509: error: 'XPVMG' has no member named 'xmg_magic'
+
   [ gregor herrmann ]
   * debian/control: Added: Vcs-Svn field (source stanza); Vcs-Browser
     field (source stanza); Homepage field (source stanza). Removed: XS-
