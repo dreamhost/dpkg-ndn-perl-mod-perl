@@ -3,6 +3,8 @@ libapache2-mod-perl2 (2.0.3-4) UNRELEASED; urgency=low
   * debian/patches/015-nonvoid-return.patch: make modperl_thx_interp_get()
     always return a value, fixing undefined behaviour that led to a SIGBUS 
     on sparc (Closes: #468327).
+  * debian/patches/010-svn-fix-bleadperl.patch: add a null pointer reference
+    fix from upstream SVN r481237.
 
  -- Niko Tyni <ntyni@debian.org>  Wed, 12 Mar 2008 14:44:17 +0200
 
