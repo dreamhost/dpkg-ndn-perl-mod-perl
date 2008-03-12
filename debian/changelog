@@ -1,5 +1,7 @@
 libapache2-mod-perl2 (2.0.3-5) UNRELEASED; urgency=low
 
+  UNRELEASED, I want to test this a bit more before uploading.
+
   * debian/rules: Improve the test suite coverage by setting
     APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf"
     so that Apache::Test parses the right apache2 configuration file.
