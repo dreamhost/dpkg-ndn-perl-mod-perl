@@ -5,6 +5,8 @@ libapache2-mod-perl2 (2.0.3-5) UNRELEASED; urgency=low
     so that Apache::Test parses the right apache2 configuration file.
   * debian/patches/030-apxs-no-prefix.patch: fix a resulting warning
     from apxs2 looking for CFG_PREFIX, which is not set on Debian.
+  * debian/patches/031-test-extra-args.patch: honour
+    APACHE_TEST_EXTRA_ARGS with the top level test suite too.
 
  -- Niko Tyni <ntyni@debian.org>  Wed, 12 Mar 2008 23:15:59 +0200
 
