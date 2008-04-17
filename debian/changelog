@@ -1,7 +1,6 @@
 libapache2-mod-perl2 (2.0.4-1) UNRELEASED; urgency=low
 
-    TODO: t/api/server_const.t fails test #3
-
+  [ Damyan Ivanov ]
   * New upstream release. Support to Perl 5.10 added.
   * Apache2::Reload was split in its own CPAN module, add
     libapache2-reload-perl to Recommends
@@ -14,6 +13,10 @@ libapache2-mod-perl2 (2.0.4-1) UNRELEASED; urgency=low
     + 010-svn-fix-bleadperl.patch
     + 011-svn-fix-perl5.10-build.patch
     + 012-svn-more-perl5.10-fixes.patch
+
+  [ Niko Tyni ]
+  * 008_fix_version_check_in_t_response_TestAPI_server_const_pm.patch:
+    dropped, no longer needed.
 
  -- Damyan Ivanov <dmn@debian.org>  Thu, 17 Apr 2008 11:15:37 +0300
 
