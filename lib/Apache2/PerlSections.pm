@@ -66,9 +66,9 @@ sub handler : method {
     {
         no strict 'refs';
         foreach my $package ($self->package) {
-            my @config = map { split /\n/ } 
-                            grep { defined } 
-                                (@{"${package}::$special"}, 
+            my @config = map { split /\n/ }
+                            grep { defined }
+                                (@{"${package}::$special"},
                                  ${"${package}::$special"});
             $self->dump_special(@config);
         }
@@ -79,6 +79,8 @@ sub handler : method {
     Apache2::Const::OK;
 }
 
+my %directives_seen_hack;
+
 sub symdump {
     my ($self) = @_;
 
@@ -87,7 +89,7 @@ sub symdump {
 
         $self->{symbols} = [];
 
-        #XXX: Here would be a good place to warn about NOT using 
+        #XXX: Here would be a good place to warn about NOT using
         #     Apache2::ReadConfig:: directly in <Perl> sections
         foreach my $pack ($self->package, $self->SPECIAL_PACKAGE) {
             #XXX: Shamelessly borrowed from Devel::Symdump;
@@ -95,11 +97,14 @@ sub symdump {
                 #We don't want to pick up stashes...
                 next if ($key =~ /::$/);
                 local (*ENTRY) = $val;
-                if (defined $val && defined *ENTRY{SCALAR}) {
+                if (defined $val && defined *ENTRY{SCALAR} && defined $ENTRY) {
                     push @{$self->{symbols}}, [$key, $ENTRY];
                 }
                 if (defined $val && defined *ENTRY{ARRAY}) {
-                    push @{$self->{symbols}}, [$key, \@ENTRY];
+                    unless (exists $directives_seen_hack{"$key$val"}) {
+                        $directives_seen_hack{"$key$val"} = 1;
+                        push @{$self->{symbols}}, [$key, \@ENTRY];
+                    }
                 }
                 if (defined $val && defined *ENTRY{HASH} && $key !~ /::/) {
                     push @{$self->{symbols}}, [$key, \%ENTRY];

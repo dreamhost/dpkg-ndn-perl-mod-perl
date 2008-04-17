@@ -194,7 +194,7 @@ static int modperl_perl_global_avcv_set(pTHX_ SV *sv, MAGIC *mg)
     av_store(mav, AvFILLp(mav)+1, sv);
 
     /* print scalar @{ $PL_modglobal{$key}{$package} } */
-    MP_TRACE_g(MP_FUNC, "%s::%s av now has %d entries\n",
+    MP_TRACE_g(MP_FUNC, "%s::%s av now has %d entries",
                package, (char*)gkey->name, 1+av_len(mav));
 
     return 1;
@@ -279,7 +279,7 @@ static HV *copyENV(pTHX_ HV *ohv)
     HvRITER(ohv) = hv_riter;
     HvEITER(ohv) = hv_eiter;
 
-    hv_magic(hv, Nullgv, 'E');    
+    hv_magic(hv, Nullgv, 'E');
 
     TAINT_NOT;
 
@@ -299,7 +299,7 @@ modperl_perl_global_gvhv_save(pTHX_ modperl_perl_global_gvhv_t *gvhv)
      * at this point: modperl_env.c:modperl_env_const_vars[],
      * PerlPassEnv and top-level PerlSetEnv
      * XXX: still; could have have something faster than newHVhv()
-     * especially if we add another GVHV to the globals table that 
+     * especially if we add another GVHV to the globals table that
      * might have more entries
      */
 

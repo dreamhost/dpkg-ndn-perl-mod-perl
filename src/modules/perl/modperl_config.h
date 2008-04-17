@@ -42,9 +42,15 @@ apr_status_t modperl_config_request_cleanup(pTHX_ request_rec *r);
 
 apr_status_t modperl_config_req_cleanup(void *data);
 
+/* use a subpool here to ensure that a PerlCleanupHandler is run before
+ * any other pool cleanup - suppools are destroyed first. Particularly a
+ * PerlCleanupHandler must run before request pnotes are dropped.
+ */
 #define modperl_config_req_cleanup_register(r, rcfg)           \
     if (r && !MpReqCLEANUP_REGISTERED(rcfg)) {                 \
-        apr_pool_cleanup_register(r->pool,                     \
+        apr_pool_t *p;                           \
+        apr_pool_create(&p, r->pool);                   \
+        apr_pool_cleanup_register(p,                   \
                                   (void*)r,                    \
                                   modperl_config_req_cleanup,  \
                                   apr_pool_cleanup_null);      \
@@ -93,7 +99,7 @@ void modperl_set_perl_module_config(ap_conf_vector_t *cv, void *cfg);
 
 #define MP_dCCFG \
     modperl_config_con_t *ccfg = modperl_config_con_get(c)
-    
+
 #define modperl_config_dir_get(r)                               \
     (r ? (modperl_config_dir_t *)                               \
      modperl_get_module_config(r->per_dir_config) : NULL)
@@ -151,7 +157,7 @@ const char *modperl_config_insert(pTHX_ server_rec *s,
                                   ap_conf_vector_t *conf,
                                   SV *lines);
 
-const char *modperl_config_insert_parms(pTHX_ cmd_parms *parms, 
+const char *modperl_config_insert_parms(pTHX_ cmd_parms *parms,
                                         SV *lines);
 
 const char *modperl_config_insert_server(pTHX_ server_rec *s, SV *lines);

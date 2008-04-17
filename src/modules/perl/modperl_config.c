@@ -22,8 +22,8 @@ void *modperl_config_dir_create(apr_pool_t *p, char *dir)
 
     dcfg->location = dir;
 
-    MP_TRACE_d(MP_FUNC, "dir %s\n", dir);
-    
+    MP_TRACE_d(MP_FUNC, "dir %s", dir);
+
 #ifdef USE_ITHREADS
     /* defaults to per-server scope */
     dcfg->interp_scope = MP_INTERP_SCOPE_UNDEF;
@@ -110,7 +110,7 @@ void *modperl_config_dir_merge(apr_pool_t *p, void *basev, void *addv)
         *add  = (modperl_config_dir_t *)addv,
         *mrg  = modperl_config_dir_new(p);
 
-    MP_TRACE_d(MP_FUNC, "basev==0x%lx, addv==0x%lx, mrg==0x%lx\n", 
+    MP_TRACE_d(MP_FUNC, "basev==0x%lx, addv==0x%lx, mrg==0x%lx",
                (unsigned long)basev, (unsigned long)addv,
                (unsigned long)mrg);
 
@@ -140,20 +140,20 @@ void *modperl_config_dir_merge(apr_pool_t *p, void *basev, void *addv)
 
 modperl_config_req_t *modperl_config_req_new(request_rec *r)
 {
-    modperl_config_req_t *rcfg = 
+    modperl_config_req_t *rcfg =
         (modperl_config_req_t *)apr_pcalloc(r->pool, sizeof(*rcfg));
 
-    MP_TRACE_d(MP_FUNC, "0x%lx\n", (unsigned long)rcfg);
+    MP_TRACE_d(MP_FUNC, "0x%lx", (unsigned long)rcfg);
 
     return rcfg;
 }
 
 modperl_config_con_t *modperl_config_con_new(conn_rec *c)
 {
-    modperl_config_con_t *ccfg = 
+    modperl_config_con_t *ccfg =
         (modperl_config_con_t *)apr_pcalloc(c->pool, sizeof(*ccfg));
 
-    MP_TRACE_d(MP_FUNC, "0x%lx\n", (unsigned long)ccfg);
+    MP_TRACE_d(MP_FUNC, "0x%lx", (unsigned long)ccfg);
 
     return ccfg;
 }
@@ -182,13 +182,13 @@ modperl_config_srv_t *modperl_config_srv_new(apr_pool_t *p, server_rec *s)
 
 #ifdef MP_USE_GTOP
     scfg->gtop = modperl_gtop_new(p);
-#endif        
+#endif
 
     /* make sure httpd's argv[0] is the first argument so $0 is
      * correctly connected to the real thing */
     modperl_config_srv_argv_push(s->process->argv[0]);
 
-    MP_TRACE_d(MP_FUNC, "new scfg: 0x%lx\n", (unsigned long)scfg);
+    MP_TRACE_d(MP_FUNC, "new scfg: 0x%lx", (unsigned long)scfg);
 
     return scfg;
 }
@@ -205,7 +205,7 @@ modperl_config_dir_t *modperl_config_dir_new(apr_pool_t *p)
 
     dcfg->SetEnv = apr_table_make(p, 2);
 
-    MP_TRACE_d(MP_FUNC, "new dcfg: 0x%lx\n", (unsigned long)dcfg);
+    MP_TRACE_d(MP_FUNC, "new dcfg: 0x%lx", (unsigned long)dcfg);
 
     return dcfg;
 }
@@ -253,12 +253,12 @@ void *modperl_config_srv_create(apr_pool_t *p, server_rec *s)
         modperl_init_globals(s, p);
     }
 
-    MP_TRACE_d(MP_FUNC, "p=0x%lx, s=0x%lx, virtual=%d\n",
+    MP_TRACE_d(MP_FUNC, "p=0x%lx, s=0x%lx, virtual=%d",
                p, s, s->is_virtual);
 
 #ifdef USE_ITHREADS
 
-    scfg->interp_pool_cfg = 
+    scfg->interp_pool_cfg =
         (modperl_tipool_config_t *)
         apr_pcalloc(p, sizeof(*scfg->interp_pool_cfg));
 
@@ -286,7 +286,7 @@ void *modperl_config_srv_merge(apr_pool_t *p, void *basev, void *addv)
         *add  = (modperl_config_srv_t *)addv,
         *mrg  = modperl_config_srv_new(p, add->server);
 
-    MP_TRACE_d(MP_FUNC, "basev==0x%lx, addv==0x%lx, mrg==0x%lx\n", 
+    MP_TRACE_d(MP_FUNC, "basev==0x%lx, addv==0x%lx, mrg==0x%lx",
                (unsigned long)basev, (unsigned long)addv,
                (unsigned long)mrg);
 
@@ -362,11 +362,6 @@ apr_status_t modperl_config_request_cleanup(pTHX_ request_rec *r)
 
     retval = modperl_callback_per_dir(MP_CLEANUP_HANDLER, r, MP_HOOK_RUN_ALL);
 
-    if (rcfg->pnotes) {
-        SvREFCNT_dec(rcfg->pnotes);
-        rcfg->pnotes = Nullhv;
-    }
-
     /* undo changes to %ENV caused by +SetupEnv, perl-script, or
      * $r->subprocess_env, so the values won't persist  */
     if (MpReqSETUP_ENV(rcfg)) {
@@ -405,7 +400,7 @@ int modperl_config_apply_PerlModule(server_rec *s,
     entries = (char **)scfg->PerlModule->elts;
     for (i = 0; i < scfg->PerlModule->nelts; i++){
         if (modperl_require_module(aTHX_ entries[i], TRUE)){
-            MP_TRACE_d(MP_FUNC, "loaded Perl module %s for server %s\n",
+            MP_TRACE_d(MP_FUNC, "loaded Perl module %s for server %s",
                        entries[i], modperl_server_desc(s,p));
         }
         else {
@@ -430,7 +425,7 @@ int modperl_config_apply_PerlRequire(server_rec *s,
     entries = (char **)scfg->PerlRequire->elts;
     for (i = 0; i < scfg->PerlRequire->nelts; i++){
         if (modperl_require_file(aTHX_ entries[i], TRUE)){
-            MP_TRACE_d(MP_FUNC, "loaded Perl file: %s for server %s\n",
+            MP_TRACE_d(MP_FUNC, "loaded Perl file: %s for server %s",
                        entries[i], modperl_server_desc(s,p));
         }
         else {
@@ -463,14 +458,14 @@ int modperl_config_apply_PerlPostConfigRequire(server_rec *s,
         MP_PERL_CONTEXT_RESTORE;
 
         if (retval) {
-            MP_TRACE_d(MP_FUNC, "loaded Perl file: %s for server %s\n",
+            MP_TRACE_d(MP_FUNC, "loaded Perl file: %s for server %s",
                        requires[i]->file, modperl_server_desc(s, p));
         }
         else {
             ap_log_error(APLOG_MARK, APLOG_ERR, 0, s,
                          "Can't load Perl file: %s for server %s, exiting...",
                          requires[i]->file, modperl_server_desc(s, p));
-            
+
             return FALSE;
         }
     }
@@ -523,7 +518,7 @@ const char *modperl_config_insert(pTHX_ server_rec *s,
     parms.limited = -1;
     parms.server = s;
     parms.override = override;
-    parms.path = path;
+    parms.path = apr_pstrdup(p, path);
     parms.pool = p;
 #ifdef MP_HTTPD_HAS_OVERRIDE_OPTS
     if (override_options == MP_HTTPD_OVERRIDE_OPTS_UNSET) {
@@ -570,14 +565,14 @@ const char *modperl_config_insert(pTHX_ server_rec *s,
     return errmsg;
 }
 
-const char *modperl_config_insert_parms(pTHX_ cmd_parms *parms, 
+const char *modperl_config_insert_parms(pTHX_ cmd_parms *parms,
                                         SV *lines)
 {
-    return modperl_config_insert(aTHX_ 
-                                 parms->server, 
-                                 parms->pool, 
+    return modperl_config_insert(aTHX_
+                                 parms->server,
+                                 parms->pool,
                                  parms->temp_pool,
-                                 parms->override, 
+                                 parms->override,
                                  parms->path,
 #ifdef MP_HTTPD_HAS_OVERRIDE_OPTS
                                  parms->override_opts,
@@ -623,7 +618,7 @@ const char *modperl_config_insert_request(pTHX_
         return errmsg;
     }
 
-    r->per_dir_config = 
+    r->per_dir_config =
         ap_merge_per_dir_configs(r->pool,
                                  r->per_dir_config,
                                  dconf);

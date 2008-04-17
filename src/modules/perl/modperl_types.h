@@ -101,7 +101,6 @@ struct modperl_tipool_t {
 struct modperl_interp_pool_t {
     server_rec *server;
     modperl_tipool_t *tipool;
-    modperl_tipool_config_t *tipool_cfg;
     modperl_interp_t *parent; /* from which to perl_clone() */
 };
 
@@ -193,10 +192,10 @@ struct modperl_handler_t {
      * - a subroutine name for named subs
      * - NULL for anon subs
      */
-    const char *name; 
+    const char *name;
     CV *cv;
     U8 flags;
-    U32 attrs;
+    U16 attrs;
     modperl_handler_t *next;
 };
 

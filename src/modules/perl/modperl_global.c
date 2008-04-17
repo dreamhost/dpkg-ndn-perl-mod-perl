@@ -77,7 +77,7 @@ static apr_status_t modperl_global_cleanup(void *data)
 {
     modperl_global_t *global = (modperl_global_t *)data;
 
-    MP_TRACE_g(MP_FUNC, "destroy lock for %s\n", global->name);
+    MP_TRACE_g(MP_FUNC, "destroy lock for %s", global->name);
     MUTEX_DESTROY(&global->glock);
 
     return APR_SUCCESS;
@@ -100,13 +100,13 @@ void modperl_global_init(modperl_global_t *global, apr_pool_t *p,
                               apr_pool_cleanup_null);
 #endif
 
-    MP_TRACE_g(MP_FUNC, "init %s\n", name);
+    MP_TRACE_g(MP_FUNC, "init %s", name);
 }
 
 void modperl_global_lock(modperl_global_t *global)
 {
 #if MP_THREADED
-    MP_TRACE_g(MP_FUNC, "locking %s\n", global->name);
+    MP_TRACE_g(MP_FUNC, "locking %s", global->name);
     MUTEX_LOCK(&global->glock);
 #endif
 }
@@ -114,7 +114,7 @@ void modperl_global_lock(modperl_global_t *global)
 void modperl_global_unlock(modperl_global_t *global)
 {
 #if MP_THREADED
-    MP_TRACE_g(MP_FUNC, "unlocking %s\n", global->name);
+    MP_TRACE_g(MP_FUNC, "unlocking %s", global->name);
     MUTEX_UNLOCK(&global->glock);
 #endif
 }
@@ -185,11 +185,11 @@ int modperl_global_anon_cnt_next(void)
 {
     int next;
     /* XXX: inline lock/unlock? */
-    modperl_global_lock(&MP_global_anon_cnt); 
+    modperl_global_lock(&MP_global_anon_cnt);
 
     next = ++*(int *)(MP_global_anon_cnt.data);
 
-    modperl_global_unlock(&MP_global_anon_cnt); 
+    modperl_global_unlock(&MP_global_anon_cnt);
 
     return next;
 }
@@ -250,7 +250,7 @@ typedef struct {
 
 static apr_status_t modperl_tls_reset(void *data)
 {
-    modperl_tls_cleanup_data_t *cdata = 
+    modperl_tls_cleanup_data_t *cdata =
         (modperl_tls_cleanup_data_t *)data;
     return modperl_tls_set(cdata->key, cdata->data);
 }

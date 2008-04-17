@@ -18,7 +18,7 @@
 
 modperl_handler_t *modperl_handler_new(apr_pool_t *p, const char *name)
 {
-    modperl_handler_t *handler = 
+    modperl_handler_t *handler =
         (modperl_handler_t *)apr_pcalloc(p, sizeof(*handler));
 
     switch (*name) {
@@ -38,7 +38,7 @@ modperl_handler_t *modperl_handler_new(apr_pool_t *p, const char *name)
 
     handler->cv = NULL;
     handler->name = name;
-    MP_TRACE_h(MP_FUNC, "[%s] new handler %s\n",
+    MP_TRACE_h(MP_FUNC, "[%s] new handler %s",
                modperl_pid_tid(p), handler->name);
 
     return handler;
@@ -72,7 +72,7 @@ modperl_handler_t *modperl_handler_new(apr_pool_t *p, const char *name)
  * when perl_clone is called, each clone will clone that CV value, but
  * we will still be able to find it, since we stored it in the
  * hash. so we retrieve the CV value, whatever it is and we run it.
- * 
+ *
  * that explanation can be written and run in perl:
  *
  * use threads;
@@ -97,7 +97,7 @@ MP_INLINE modperl_mgv_t *modperl_handler_anon_next(pTHX_ apr_pool_t *p)
 {
     /* re-use modperl_mgv_t entry which is otherwise is not used
      * by anon handlers */
-    modperl_mgv_t *anon = 
+    modperl_mgv_t *anon =
         (modperl_mgv_t *)apr_pcalloc(p, sizeof(*anon));
 
     anon->name = apr_psprintf(p, "anon%d", modperl_global_anon_cnt_next());
@@ -157,7 +157,7 @@ MP_INLINE CV *modperl_handler_anon_get(pTHX_ modperl_mgv_t *anon)
 static
 modperl_handler_t *modperl_handler_new_anon(pTHX_ apr_pool_t *p, CV *cv)
 {
-    modperl_handler_t *handler = 
+    modperl_handler_t *handler =
         (modperl_handler_t *)apr_pcalloc(p, sizeof(*handler));
     MpHandlerPARSED_On(handler);
     MpHandlerANON_On(handler);
@@ -174,7 +174,7 @@ modperl_handler_t *modperl_handler_new_anon(pTHX_ apr_pool_t *p, CV *cv)
     handler->cv   = cv;
     handler->name = NULL;
 
-    MP_TRACE_h(MP_FUNC, "[%s] new cached cv anon handler\n",
+    MP_TRACE_h(MP_FUNC, "[%s] new cached cv anon handler",
                modperl_pid_tid(p));
 #endif
 
@@ -244,7 +244,7 @@ int modperl_handler_resolve(pTHX_ modperl_handler_t **handp,
 modperl_handler_t *modperl_handler_dup(apr_pool_t *p,
                                        modperl_handler_t *h)
 {
-    MP_TRACE_h(MP_FUNC, "dup handler %s\n", modperl_handler_name(h));
+    MP_TRACE_h(MP_FUNC, "dup handler %s", modperl_handler_name(h));
     return modperl_handler_new(p, h->name);
 }
 
@@ -279,12 +279,12 @@ MpAV *modperl_handler_array_merge(apr_pool_t *p, MpAV *base_a, MpAV *add_a)
     for (i=0; i<base_a->nelts; i++) {
         for (j=0; j<add_a->nelts; j++) {
             if (modperl_handler_equal(base_h[i], add_h[j])) {
-                MP_TRACE_d(MP_FUNC, "both base and new config contain %s\n",
+                MP_TRACE_d(MP_FUNC, "both base and new config contain %s",
                            add_h[j]->name);
             }
             else {
                 modperl_handler_array_push(mrg_a, add_h[j]);
-                MP_TRACE_d(MP_FUNC, "base does not contain %s\n",
+                MP_TRACE_d(MP_FUNC, "base does not contain %s",
                            add_h[j]->name);
             }
         }
@@ -363,7 +363,7 @@ void modperl_handler_make_args(pTHX_ AV **avp, ...)
  * $r->push/set at request time will create entries in r->request_config
  * push will first merge with configured handlers, unless an entry
  * in r->request_config already exists.  in this case, push or set has
- * already been called for the given handler, 
+ * already been called for the given handler,
  * r->request_config entries then override those in r->per_dir_config
  */
 
@@ -427,14 +427,16 @@ MpAV **modperl_handler_lookup_handlers(modperl_config_dir_t *dcfg,
         /* just a lookup */
         break;
       case MP_HANDLER_ACTION_PUSH:
-        if (ravp && !*ravp) {
-            if (*avp) {
-                /* merge with existing configured handlers */
-                *ravp = apr_array_copy(p, *avp);
-            }
-            else {
-                /* no request handlers have been previously pushed or set */
-                *ravp = modperl_handler_array_new(p);
+        if (ravp) {
+            if (!*ravp) {
+                if (*avp) {
+                    /* merge with existing configured handlers */
+                    *ravp = apr_array_copy(p, *avp);
+                }
+                else {
+                    /* no request handlers have been previously pushed or set */
+                    *ravp = modperl_handler_array_new(p);
+                }
             }
         }
         else if (!*avp) {
@@ -514,6 +516,7 @@ modperl_handler_t *modperl_handler_new_from_sv(pTHX_ apr_pool_t *p, SV *sv)
         }
         name = apr_pstrcat(p, HvNAME(GvSTASH(gv)), "::", GvNAME(gv), NULL);
         return modperl_handler_new(p, apr_pstrdup(p, name));
+      default:
         break;
     };
 
@@ -530,7 +533,7 @@ int modperl_handler_push_handlers(pTHX_ apr_pool_t *p,
         return TRUE;
     }
 
-    MP_TRACE_h(MP_FUNC, "unable to push_handler 0x%lx\n",
+    MP_TRACE_h(MP_FUNC, "unable to push_handler 0x%lx",
                (unsigned long)sv);
 
     return FALSE;
@@ -569,7 +572,7 @@ SV *modperl_handler_perl_get_handlers(pTHX_ MpAV **handp, apr_pool_t *p)
             }
 
             if (!modperl_mgv_resolve(aTHX_ handler, p, handler->name, TRUE)) {
-                MP_TRACE_h(MP_FUNC, "failed to resolve handler %s\n",
+                MP_TRACE_h(MP_FUNC, "failed to resolve handler %s",
                            handler->name);
             }
 

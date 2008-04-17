@@ -245,7 +245,7 @@ sub map_function {
 
     $self->thx_fixup($func);
 
-    my ($status, $failed_type) = 
+    my ($status, $failed_type) =
         $self->can_map($map, $func->{return_type},
             map $_->{type}, @{ $func->{args} });
 
@@ -413,6 +413,7 @@ apr_hash.h
 apr_lib.h
 apr_general.h
 apr_signal.h
+apr_thread_rwlock.h
 util_script.h
 };
 

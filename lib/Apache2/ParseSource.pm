@@ -79,7 +79,7 @@ my @c_scan_defines = (
 
 
 # some types c-scan failing to resolve
-push @c_scan_defines, map { "$_=void" } 
+push @c_scan_defines, map { "$_=void" }
     qw(PPADDR_t PerlExitListEntry modperl_tipool_vtbl_t);
 
 sub scan {
@@ -314,12 +314,12 @@ sub get_constants {
 
 sub handle_constant {
     my ($self, $constants) = @_;
-    my $keys = keys %defines_wanted_re; #XXX broken bleedperl ?
+    my $keys = keys %defines_wanted_re;
 
     return if /^($defines_unwanted)/o;
 
     while (my ($class, $groups) = each %defines_wanted_re) {
-        my $keys = keys %$groups; #XXX broken bleedperl ?
+        my $keys = keys %$groups;
 
         while (my ($group, $re) = each %$groups) {
             next unless /^($re)/;

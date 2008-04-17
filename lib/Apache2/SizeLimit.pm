@@ -80,7 +80,7 @@ BEGIN {
 #  Currently unsupported for mp2 because of threads...
 #     }
 #      elsif (WIN32) {
-# 
+#
 #         if ( eval { require Win32::API } ) {
 #             $HOW_BIG_IS_IT = \&win32_size_check;
 #         }
@@ -142,7 +142,7 @@ sub solaris_2_6_size_check {
 # rss is in KB but ixrss is in BYTES.
 # This is true on at least FreeBSD, OpenBSD, NetBSD
 # Philip M. Gollucci
-sub _bsd_size_check {
+sub bsd_size_check {
 
     my @results = BSD::Resource::getrusage();
     my $max_rss   = $results[2];

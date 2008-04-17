@@ -1273,7 +1273,7 @@ Get the dir config vector:
 ( C<L<Apache2::RequestRec object|docs::2.0::api::Apache2::RequestRec>> )
 
 =item ret: C<$per_dir_config>
-( C<L<Apache2::ConfVector object|docs::2.0::api::Apache2::ConfVector>> )
+( C<L<Apache2::ConfVector object|docs::2.0::api::Apache2::RequestRec/C_per_dir_config_>> )
 
 =item since: 2.0.00
 
@@ -1516,7 +1516,12 @@ you run that code in C<PerlPostReadRequestHandler> phase, since if you
 don't -- C<mod_proxy>'s own post_read_request handler will override
 your settings (as it will run after the mod_perl handler).
 
+And you may also want to add
 
+  $r->set_handlers(PerlResponseHandler => []);
+
+so that any response handlers which match apache directives
+will not run in addition to the mod_proxy content handler.
 
 
 
@@ -1753,11 +1758,14 @@ you can then deploy C<mod_include> and write in I<.shtml> document:
 First HTTP request header
 
   $request = $r->the_request();
+  $old_request = $r->uri($new_request);
 
 =over 4
 
 =item obj: C<$r>
 ( C<L<Apache2::RequestRec object|docs::2.0::api::Apache2::RequestRec>> )
+
+=item opt arg1: C<$new_request> ( string )
 
 =item ret: C<$request> ( string )
 
@@ -1844,7 +1852,7 @@ section.
 
 =head2 C<user>
 
-Get the user name, if an L<authentication> process was successful. Or
+Get the user name, if an authentication process was successful. Or
 set it.
 
   $user      = $r->user();
@@ -1963,7 +1971,7 @@ structures
 ( C<L<Apache2::RequestRec object|docs::2.0::api::Apache2::RequestRec>> )
 
 =item opt arg1: C<$newval>
-( C<L<Apache2::ConfVector object|docs::2.0::api::Apache2::ConfVector>> )
+( C<L<Apache2::ConfVector object|docs::2.0::api::Apache2::RequestRec/C_per_dir_config_>> )
 
 =item since: 2.0.00
 

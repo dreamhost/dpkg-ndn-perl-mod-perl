@@ -454,7 +454,7 @@ C<@INC>. Instead use:
 in I<httpd.conf> or:
 
   use Apache2::ServerUtil ();
-  use File::Spec::Functins qw(catfile);
+  use File::Spec::Functions qw(catfile);
   push @INC, catfile Apache2::ServerUtil::server_root, "";
   push @INC, catfile Apache2::ServerUtil::server_root, "lib/perl";
 
@@ -505,7 +505,7 @@ Enable tracing
 
 =head3 Non-Boolean Build Options
 
-set the non-boolen options with MP_XXX=value.
+set the non-boolean options with MP_XXX=value.
 
 =head4 MP_APXS
 
@@ -694,7 +694,7 @@ corrections and patches.
 
 =item *
 
-Stas Bekman E<lt>stas (at) stason.orgE<gt>
+Stas Bekman [http://stason.org/]
 
 =back
 
@@ -704,7 +704,7 @@ Stas Bekman E<lt>stas (at) stason.orgE<gt>
 
 =item *
 
-Stas Bekman E<lt>stas (at) stason.orgE<gt>
+Stas Bekman [http://stason.org/]
 
 =item *
 
