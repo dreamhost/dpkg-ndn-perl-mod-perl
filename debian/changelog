@@ -5,6 +5,13 @@ libapache2-mod-perl2 (2.0.4-1) UNRELEASED; urgency=low
     libapache2-reload-perl to Recommends
   * Drop patches applied upstream
     + 005-regex-DoS-bug-433549.patch
+    + 013-test-apache-status.patch
+    + 015-nonvoid-return.patch
+  * Drop Perl 5.10 related patches that are not needed now that upstream
+    supports 5.10
+    + 010-svn-fix-bleadperl.patch
+    + 011-svn-fix-perl5.10-build.patch
+    + 012-svn-more-perl5.10-fixes.patch
 
  -- Damyan Ivanov <dmn@debian.org>  Thu, 17 Apr 2008 11:15:37 +0300
 
