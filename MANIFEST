@@ -98,6 +98,7 @@ ModPerl-Registry/t/cgi-bin/cgi.pl
 ModPerl-Registry/t/cgi-bin/closure.pl
 ModPerl-Registry/t/cgi-bin/content_type.pl
 ModPerl-Registry/t/cgi-bin/env.pl
+ModPerl-Registry/t/cgi-bin/env_val.pl
 ModPerl-Registry/t/cgi-bin/exit.pl
 ModPerl-Registry/t/cgi-bin/flush.pl
 ModPerl-Registry/t/cgi-bin/ithreads_io_n_tie.pl
@@ -133,6 +134,8 @@ ModPerl-Registry/t/nph.t
 ModPerl-Registry/t/perlrun_extload.t
 ModPerl-Registry/t/prefork.t
 ModPerl-Registry/t/redirect.t
+ModPerl-Registry/t/regex.t
+ModPerl-Registry/t/rewrite_env.t
 ModPerl-Registry/t/special_blocks.t
 README
 README-SVN
@@ -144,7 +147,6 @@ build/config.pl
 build/make_etags
 build/make_rpm_spec
 build/source_scan.pl
-build/svn.remerge
 build/win32_fetch_apxs
 build/xs_generate.pl
 docs/TODO
@@ -168,6 +170,7 @@ docs/api/APR/Status.pod
 docs/api/APR/String.pod
 docs/api/APR/Table.pod
 docs/api/APR/ThreadMutex.pod
+docs/api/APR/ThreadRWLock.pod
 docs/api/APR/URI.pod
 docs/api/APR/UUID.pod
 docs/api/APR/Util.pod
@@ -365,7 +368,6 @@ lib/Apache2/Build.pm
 lib/Apache2/ParseSource.pm
 lib/Apache2/PerlSections.pm
 lib/Apache2/PerlSections/Dump.pm
-lib/Apache2/Reload.pm
 lib/Apache2/Resource.pm
 lib/Apache2/SizeLimit.pm
 lib/Apache2/SourceTables.pm
@@ -505,6 +507,7 @@ t/apr-ext/status.t
 t/apr-ext/string.t
 t/apr-ext/table.t
 t/apr-ext/threadmutex.t
+t/apr-ext/threadrwlock.t
 t/apr-ext/uri.t
 t/apr-ext/util.t
 t/apr-ext/uuid.t
@@ -564,6 +567,7 @@ t/filter/TestFilter/out_str_req_mix.pm
 t/filter/TestFilter/out_str_reverse.pm
 t/filter/TestFilter/out_str_subreq_default.pm
 t/filter/TestFilter/out_str_subreq_modperl.pm
+t/filter/TestFilter/with_subrequest.pm
 t/filter/both_str_con_add.t
 t/filter/both_str_native_remove.t
 t/filter/both_str_req_add.t
@@ -598,6 +602,7 @@ t/filter/out_str_req_mix.t
 t/filter/out_str_reverse.t
 t/filter/out_str_subreq_default.t
 t/filter/out_str_subreq_modperl.t
+t/filter/with_subrequest.t
 t/hooks/TestHooks/access.pm
 t/hooks/TestHooks/authen_basic.pm
 t/hooks/TestHooks/authen_digest.pm
@@ -671,6 +676,7 @@ t/lib/TestAPRlib/status.pm
 t/lib/TestAPRlib/string.pm
 t/lib/TestAPRlib/table.pm
 t/lib/TestAPRlib/threadmutex.pm
+t/lib/TestAPRlib/threadrwlock.pm
 t/lib/TestAPRlib/uri.pm
 t/lib/TestAPRlib/util.pm
 t/lib/TestAPRlib/uuid.pm
@@ -693,12 +699,12 @@ t/modperl/merge3.t
 t/modperl/perl_options.t
 t/modperl/perl_options2.t
 t/modperl/pnotes.t
+t/modperl/pnotes2.t
 t/modperl/post_utf8.t
 t/modperl/print_utf8.t
 t/modperl/print_utf8_2.t
 t/modperl/readline.t
 t/modperl/request_rec_perlio_api.t
-t/modperl/sameinterp.t
 t/modperl/setupenv.t
 t/modperl/setupenv2.t
 t/modperl/status.t
@@ -714,7 +720,6 @@ t/modules/include.t
 t/modules/include2.t
 t/modules/include_subreq.t
 t/modules/proxy.t
-t/modules/reload.t
 t/perl/hash_attack.t
 t/preconnection/TestPreConnection/note.pm
 t/preconnection/note.t
@@ -782,6 +787,7 @@ t/response/TestAPR/status.pm
 t/response/TestAPR/string.pm
 t/response/TestAPR/table.pm
 t/response/TestAPR/threadmutex.pm
+t/response/TestAPR/threadrwlock.pm
 t/response/TestAPR/uri.pm
 t/response/TestAPR/util.pm
 t/response/TestAPR/uuid.pm
@@ -846,6 +852,7 @@ t/response/TestModperl/perl.pm
 t/response/TestModperl/perl_options.pm
 t/response/TestModperl/perl_options2.pm
 t/response/TestModperl/pnotes.pm
+t/response/TestModperl/pnotes2.pm
 t/response/TestModperl/post_utf8.pm
 t/response/TestModperl/print.pm
 t/response/TestModperl/print_utf8.pm
@@ -854,7 +861,6 @@ t/response/TestModperl/printf.pm
 t/response/TestModperl/readline.pm
 t/response/TestModperl/request_rec_perlio_api.pm
 t/response/TestModperl/request_rec_tie_api.pm
-t/response/TestModperl/sameinterp.pm
 t/response/TestModperl/setauth.pm
 t/response/TestModperl/setupenv.pm
 t/response/TestModperl/setupenv2.pm
@@ -870,7 +876,6 @@ t/response/TestModules/cgiupload.pm
 t/response/TestModules/cgiupload2.pm
 t/response/TestModules/include_subreq.pm
 t/response/TestModules/proxy.pm
-t/response/TestModules/reload.pm
 t/response/TestPerl/api.pm
 t/response/TestPerl/hash_attack.pm
 t/response/TestPerl/signals.pm
@@ -938,6 +943,7 @@ xs/APR/Status/APR__Status.h
 xs/APR/String/APR__String.h
 xs/APR/Table/APR__Table.h
 xs/APR/ThreadMutex/APR__ThreadMutex.h
+xs/APR/ThreadRWLock/APR__ThreadRWLock.h
 xs/APR/URI/APR__URI.h
 xs/APR/UUID/APR__UUID.h
 xs/APR/Util/APR__Util.h

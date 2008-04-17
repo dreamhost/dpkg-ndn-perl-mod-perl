@@ -88,7 +88,7 @@ int modperl_callback(pTHX_ modperl_handler_t *handler, apr_pool_t *p,
                 name = handler->name;
             }
 
-            MP_TRACE_h(MP_FUNC, "[%s %s] lookup of %s failed\n",
+            MP_TRACE_h(MP_FUNC, "[%s %s] lookup of %s failed",
                        modperl_pid_tid(p),
                        modperl_server_desc(s, p), name);
             ap_log_error(APLOG_MARK, APLOG_ERR, 0, s,
@@ -112,7 +112,7 @@ int modperl_callback(pTHX_ modperl_handler_t *handler, apr_pool_t *p,
             if (status_sv == &PL_sv_undef) {
                 /* ModPerl::Util::exit() and Perl_croak internally
                  * arrange to return PL_sv_undef with G_EVAL|G_SCALAR */
-                status = OK; 
+                status = OK;
             }
             else {
                 status = SvIVx(status_sv);
@@ -163,7 +163,7 @@ int modperl_callback_run_handlers(int idx, int type,
     AV *av_args = Nullav;
 
     if (!MpSrvENABLE(scfg)) {
-        MP_TRACE_h(MP_FUNC, "PerlOff for server %s:%u\n",
+        MP_TRACE_h(MP_FUNC, "PerlOff for server %s:%u",
                    s->server_hostname, s->port);
         return DECLINED;
     }
@@ -179,7 +179,7 @@ int modperl_callback_run_handlers(int idx, int type,
                                           type, idx, FALSE, &desc);
 
     if (!(avp && (av = *avp))) {
-        MP_TRACE_h(MP_FUNC, "no %s handlers configured (%s)\n",
+        MP_TRACE_h(MP_FUNC, "no %s handlers configured (%s)",
                    desc, r ? r->uri : "");
         return DECLINED;
     }
@@ -254,14 +254,14 @@ int modperl_callback_run_handlers(int idx, int type,
 
     modperl_callback_current_callback_set(desc);
 
-    MP_TRACE_h(MP_FUNC, "[%s] running %d %s handlers\n",
+    MP_TRACE_h(MP_FUNC, "[%s] running %d %s handlers",
                modperl_pid_tid(p), av->nelts, desc);
     handlers = (modperl_handler_t **)av->elts;
 
     for (i=0; i<av->nelts; i++) {
         status = modperl_callback(aTHX_ handlers[i], p, r, s, av_args);
 
-        MP_TRACE_h(MP_FUNC, "callback '%s' returned %d\n",
+        MP_TRACE_h(MP_FUNC, "callback '%s' returned %d",
                    modperl_handler_name(handlers[i]), status);
 
         /* follow Apache's lead and let OK terminate the phase for
@@ -290,7 +290,7 @@ int modperl_callback_run_handlers(int idx, int type,
                 break;
             }
             /* the normal case:
-             *   OK and DECLINED continue 
+             *   OK and DECLINED continue
              *   errors end the phase
              */
             else if ((status != OK) && (status != DECLINED)) {
@@ -299,7 +299,7 @@ int modperl_callback_run_handlers(int idx, int type,
 #ifdef MP_TRACE
                 if (i+1 != av->nelts) {
                     MP_TRACE_h(MP_FUNC, "error status %d leaves %d "
-                               "uncalled %s handlers\n",
+                               "uncalled %s handlers",
                                status, av->nelts-i-1, desc);
                 }
 #endif
@@ -316,7 +316,7 @@ int modperl_callback_run_handlers(int idx, int type,
 #ifdef MP_TRACE
                 if (i+1 != av->nelts) {
                     MP_TRACE_h(MP_FUNC, "OK ends the %s stack, "
-                               "leaving %d uncalled %s handlers\n",
+                               "leaving %d uncalled %s handlers",
                                desc, av->nelts-i-1, desc);
                 }
 #endif
@@ -327,7 +327,7 @@ int modperl_callback_run_handlers(int idx, int type,
 #ifdef MP_TRACE
                 if (i+1 != av->nelts) {
                     MP_TRACE_h(MP_FUNC, "error status %d leaves %d "
-                               "uncalled %s handlers\n",
+                               "uncalled %s handlers",
                                status, av->nelts-i-1, desc);
                 }
 #endif
@@ -337,7 +337,7 @@ int modperl_callback_run_handlers(int idx, int type,
         else {
             /* the rare case.
              * MP_HOOK_VOID handlers completely ignore the return status
-             * Apache should handle whatever mod_perl returns, 
+             * Apache should handle whatever mod_perl returns,
              * so there is no need to mess with the status
              */
         }
@@ -371,7 +371,7 @@ int modperl_callback_per_dir(int idx, request_rec *r,
                                          NULL, NULL, NULL, run_mode);
 }
 
-int modperl_callback_per_srv(int idx, request_rec *r, 
+int modperl_callback_per_srv(int idx, request_rec *r,
                              modperl_hook_run_mode_e run_mode)
 {
     return modperl_callback_run_handlers(idx,
@@ -380,7 +380,7 @@ int modperl_callback_per_srv(int idx, request_rec *r,
                                          NULL, NULL, NULL, run_mode);
 }
 
-int modperl_callback_connection(int idx, conn_rec *c, 
+int modperl_callback_connection(int idx, conn_rec *c,
                                 modperl_hook_run_mode_e run_mode)
 {
     return modperl_callback_run_handlers(idx,

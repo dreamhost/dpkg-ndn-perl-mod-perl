@@ -23,7 +23,7 @@ flow|docs::2.0::devel::core::mod_perl_specific>.
 META: needs more organization (if you grok any of the following,
 patches are welcome)
 
-META: there is a new compile-time option in perl-5.9.0+:
+META: there is a new compile-time option in perl-5.8.8+:
 -DDEBUG_LEAKING_SCALARS, which prints out the addresses of leaked SVs
 and new_SV() can be used to discover where those SVs were allocated.
 (see perlhack.pod for more info)
@@ -612,7 +612,7 @@ information that should aid resolve the reported problem is missing.
 
 Therefore the next step is to recompile Perl and mod_perl (and may be
 Apache) with debug symbols as L<explained
-earlier|Getting_Ready_to_Debug> in this chapter.
+earlier|/Getting_Ready_to_Debug> in this chapter.
 
 Now when we repeat the process of starting the server, issuing a
 request and getting the core file, after which we run C<gdb> again
@@ -1019,7 +1019,7 @@ http://sources.redhat.com/gdb/current/onlinedocs/gdb_10.html#SEC69
 Maintainer is the person(s) you should contact with updates,
 corrections and patches.
 
-Stas Bekman E<lt>stas (at) stason.orgE<gt>
+Stas Bekman [http://stason.org/]
 
 =head1 Authors
 
@@ -1027,7 +1027,7 @@ Stas Bekman E<lt>stas (at) stason.orgE<gt>
 
 =item *
 
-Stas Bekman E<lt>stas (at) stason.orgE<gt>
+Stas Bekman [http://stason.org/]
 
 =back
 

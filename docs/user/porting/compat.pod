@@ -206,7 +206,7 @@ C<@INC>.
 mod_perl 1.0 was always running its startup code as soon as it was
 encountered. In mod_perl 2.0, it is not always the case. Refer to the
 L<mod_perl 2.0 startup process
-section|docs::2.0::user::config::config/Startup_Process> section for
+section|docs::2.0::user::handlers::server/mod_perl_Startup> for
 details.
 
 
@@ -1311,7 +1311,8 @@ See the C<L<APR::Pool>> manpage.
 
 =head2 C<$r-E<gt>request>
 
-Use C<L<Apache2-E<gt>request|/C_Apache2_E_gt_request_>>.
+Use
+C<L<Apache2::RequestUtil-E<gt>request|docs::2.0::api::Apache2::RequestUtil/C_request_>>.
 
 
 
@@ -1898,7 +1899,7 @@ corrections and patches.
 
 =item *
 
-Stas Bekman E<lt>stas (at) stason.orgE<gt>
+Stas Bekman [http://stason.org/]
 
 =back
 
@@ -1908,7 +1909,7 @@ Stas Bekman E<lt>stas (at) stason.orgE<gt>
 
 =item *
 
-Stas Bekman E<lt>stas (at) stason.orgE<gt>
+Stas Bekman [http://stason.org/]
 
 =back
 

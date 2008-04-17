@@ -6,7 +6,26 @@ Changes - Apache::Test change logfile
 
 =over 3
 
-=item 1.29-dev
+=item 1.31-dev
+
+
+=item 1.30 November 26, 2007
+
+Added t_write_test_lib for temporary testing packages
+[Fred Moyer <fred@redhotpenguin.com>]
+
+Fix syntax error in generated PHP files t/conf/*.php.in
+[Philippe M. Chiasson]
+
+Add bwshare.so to the list of modules to not inherit b/c
+it rate limits requests to less then that of a test suite.
+PR: 25548
+[imacat <imacat@mail.imacat.idv.tw>]
+
+Add EXTRA_CFLAGS to c-module building if defined in the environment
+[Geoffrey Young]
+
+=item 1.29 November 28, 2006
 
 Require a minium of Module::Build 0.18 when using Apache::TestMB.
 PR: 19513

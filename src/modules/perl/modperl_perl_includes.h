@@ -53,7 +53,6 @@
 #   define uid_t perl_uid_t
 #   define gid_t perl_gid_t
 #   ifdef exit
-#      define perl_exit exit
 #      undef exit
 #   endif
 #endif
@@ -68,25 +67,11 @@
 
 #if defined(WIN32) && defined(USE_LARGE_FILES)
 #   ifdef malloc
-#      define perl_malloc malloc
 #      undef malloc
 #   endif
 #   ifdef free
-#      define perl_free free
 #      undef free
 #   endif
-#endif
-
-#if (PERL_REVISION == 5) && (PERL_VERSION == 6)
-#   define MP_PERL_5_6_x
-#endif
-
-#if defined(MP_PERL_5_6_x) && (PERL_SUBVERSION == 0)
-#   define MP_PERL_5_6_0
-#endif
-
-#if defined(MP_PERL_5_6_x) && (PERL_SUBVERSION == 1)
-#   define MP_PERL_5_6_1
 #endif
 
 #include "modperl_perl_unembed.h"

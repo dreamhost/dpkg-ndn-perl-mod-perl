@@ -310,7 +310,7 @@ sub request {
 
 package Apache::Server;
 # XXX: is that good enough? see modperl/src/modules/perl/mod_perl.c:367
-our $CWD = Apache2::ServerUtil::server_root;
+our $CWD = Apache2::ServerUtil::server_root();
 
 our $AddPerlVersion = 1;
 
@@ -320,6 +320,10 @@ sub warn {
 }
 
 package Apache;
+
+sub request {
+    return Apache2::compat::request(@_);
+}
 
 sub unescape_url_info {
     my ($class, $string) = @_;
@@ -344,7 +348,7 @@ sub server_root_relative {
          return File::Spec->catfile(@_);
     }
     else {
-        File::Spec->catfile(Apache2::ServerUtil::server_root, @_);
+        File::Spec->catfile(Apache2::ServerUtil::server_root(), @_);
     }
 }
 
@@ -486,18 +490,18 @@ sub table_get_set {
     my ($key, $value) = @_;
 
     if (1 == @_) {
-        return wantarray() 
+        return wantarray()
             ?       ($table->get($key))
             : scalar($table->get($key));
     }
     elsif (2 == @_) {
         if (defined $value) {
-            return wantarray() 
+            return wantarray()
                 ?        ($table->set($key, $value))
                 :  scalar($table->set($key, $value));
         }
         else {
-            return wantarray() 
+            return wantarray()
                 ?       ($table->unset($key))
                 : scalar($table->unset($key));
         }
@@ -513,21 +517,21 @@ sub table_get_set {
 
 sub header_out {
     my $r = shift;
-    return wantarray() 
+    return wantarray()
         ?       ($r->table_get_set(scalar($r->headers_out), @_))
         : scalar($r->table_get_set(scalar($r->headers_out), @_));
 }
 
 sub header_in {
     my $r = shift;
-    return wantarray() 
+    return wantarray()
         ?       ($r->table_get_set(scalar($r->headers_in), @_))
         : scalar($r->table_get_set(scalar($r->headers_in), @_));
 }
 
 sub err_header_out {
     my $r = shift;
-    return wantarray() 
+    return wantarray()
         ?       ($r->table_get_set(scalar($r->err_headers_out), @_))
         : scalar($r->table_get_set(scalar($r->err_headers_out), @_));
 }
@@ -596,7 +600,7 @@ sub content {
 
 sub server_root_relative {
     my $r = shift;
-    File::Spec->catfile(Apache2::ServerUtil::server_root, @_);
+    File::Spec->catfile(Apache2::ServerUtil::server_root(), @_);
 }
 
 sub clear_rgy_endav {

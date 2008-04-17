@@ -24,7 +24,7 @@
  * from living in the gv to the GvIOp(gv), so we have to deal
  * with both to support 5.6.x
  */
-#if ((PERL_REVISION == 5) && (PERL_VERSION >= 7))
+#if MP_PERL_VERSION_AT_LEAST(5, 7, 0)
 #   define TIEHANDLE_SV(handle) (SV*)GvIOp((SV*)handle)
 #else
 #   define TIEHANDLE_SV(handle) (SV*)handle
@@ -62,15 +62,15 @@ MP_INLINE void modperl_io_perlio_restore_stdout(pTHX_ GV *handle);
 #if defined(MP_IO_TIE_SFIO)
     /* XXX */
 #elif defined(MP_IO_TIE_PERLIO)
-#define modperl_io_override_stdin  modperl_io_perlio_override_stdin  
-#define modperl_io_override_stdout modperl_io_perlio_override_stdout  
-#define modperl_io_restore_stdin   modperl_io_perlio_restore_stdin  
-#define modperl_io_restore_stdout  modperl_io_perlio_restore_stdout  
+#define modperl_io_override_stdin  modperl_io_perlio_override_stdin
+#define modperl_io_override_stdout modperl_io_perlio_override_stdout
+#define modperl_io_restore_stdin   modperl_io_perlio_restore_stdin
+#define modperl_io_restore_stdout  modperl_io_perlio_restore_stdout
 #else
-#define modperl_io_override_stdin  modperl_io_tie_stdin  
-#define modperl_io_override_stdout modperl_io_tie_stdout  
-#define modperl_io_restore_stdin   modperl_io_handle_untie  
-#define modperl_io_restore_stdout  modperl_io_handle_untie  
+#define modperl_io_override_stdin  modperl_io_tie_stdin
+#define modperl_io_override_stdout modperl_io_tie_stdout
+#define modperl_io_restore_stdin   modperl_io_handle_untie
+#define modperl_io_restore_stdout  modperl_io_handle_untie
 #endif
 
 

@@ -61,7 +61,7 @@ static apr_status_t modperl_shutdown(void *data)
 
     handles = modperl_xs_dl_handles_get(aTHX);
 
-    MP_TRACE_i(MP_FUNC, "destroying interpreter=0x%lx\n",
+    MP_TRACE_i(MP_FUNC, "destroying interpreter=0x%lx",
                (unsigned long)perl);
 
     modperl_perl_destruct(perl);
@@ -165,8 +165,7 @@ static void set_taint_var(PerlInterpreter *perl)
     dTHXa(perl);
 
 /* 5.7.3+ has a built-in special ${^TAINT}, backport it to 5.6.0+ */
-#if PERL_REVISION == 5 && \
-    (PERL_VERSION == 6 || (PERL_VERSION == 7 && PERL_SUBVERSION < 3))
+#if MP_PERL_VERSION_AT_MOST(5, 7, 2)
     {
         GV *gv = gv_fetchpv("\024AINT", GV_ADDMULTI, SVt_IV);
         sv_setiv(GvSV(gv), PL_tainting);
@@ -216,13 +215,13 @@ PerlInterpreter *modperl_startup(server_rec *s, apr_pool_t *p)
     {
         server_rec *base_server = modperl_global_get_server_rec();
         const char *desc = modperl_server_desc(s, p);
-        if (base_server == s) {        
+        if (base_server == s) {
             MP_TRACE_i(MP_FUNC,
-                       "starting the parent perl for the base server\n", desc);
+                       "starting the parent perl for the base server", desc);
         }
         else {
             MP_TRACE_i(MP_FUNC,
-                       "starting the parent perl for vhost %s\n", desc);
+                       "starting the parent perl for vhost %s", desc);
         }
     }
 #endif
@@ -266,7 +265,7 @@ PerlInterpreter *modperl_startup(server_rec *s, apr_pool_t *p)
     PL_endav = Nullav;
 
 /* This was fixed in 5.9.0/5.8.1 (17775), but won't compile after 19122 */
-#if PERL_REVISION == 5 && PERL_VERSION == 8 && PERL_SUBVERSION == 0 && \
+#if MP_PERL_VERSION(5, 8, 0) && \
     defined(USE_REENTRANT_API) && defined(HAS_CRYPT_R) && defined(__GLIBC__)
     /* workaround perl5.8.0/glibc bug */
     PL_reentrant_buffer->_crypt_struct.current_saltbits = 0;
@@ -293,7 +292,7 @@ PerlInterpreter *modperl_startup(server_rec *s, apr_pool_t *p)
 
     set_taint_var(perl);
 
-    MP_TRACE_i(MP_FUNC, "constructed interpreter=0x%lx\n",
+    MP_TRACE_i(MP_FUNC, "constructed interpreter=0x%lx",
                (unsigned long)perl);
 
 #ifdef MP_USE_GTOP
@@ -352,7 +351,7 @@ int modperl_init_vhost(server_rec *s, apr_pool_t *p,
     const char *vhost = modperl_server_desc(s, p);
 
     if (!scfg) {
-        MP_TRACE_i(MP_FUNC, "server %s has no mod_perl config\n", vhost);
+        MP_TRACE_i(MP_FUNC, "server %s has no mod_perl config", vhost);
         return OK;
     }
 
@@ -360,11 +359,11 @@ int modperl_init_vhost(server_rec *s, apr_pool_t *p,
         base_server = modperl_global_get_server_rec();
     }
 
-    MP_TRACE_i(MP_FUNC, "Init vhost %s: s=0x%lx, base_s=0x%lx\n",
+    MP_TRACE_i(MP_FUNC, "Init vhost %s: s=0x%lx, base_s=0x%lx",
                vhost, s, base_server);
 
     if (base_server == s) {
-        MP_TRACE_i(MP_FUNC, "base server is not vhost, skipping %s\n",
+        MP_TRACE_i(MP_FUNC, "base server is not vhost, skipping %s",
                    vhost);
         return OK;
     }
@@ -380,14 +379,14 @@ int modperl_init_vhost(server_rec *s, apr_pool_t *p,
 #ifdef USE_ITHREADS
 
     if (scfg->mip) {
-        MP_TRACE_i(MP_FUNC, "server %s already initialized\n", vhost);
+        MP_TRACE_i(MP_FUNC, "server %s already initialized", vhost);
         return OK;
     }
 
     /* the base server could have mod_perl callbacks disabled, but it
      * still needs perl to drive the vhosts */
     if (!MpSrvENABLE(scfg) && s->is_virtual) {
-        MP_TRACE_i(MP_FUNC, "mod_perl disabled for server %s\n", vhost);
+        MP_TRACE_i(MP_FUNC, "mod_perl disabled for server %s", vhost);
         scfg->mip = NULL;
         return OK;
     }
@@ -402,7 +401,7 @@ int modperl_init_vhost(server_rec *s, apr_pool_t *p,
     if (MpSrvPARENT(scfg)) {
         perl = modperl_startup(s, p);
         MP_TRACE_i(MP_FUNC,
-                   "created parent interpreter for VirtualHost %s\n",
+                   "created parent interpreter for VirtualHost %s",
                    modperl_server_desc(s, p));
     }
     else {
@@ -410,7 +409,7 @@ int modperl_init_vhost(server_rec *s, apr_pool_t *p,
         /* virtual host w/ +Clone gets its own mip */
         if (MpSrvCLONE(scfg)) {
             modperl_interp_init(s, p, perl);
-        }   
+        }
 #endif
 
         if (!modperl_config_apply_PerlRequire(s, scfg, perl, p)) {
@@ -428,7 +427,7 @@ int modperl_init_vhost(server_rec *s, apr_pool_t *p,
          * need to point to the base mip here if this vhost
          * doesn't have its own
          */
-        MP_TRACE_i(MP_FUNC, "%s mip inherited from %s\n",
+        MP_TRACE_i(MP_FUNC, "%s mip inherited from %s",
                    vhost, modperl_server_desc(base_server, p));
         scfg->mip = base_scfg->mip;
     }
@@ -477,7 +476,7 @@ static int modperl_post_config_require(server_rec *s, apr_pool_t *p)
     for (; s; s=s->next) {
         MP_dSCFG(s);
         if (!modperl_config_apply_PerlPostConfigRequire(s, scfg, p)) {
-            return FALSE;   
+            return FALSE;
         }
     }
     return TRUE;
@@ -492,7 +491,7 @@ static void modperl_init_clones(server_rec *s, apr_pool_t *p)
 #endif /* MP_TRACE */
 
     if (!modperl_threaded_mpm()) {
-        MP_TRACE_i(MP_FUNC, "no clones created for non-threaded mpm\n");
+        MP_TRACE_i(MP_FUNC, "no clones created for non-threaded mpm");
         return;
     }
 
@@ -501,7 +500,7 @@ static void modperl_init_clones(server_rec *s, apr_pool_t *p)
 #ifdef MP_TRACE
         char *name = modperl_server_desc(s, p);
 
-        MP_TRACE_i(MP_FUNC, "PerlInterpScope set to %s for %s\n",
+        MP_TRACE_i(MP_FUNC, "PerlInterpScope set to %s for %s",
                    modperl_interp_scope_desc(scfg->interp_scope), name);
 #else
         char *name = NULL;
@@ -511,18 +510,18 @@ static void modperl_init_clones(server_rec *s, apr_pool_t *p)
 #ifdef MP_TRACE
             if (scfg->mip == base_scfg->mip) {
                 MP_TRACE_i(MP_FUNC,
-                           "%s interp pool inherited from %s\n",
+                           "%s interp pool inherited from %s",
                            name, base_name);
             }
             else {
                 MP_TRACE_i(MP_FUNC,
-                           "%s interp pool already initialized\n",
+                           "%s interp pool already initialized",
                            name);
             }
 #endif /* MP_TRACE */
         }
         else {
-            MP_TRACE_i(MP_FUNC, "initializing interp pool for %s\n",
+            MP_TRACE_i(MP_FUNC, "initializing interp pool for %s",
                        name);
             modperl_tipool_init(scfg->mip->tipool);
         }
@@ -534,7 +533,7 @@ void modperl_init_globals(server_rec *s, apr_pool_t *pconf)
 {
     ap_mpm_query(AP_MPMQ_IS_THREADED, &MP_threaded_mpm);
 
-    MP_TRACE_g(MP_FUNC, "mod_perl globals are configured\n");
+    MP_TRACE_g(MP_FUNC, "mod_perl globals are configured");
 
     modperl_global_init_pconf(pconf, pconf);
     modperl_global_init_server_rec(pconf, s);
@@ -554,7 +553,7 @@ static apr_status_t modperl_sys_init(void)
     int argc = 0;
     char **argv = NULL, **env = NULL;
 
-    MP_TRACE_i(MP_FUNC, "mod_perl sys init\n");
+    MP_TRACE_i(MP_FUNC, "mod_perl sys init");
 
     /* not every OS uses those vars in PERL_SYS_INIT3 macro */
     argc = argc; argv = argv; env = env;
@@ -584,13 +583,18 @@ static apr_status_t modperl_sys_init(void)
 
 static apr_status_t modperl_sys_term(void *data)
 {
+    /* PERL_SYS_TERM() needs 'my_perl' as of 5.9.5 */
+#if MP_PERL_VERSION_AT_LEAST(5, 9, 5) && defined(USE_ITHREADS)
+    modperl_cleanup_data_t *cdata = (modperl_cleanup_data_t *)data;
+    PerlInterpreter *my_perl = cdata == NULL ? NULL : (PerlInterpreter *)cdata->data;
+#endif
     MP_init_status = 0;
     MP_threads_started = 0;
     MP_post_post_config_phase = 0;
 
     MP_PERL_FREE_THREAD_KEY_WORKAROUND;
 
-    MP_TRACE_i(MP_FUNC, "mod_perl sys term\n");
+    MP_TRACE_i(MP_FUNC, "mod_perl sys term");
 
     modperl_env_unload();
 
@@ -601,14 +605,14 @@ static apr_status_t modperl_sys_term(void *data)
     return APR_SUCCESS;
 }
 
-int modperl_hook_init(apr_pool_t *pconf, apr_pool_t *plog, 
+int modperl_hook_init(apr_pool_t *pconf, apr_pool_t *plog,
                       apr_pool_t *ptemp, server_rec *s)
 {
     if (MP_IS_STARTING || MP_IS_RUNNING) {
         return OK;
     }
 
-    MP_TRACE_i(MP_FUNC, "mod_perl hook init\n");
+    MP_TRACE_i(MP_FUNC, "mod_perl hook init");
 
     MP_init_status = 1; /* now starting */
 
@@ -703,12 +707,12 @@ static int modperl_hook_post_config_last(apr_pool_t *pconf, apr_pool_t *plog,
     }
 #endif
 
-#if PERL_REVISION == 5 && PERL_VERSION < 9
-#define MP_PERL_VERSION_STAMP "Perl/v%vd"
-#else
+#if MP_PERL_VERSION_AT_LEAST(5, 9, 0)
 #define MP_PERL_VERSION_STAMP "Perl/%" SVf
+#else
+#define MP_PERL_VERSION_STAMP "Perl/v%vd"
 #endif
-    
+
     ap_add_version_component(pconf, MP_VERSION_STRING);
     ap_add_version_component(pconf,
                              Perl_form(aTHX_ MP_PERL_VERSION_STAMP,
@@ -754,7 +758,7 @@ static int modperl_hook_post_read_request(request_rec *r)
 }
 
 static int modperl_hook_header_parser(request_rec *r)
-{    
+{
     /* if 'PerlOptions +GlobalRequest' is inside a container */
     modperl_global_request_cfg_set(r);
 
@@ -831,6 +835,7 @@ void modperl_register_hooks(apr_pool_t *p)
 
 #ifdef USE_ITHREADS
     APR_REGISTER_OPTIONAL_FN(modperl_interp_unselect);
+    APR_REGISTER_OPTIONAL_FN(modperl_thx_interp_get);
 #endif
 
     /* for <IfDefine MODPERL2> and Apache2->define("MODPERL2") */
@@ -896,7 +901,7 @@ void modperl_register_hooks(apr_pool_t *p)
     modperl_register_handler_hooks();
 }
 
-static const command_rec modperl_cmds[] = {  
+static const command_rec modperl_cmds[] = {
     MP_CMD_SRV_ITERATE("PerlSwitches", switches, "Perl Switches"),
     MP_CMD_DIR_ITERATE("PerlModule", modules, "PerlModule"),
     MP_CMD_DIR_ITERATE("PerlRequire", requires, "PerlRequire"),
@@ -952,8 +957,8 @@ static const command_rec modperl_cmds[] = {
                     "Turn on -w switch"),
 #endif
     MP_CMD_ENTRIES,
-    { NULL }, 
-}; 
+    { NULL },
+};
 
 void modperl_response_init(request_rec *r)
 {
@@ -1011,6 +1016,7 @@ static int modperl_response_handler_run(request_rec *r, int finish)
 int modperl_response_handler(request_rec *r)
 {
     MP_dDCFG;
+    MP_dRCFG;
     apr_status_t retval;
 
 #ifdef USE_ITHREADS
@@ -1025,6 +1031,9 @@ int modperl_response_handler(request_rec *r)
 #ifdef USE_ITHREADS
     interp = modperl_interp_select(r, r->connection, r->server);
     aTHX = interp->perl;
+    if (MpInterpPUTBACK(interp)) {
+        rcfg->interp = interp;
+    }
 #endif
 
     /* default is -SetupEnv, add if PerlOption +SetupEnv */
@@ -1037,6 +1046,7 @@ int modperl_response_handler(request_rec *r)
 #ifdef USE_ITHREADS
     if (MpInterpPUTBACK(interp)) {
         /* PerlInterpScope handler */
+        rcfg->interp = NULL;
         modperl_interp_unselect(interp);
     }
 #endif
@@ -1133,7 +1143,7 @@ const void *modperl_suck_in_ugly_hack(void)
 }
 
 module AP_MODULE_DECLARE_DATA perl_module = {
-    STANDARD20_MODULE_STUFF, 
+    STANDARD20_MODULE_STUFF,
     modperl_config_dir_create, /* dir config creater */
     modperl_config_dir_merge,  /* dir merger --- default is to override */
     modperl_config_srv_create, /* server config */

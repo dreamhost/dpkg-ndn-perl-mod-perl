@@ -1513,7 +1513,7 @@ running under mod_perl 1.0 or 2.0:
   </IfDefine>
 
 From within Perl code this can be tested with
-C<L<Apache2::ServerUtil::exists_config_define()|docs::2.0::Apache2::ServerUtil/C_exists_config_define_>>,
+C<L<Apache2::ServerUtil::exists_config_define()|docs::2.0::api::Apache2::ServerUtil/C_exists_config_define_>>,
 for example:
 
   use Apache2::ServerUtil ();
@@ -1627,7 +1627,7 @@ corrections and patches.
 
 =item *
 
-Stas Bekman E<lt>stas (at) stason.orgE<gt>
+Stas Bekman [http://stason.org/]
 
 =back
 
@@ -1641,7 +1641,7 @@ Doug MacEachern E<lt>dougm (at) covalent.netE<gt>
 
 =item *
 
-Stas Bekman E<lt>stas (at) stason.orgE<gt>
+Stas Bekman [http://stason.org/]
 
 =back
 

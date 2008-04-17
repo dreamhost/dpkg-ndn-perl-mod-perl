@@ -81,7 +81,7 @@ sub configure_libmodperl {
             my $lib = "$Config{installbin}\\$Config{libperl}";
             $lib =~ s/lib$/dll/;
             $cfg = 'LoadFile ' . qq("$lib"\n) if -e $lib;
-	}
+        }
         # add the module we found to the cached modules list
         # otherwise have_module('mod_perl') doesn't work unless
         # we have a LoadModule in our base config
@@ -148,7 +148,7 @@ EOF
 # propogate PerlPassEnv settings to the server
 sub configure_env {
     my $self = shift;
-    $self->preamble(IfModule => 'mod_perl.c', 
+    $self->preamble(IfModule => 'mod_perl.c',
                     [ qw(PerlPassEnv APACHE_TEST_TRACE_LEVEL
                          PerlPassEnv HARNESS_PERL_SWITCHES)
                     ]);
@@ -204,6 +204,17 @@ sub configure_startup_pl {
         my $tlib = catdir $self->{vars}->{t_dir}, 'lib';
         if (-d $tlib) {
             print $fh "use lib '$tlib';\n";
+        }
+
+        # directory for temp packages which can change during testing
+        # we use require here since a circular dependency exists
+        # between Apache::TestUtil and Apache::TestConfigPerl, so
+        # use does not work here
+        eval { require Apache::TestUtil; };
+        if ($@) {
+            die "could not require Apache::TestUtil: $@";
+        } else {
+            print $fh "use lib '" . Apache::TestUtil::_temp_package_dir() . "';\n";
         }
 
         # if Apache::Test is used to develop a project, we want the

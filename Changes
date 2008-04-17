@@ -10,6 +10,106 @@ Also refer to the Apache::Test changes log file, at Apache-Test/Changes
 
 =over 3
 
+=item 2.0.4 April 16, 2008
+
+Fix $r->location corruption under certain conditions
+[Gozer]
+
+Fix a crash when spawning Perl threads under Perl 5.10
+[Gozer]
+
+Fix erratic behaviour when filters were used with Perl 5.10
+[Gozer]
+
+Fix problems with redefinitions of perl_free as free and perl_malloc
+as malloc on Win32, as described at
+ http://marc.info/?l=apache-modperl&m=119896407510526&w=2
+[Tom Donovan]
+
+Fix a crash when running a sub-request from within a filter where
+mod_perl was not the content handler. [Gozer]
+
+Refactor tests to use keepalives instead of same_interp [Gozer, Phred]
+
+Apache2::Reload has been moved to an externally maintained
+CPAN distribution [Fred Moyer <fred@redhotpenguin.com>]
+
+PerlCleanupHandler are now registered with a subpool of $r->pool,
+instead of $r->pool itself, ensuring they run _before_ any other
+$r->pool cleanups [Torsten Foertsch]
+
+Fix a bug that would prevent pnotes from being cleaned up properly
+at the end of the request [Torsten Foertsch]
+
+On Win32, embed the manifest file, if present, in mod_perl.so,
+so as to work with VC 8 [Steve Hay, Randy Kobes]
+
+Expose apr_thread_rwlock_t with the APR::ThreadRWLock module
+[Torsten Foertsch]
+
+Don't waste an extra interpreter anymore under threaded MPMs when using a 
+modperl handler [Torsten Foertsch] 
+
+Fix a bug that could cause a crash when using $r->push_handlers() multiple
+times for a phase that has no configured handlers [Torsten Foertsch]
+
+Catch up with some httpd API changes
+  2.2.4: 
+   The full server version information is now included in the error log at
+startup as well as server status reports, irrespective of the setting
+of the ServerTokens directive. ap_get_server_version() is now
+deprecated, and is replaced by ap_get_server_banner() and
+ap_get_server_description(). [Jeff Trawick]
+
+  2.3.0:
+ap_get_server_version() has been removed. Third-party modules must
+now use ap_get_server_banner() or ap_get_server_description().
+[Gozer]
+
+fixed Apache2::compat Apache2::ServerUtil::server_root() resolution
+issues [Joshua Hoblitt]
+
+*) SECURITY: CVE-2007-1349 (cve.mitre.org)
+fix unescaped variable interprolation in regular expression
+[Randal L. Schwartz <merlyn@stonehenge.com>, Fred Moyer <fred@redhotpenguin.com>]
+
+Make $r->the_request() writeable
+[Fred Moyer <fred@redhotpenguin.com>]
+
+fix ModPerl::RegistryCooker::read_script to handle all possible
+errors, previously there was a case where Apache2::Const::OK was
+returned on an error.  [Eivind Eklund <eeklund@gmail.com>]
+
+a minor compilation warning resolved in modperl_handler_new_from_sv
+[Stas]
+
+a minor compilation warning resolved in modperl_gtop_size_string
+[Stas]
+
+Prevent direct use of _deprecated_ Apache2::ReadConfig in
+<Perl> sections with httpd Alias directives from 
+incorrectly generating
+'The Alias directive in xxxxx at line y will probably never match'
+messages.
+[Philip M. Gollucci <pgollucci@p6m78g.com>]
+
+Prevent Apache2::PerSections::symdump() from returning invalid
+httpd.conf snippets like 'Alias undef'
+[Philip M. Gollucci <pgollucci@p6m78g.com>]
+
+Require B-Size 0.9 for Apache2::Status which fixes
+Can't call method "script_name" on an undefined value
+[Philip M. Gollucci <pgollucci@p6m78g.com>]
+
+-march=pentium4 or anything with an = in it in CCFLAGS or @ARGV
+that gets passed to xs/APR/APR/Makefile.PL broke the @ARGV
+parsing.  I.E. FreeBSD port builds when users had CPUTYPE
+set in /etc/make.conf.
+[Philip M. Gollucci <pgollucci@p6m7g8.com>]
+
+Fixes to get bleed-ithread (5.9.5+) to comile again. 
+[Philip M. Gollucci <pgollucci@p6m7g8.com>]
+
 =item 2.0.3 November 28, 2006
 
 Prevent things in %INC that are not stat() able

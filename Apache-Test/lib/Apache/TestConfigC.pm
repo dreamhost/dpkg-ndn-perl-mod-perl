@@ -126,8 +126,7 @@ sub cmodules_write_makefiles {
     }
 
     my $file = catfile $self->{cmodules_dir}, 'Makefile';
-    my $fh = Symbol::gensym();
-    open $fh, ">$file" or die "open $file: $!";
+    my $fh = $self->genfile($file);
 
     print $fh $self->cmodules_makefile_vars;
 
@@ -169,22 +168,24 @@ sub cmodules_write_makefile_default {
     my $dversion = $self->server->dversion;
     my $name = $mod->{name};
     my $makefile = catfile $mod->{dir}, 'Makefile';
+
+    my $extra = $ENV{EXTRA_CFLAGS} || '';
+
     debug "writing $makefile";
 
     my $lib = $self->cmodules_build_so($name);
 
-    my $fh = Symbol::gensym();
-    open $fh, ">$makefile" or die "open $makefile: $!";
+    my $fh = $self->genfile($makefile);
 
     print $fh <<EOF;
 APXS=$self->{APXS}
 all: $lib
 
 $lib: $name.c
-	\$(APXS) $dversion -I$self->{cmodules_dir} -c $name.c
+	\$(APXS) $dversion $extra -I$self->{cmodules_dir} -c $name.c
 
 clean:
-	-rm -rf $name.o $name.lo $name.slo $name.la .libs
+	-rm -rf $name.o $name.lo $name.slo $name.la $name.i $name.s $name.gcno .libs
 EOF
 
     close $fh or die "close $makefile: $!";
@@ -213,6 +214,9 @@ sub cmodules_write_makefile_aix {
             close $fh;
         }
     }
+
+    my $extra = $ENV{EXTRA_CFLAGS} || '';
+
     debug "writing $makefile";
 
     my $lib = $self->cmodules_build_so($name);
@@ -226,7 +230,7 @@ APXSFLAGS=$apxsflags
 all: $lib
 
 $lib: $name.c
-	\$(APXS) $dversion -I$self->{cmodules_dir} \$(APXSFLAGS) -c $name.c
+	\$(APXS) $dversion $extra -I$self->{cmodules_dir} \$(APXSFLAGS) -c $name.c
 
 clean:
 	-rm -rf $name.o $name.lo $name.slo $name.la .libs
@@ -251,12 +255,16 @@ sub cmodules_write_makefile_MSWin32 {
     my $fh = Symbol::gensym();
     open $fh, ">$makefile" or die "open $makefile: $!";
 
+    my $extra = $ENV{EXTRA_CFLAGS} || '';
+
+    debug "writing $makefile";
+
     print $fh <<EOF;
 APXS=$self->{APXS}
 all: $lib
 
 $lib: $name.c
-	\$(APXS) $dversion -I$self->{cmodules_dir} $extras -c $name.c
+	\$(APXS) $dversion $extra -I$self->{cmodules_dir} $extras -c $name.c
 
 clean:
 	-erase $goners
@@ -377,9 +385,9 @@ static const handler_rec name ## _handlers[] =
 module MODULE_VAR_EXPORT name ## _module =
 {
     STANDARD_MODULE_STUFF,
-    NULL,			/* initializer */
+    NULL,                       /* initializer */
     $cmodule_config_hooks,
-    name ## _handlers,	        /* handlers */
+    name ## _handlers,          /* handlers */
     $cmodule_hooks_1
 }
 EOF
