@@ -1,5 +1,7 @@
 libapache2-mod-perl2 (2.0.4-1) UNRELEASED; urgency=low
 
+    TODO: t/api/server_const.t fails test #3
+
   * New upstream release. Support to Perl 5.10 added.
   * Apache2::Reload was split in its own CPAN module, add
     libapache2-reload-perl to Recommends
