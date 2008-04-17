@@ -19,7 +19,7 @@ Package: libapache2-mod-perl2
 Architecture: any
 Depends: apache2.2-common, ${perl:Depends}, libwww-perl, libmime-base64-perl,
  libdevel-symdump-perl, liburi-perl, ${shlibs:Depends}, netbase
-Recommends: libbsd-resource-perl
+Recommends: libbsd-resource-perl, libapache2-reload-perl
 Description: Integration of perl with the Apache2 web server
  mod_perl allows the use of Perl for just about anything
  Apache-related, including <Perl> sections in the config
