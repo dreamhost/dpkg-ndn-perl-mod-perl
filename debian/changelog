@@ -1,7 +1,7 @@
 libapache2-mod-perl2 (2.0.4-1) UNRELEASED; urgency=low
 
   [ Damyan Ivanov ]
-  * New upstream release. Support to Perl 5.10 added.
+  * New upstream release. Support to Perl 5.10 added. Closes: #479240
   * Apache2::Reload was split in its own CPAN module, add
     libapache2-reload-perl to Recommends
   * Drop patches applied upstream
