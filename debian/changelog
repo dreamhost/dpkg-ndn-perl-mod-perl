@@ -18,6 +18,9 @@ libapache2-mod-perl2 (2.0.4-1) UNRELEASED; urgency=low
   * 008_fix_version_check_in_t_response_TestAPI_server_const_pm.patch:
     dropped, no longer needed.
 
+  [ gregor herrmann ]
+  * debian/copyright: deduct years of copyright from Changes.
+
  -- Damyan Ivanov <dmn@debian.org>  Thu, 17 Apr 2008 11:15:37 +0300
 
 libapache2-mod-perl2 (2.0.3-5) unstable; urgency=low
