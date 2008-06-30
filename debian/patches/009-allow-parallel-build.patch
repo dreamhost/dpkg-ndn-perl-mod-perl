@@ -1,8 +1,6 @@
-Index: libapache2-mod-perl2/Makefile.PL
-===================================================================
---- libapache2-mod-perl2.orig/Makefile.PL	2007-10-30 09:36:28.000000000 +0100
-+++ libapache2-mod-perl2/Makefile.PL	2007-10-30 09:43:38.000000000 +0100
-@@ -738,7 +738,9 @@
+--- a/Makefile.PL
++++ b/Makefile.PL
+@@ -738,7 +738,9 @@ sub MY::install {
      ModPerl::MM::add_dep_after(\$string, qw(install doc_install modperl_banner));
  
      # glue_pods target must come first

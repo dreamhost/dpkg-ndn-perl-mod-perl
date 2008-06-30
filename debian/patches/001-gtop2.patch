@@ -1,8 +1,6 @@
-Index: libapache2-mod-perl2/lib/Apache2/Build.pm
-===================================================================
---- libapache2-mod-perl2.orig/lib/Apache2/Build.pm	2006-11-20 01:31:40.000000000 +0200
-+++ libapache2-mod-perl2/lib/Apache2/Build.pm	2007-08-21 13:33:39.000000000 +0300
-@@ -449,7 +449,7 @@
+--- a/lib/Apache2/Build.pm
++++ b/lib/Apache2/Build.pm
+@@ -449,7 +449,7 @@ sub gtop_ldopts_old {
          $xlibs .= ' -lintl';
      }
  

@@ -1,8 +1,6 @@
-Index: libapache2-mod-perl2/lib/ModPerl/BuildMM.pm
-===================================================================
---- libapache2-mod-perl2.orig/lib/ModPerl/BuildMM.pm	2007-08-21 13:16:41.000000000 +0300
-+++ libapache2-mod-perl2/lib/ModPerl/BuildMM.pm	2007-08-21 13:39:47.000000000 +0300
-@@ -281,7 +281,7 @@
+--- a/lib/ModPerl/BuildMM.pm
++++ b/lib/ModPerl/BuildMM.pm
+@@ -281,7 +281,7 @@ sub ModPerl::BuildMM::MY::postamble {
                  $man =~ s!/!::!g;
  
                  push @target,
