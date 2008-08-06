@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
 Uploaders: Gunnar Wolf <gwolf@debian.org>, Damyan Ivanov <dmn@debian.org>,
  Niko Tyni <ntyni@debian.org>, gregor herrmann <gregoa@debian.org>
-Standards-Version: 3.7.3
+Standards-Version: 3.8.0
 Homepage: http://perl.apache.org/
 Vcs-Svn: svn://svn.debian.org/pkg-perl/trunk/libapache2-mod-perl2/
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-perl/trunk/libapache2-mod-perl2/
