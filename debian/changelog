@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.4-2) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.4-2) UNRELEASED; urgency=medium
 
   [ Frank Lichtenheld ]
   * Convert debian/copyright to proposed new format.
@@ -8,6 +8,13 @@ libapache2-mod-perl2 (2.0.4-2) UNRELEASED; urgency=low
   [ gregor herrmann ]
   * Add debian/README.source to document quilt usage, as required by
     Debian Policy since 3.8.0.
+
+  [ Damyan Ivanov ]
+  * add explicit build-dependency on libcgi-pm-perl (>= 3.33) as the version
+    of CGI.pm shipped in perl-modules fails with a taint failure when handling
+    uploads. Thanks to Niko Tyni for the investigation.
+    Closes: #480154 -- FTBFS on mips (cgiupload tests fail)
+    - bump urgency to medium
 
  -- Frank Lichtenheld <djpig@debian.org>  Wed, 06 Aug 2008 20:12:39 -0300
 
