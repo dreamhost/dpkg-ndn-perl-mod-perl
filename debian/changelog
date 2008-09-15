@@ -1,6 +1,6 @@
-libapache2-mod-perl2 (2.0.4-3) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.4-4) UNRELEASED; urgency=low
 
-    WAIT FOR -2 to hit lenny
+    WAIT FOR -3 to hit lenny
 
   [ Frank Lichtenheld ]
   * Convert debian/copyright to proposed new format.
@@ -12,6 +12,15 @@ libapache2-mod-perl2 (2.0.4-3) UNRELEASED; urgency=low
     Debian Policy since 3.8.0.
 
  -- Frank Lichtenheld <djpig@debian.org>  Wed, 06 Aug 2008 20:12:39 -0300
+
+libapache2-mod-perl2 (2.0.4-3) unstable; urgency=low
+
+  * Add an alternative (and preferred) build-dependency on
+    perl-modules (>= 5.10.0-14) to the libcgi-pm-perl one.
+    This works around an sbuild bug (#395271) on the buildds.
+    (Closes: #494677)
+
+ -- Niko Tyni <ntyni@debian.org>  Mon, 15 Sep 2008 21:04:52 +0300
 
 libapache2-mod-perl2 (2.0.4-2) unstable; urgency=medium
 
