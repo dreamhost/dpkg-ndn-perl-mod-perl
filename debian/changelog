@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.4-4) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.4-4) UNRELEASED; urgency=medium
 
     WAIT FOR -3 to hit lenny
 
@@ -10,6 +10,13 @@ libapache2-mod-perl2 (2.0.4-4) UNRELEASED; urgency=low
   [ gregor herrmann ]
   * Add debian/README.source to document quilt usage, as required by
     Debian Policy since 3.8.0.
+
+  [ Damyan Ivanov ]
+  * add dependency on apache2 (>= 2.2.4) because of the new
+    ap_get_server_banner symbol not available in previous apaches
+    Closes: #503375: libapache2-mod-perl2 - Uses undefined symbol
+                     ap_get_server_banner
+    Thanks to Bastian Blank for reporting.
 
  -- Frank Lichtenheld <djpig@debian.org>  Wed, 06 Aug 2008 20:12:39 -0300
 
