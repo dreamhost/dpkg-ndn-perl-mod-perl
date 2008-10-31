@@ -1,6 +1,4 @@
-libapache2-mod-perl2 (2.0.4-4) UNRELEASED; urgency=medium
-
-    WAIT FOR -3 to hit lenny
+libapache2-mod-perl2 (2.0.4-4) unstable; urgency=medium
 
   [ Frank Lichtenheld ]
   * Convert debian/copyright to proposed new format.
@@ -18,7 +16,7 @@ libapache2-mod-perl2 (2.0.4-4) UNRELEASED; urgency=medium
                      ap_get_server_banner
     Thanks to Bastian Blank for reporting.
 
- -- Frank Lichtenheld <djpig@debian.org>  Wed, 06 Aug 2008 20:12:39 -0300
+ -- Damyan Ivanov <dmn@debian.org>  Fri, 31 Oct 2008 14:00:39 +0200
 
 libapache2-mod-perl2 (2.0.4-3) unstable; urgency=low
 
