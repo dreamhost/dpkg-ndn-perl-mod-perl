@@ -1,7 +1,14 @@
 libapache2-mod-perl2 (2.0.4-5) UNRELEASED; urgency=low
 
+  [ gregor herrmann ]
   * debian/control: Changed: Switched Vcs-Browser field to ViewSVN
     (source stanza).
+
+  [ Damyan Ivanov ]
+  * add 010-doc-no-more-send_http_header.patch removing a forgotten
+    send_http_header that is no nonger available in Registry.pod
+    Closes: #507821 -- Can't locate object method "send_http_header" via
+                       package "Apache2::RequestRec"
 
  -- gregor herrmann <gregoa@debian.org>  Sun, 16 Nov 2008 20:39:28 +0100
 

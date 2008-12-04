@@ -4,3 +4,4 @@
 004-bugs-to-debian-bts.patch
 006_man_section_and_build_warnings.patch
 009-allow-parallel-build.patch
+010-doc-no-more-send_http_header.patch
