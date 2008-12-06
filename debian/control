@@ -18,7 +18,7 @@ Build-Conflicts: libapache2-mod-perl2 (<= 1.999.22-1)
 
 Package: libapache2-mod-perl2
 Architecture: any
-Depends: apache2.2-common, ${perl:Depends}, libwww-perl, libmime-base64-perl,
+Depends: ${misc:Depends}, apache2.2-common, ${perl:Depends}, libwww-perl, libmime-base64-perl,
  libdevel-symdump-perl, liburi-perl, ${shlibs:Depends}, netbase,
  apache2 (>= 2.2.4)
 Recommends: libbsd-resource-perl, libapache2-reload-perl
@@ -35,7 +35,7 @@ Description: Integration of perl with the Apache2 web server
 Package: libapache2-mod-perl2-dev
 Architecture: all
 Section: libdevel
-Depends: libapache2-mod-perl2
+Depends: ${misc:Depends}, libapache2-mod-perl2
 Description: Integration of perl with the Apache2 web server - development files
  mod_perl allows the use of Perl for just about anything
  Apache-related, including <Perl> sections in the config

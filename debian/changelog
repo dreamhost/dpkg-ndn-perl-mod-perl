@@ -10,6 +10,9 @@ libapache2-mod-perl2 (2.0.4-5) UNRELEASED; urgency=low
     Closes: #507821 -- Can't locate object method "send_http_header" via
                        package "Apache2::RequestRec"
 
+  [ gregor herrmann ]
+  * debian/control: Added: ${misc:Depends} to Depends: field.
+
  -- gregor herrmann <gregoa@debian.org>  Sun, 16 Nov 2008 20:39:28 +0100
 
 libapache2-mod-perl2 (2.0.4-4) unstable; urgency=medium
