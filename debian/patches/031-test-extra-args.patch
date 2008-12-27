@@ -1,8 +1,10 @@
 Honour $(APACHE_TEST_EXTRA_ARGS); Makefile.PL has apparently not been updated
 since this was added to Apache::Test.
---- a/Makefile.PL
-+++ b/Makefile.PL
-@@ -779,12 +779,12 @@ TEST_FILES =
+Index: libapache2-mod-perl2/Makefile.PL
+===================================================================
+--- libapache2-mod-perl2.orig/Makefile.PL	2008-12-26 19:33:34.000000000 -0600
++++ libapache2-mod-perl2/Makefile.PL	2008-12-26 19:33:37.000000000 -0600
+@@ -781,12 +781,12 @@
  
  test_clean :
  	$(FULLPERL) -I$(INST_ARCHLIB) -I$(INST_LIB) \

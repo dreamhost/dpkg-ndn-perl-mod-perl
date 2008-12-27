@@ -16,8 +16,12 @@ libapache2-mod-perl2 (2.0.4-5) unstable; urgency=low
   [ Gunnar Wolf ]
   * Added conditional dependency on libapache2-mpm-itk (together with
     apache2). (Closes: #508910)
+  * Added patch which created a FTBFS with the libwww-perl 5.813 to 5.820
+    update (acknowledged upstream, will be included in next release)
+    (Closes: #509457)
+  * reordered debian/patches/series to match reality  
 
- -- Gunnar Wolf <gwolf@debian.org>  Mon, 22 Dec 2008 08:26:49 -0600
+ -- Gunnar Wolf <gwolf@debian.org>  Fri, 26 Dec 2008 19:38:28 -0600
 
 libapache2-mod-perl2 (2.0.4-4) unstable; urgency=medium
 
