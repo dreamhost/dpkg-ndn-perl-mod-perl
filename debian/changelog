@@ -1,9 +1,14 @@
 libapache2-mod-perl2 (2.0.4-6) UNRELEASED; urgency=low
 
+  [ gregor herrmann ]
   * debian/control: Changed: (build-)depend on perl instead of perl-
     modules.
 
- -- gregor herrmann <gregoa@debian.org>  Fri, 23 Oct 2009 02:23:55 +0200
+  [ Dario Minnucci ]
+  * docs/index_top.html: Issued patch 099-fix-url-on-index_top.patch 
+    to fix link URL. (Closes: #507606)
+
+ -- Dario Minnucci <midget@debian.org>  Wed, 13 Jan 2010 08:42:40 +0100
 
 libapache2-mod-perl2 (2.0.4-5) unstable; urgency=low
 
