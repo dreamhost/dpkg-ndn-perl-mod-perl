@@ -8,6 +8,11 @@ libapache2-mod-perl2 (2.0.4-6) UNRELEASED; urgency=low
   * docs/index_top.html: Issued patch 099-fix-url-on-index_top.patch 
     to fix link URL. (Closes: #507606)
 
+  [ Damyan Ivanov ]
+  * add 100-svn-XSS-Status.patch; fixes XSS in Apache2::Status (CVE-2009-0796)
+    Patch taken from r760926 of upstream SVN.
+    Closes: #567635
+
  -- Dario Minnucci <midget@debian.org>  Wed, 13 Jan 2010 08:42:40 +0100
 
 libapache2-mod-perl2 (2.0.4-5) unstable; urgency=low
