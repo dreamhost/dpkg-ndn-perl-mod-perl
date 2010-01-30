@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.4-6) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.4-6) unstable; urgency=high
 
   [ gregor herrmann ]
   * debian/control: Changed: (build-)depend on perl instead of perl-
@@ -16,7 +16,7 @@ libapache2-mod-perl2 (2.0.4-6) UNRELEASED; urgency=low
   * -doc: depend on ${misc:Depends}
   * drop debian/NEWS (documents changes before oldstable)
 
- -- Dario Minnucci <midget@debian.org>  Wed, 13 Jan 2010 08:42:40 +0100
+ -- Damyan Ivanov <dmn@debian.org>  Sat, 30 Jan 2010 18:00:43 +0200
 
 libapache2-mod-perl2 (2.0.4-5) unstable; urgency=low
 
