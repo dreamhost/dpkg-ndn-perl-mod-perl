@@ -12,6 +12,7 @@ libapache2-mod-perl2 (2.0.4-6) UNRELEASED; urgency=low
   * add 100-svn-XSS-Status.patch; fixes XSS in Apache2::Status (CVE-2009-0796)
     Patch taken from r760926 of upstream SVN.
     Closes: #567635
+  * .docs: drop debian/NEWS.Debian and Changes
 
  -- Dario Minnucci <midget@debian.org>  Wed, 13 Jan 2010 08:42:40 +0100
 
