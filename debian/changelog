@@ -13,6 +13,7 @@ libapache2-mod-perl2 (2.0.4-6) UNRELEASED; urgency=low
     Patch taken from r760926 of upstream SVN.
     Closes: #567635
   * .docs: drop debian/NEWS.Debian and Changes
+  * -doc: depend on ${misc:Depends}
 
  -- Dario Minnucci <midget@debian.org>  Wed, 13 Jan 2010 08:42:40 +0100
 
