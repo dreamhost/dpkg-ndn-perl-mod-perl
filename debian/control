@@ -1,5 +1,5 @@
 Source: libapache2-mod-perl2
-Section: perl
+Section: httpd
 Priority: optional
 Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
 Uploaders: Gunnar Wolf <gwolf@debian.org>, Damyan Ivanov <dmn@debian.org>,
