@@ -3,6 +3,7 @@ libapache2-mod-perl2 (2.0.4-7) UNRELEASED; urgency=low
   * change source Section to 'httpd'
   * add a patch from Niko Tyni avoiding two warnings about use of uninitialized
     values, which break tests under Perl 5.12. (Closes: #578481)
+  * add a patch fixinf spelling errors in POD and other documentation
 
  -- Damyan Ivanov <dmn@debian.org>  Mon, 01 Feb 2010 07:22:55 +0200
 
