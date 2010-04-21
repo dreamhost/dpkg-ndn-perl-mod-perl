@@ -3,7 +3,6 @@ Description: fix man section of the generated manpages
  per Debian Perl policy.
 Forwarded: not-needed
 Author: Gunnar Wolf <gwolf@debian.org>
-Reviewed-by: *** FIXME ***
 Last-Update: 2007-08-18
 
 --- a/lib/ModPerl/BuildMM.pm
