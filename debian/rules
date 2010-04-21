@@ -43,7 +43,10 @@ build-stamp: $(QUILT_STAMPFN)
 		MP_APXS=/usr/bin/apxs2 \
 		MP_INCLUDE_DIR=/usr/include/apr-1.0
 	$(MAKE) OPTIMIZE="$(CFLAGS)" LD_RUN_PATH=""
+
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" LANG=C $(MAKE) test
+endif
 
 	touch $@
 
