@@ -2,7 +2,7 @@ Description: Replace stray POD with =for comment
  This is the only documented methd and leaving in =head2 makes the build
  system generate a manual page lacking a basic requisite like the whatis
  entry (=head1 NAME)
-Forwarded: no
+Forwarded: http://mail-archives.apache.org/mod_mbox/perl-modperl/201004.mbox/thread
 Author: Damyan Ivanov <dmn@debian.org>
 Last-Update: 2010-04-20
 

@@ -2,7 +2,7 @@ Description: Fix spelling errors in documentation
  This includes both POD and comments.
  The 'overriden -> overridden' fix may also be applied to variable names,
  but is not done with this patch.
-Forwarded: no
+Forwarded: http://mail-archives.apache.org/mod_mbox/perl-modperl/201004.mbox/thread
 Author: Damyan Ivanov <dmn@debian.org>
 Last-Update: 2010-04-20
 
