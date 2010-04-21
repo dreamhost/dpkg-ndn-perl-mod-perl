@@ -1,6 +1,4 @@
-libapache2-mod-perl2 (2.0.4-7) UNRELEASED; urgency=low
-
-    TODO: make lintian happy (within reason)
+libapache2-mod-perl2 (2.0.4-7) unstable; urgency=low
 
   * change source Section to 'httpd'
   * add a patch from Niko Tyni avoiding two warnings about use of uninitialized
@@ -12,7 +10,7 @@ libapache2-mod-perl2 (2.0.4-7) UNRELEASED; urgency=low
     + support 'nockeck' in DEB_BUILD_OPTIONS as per Policy 3.8.1
   * describe all patches
 
- -- Damyan Ivanov <dmn@debian.org>  Mon, 01 Feb 2010 07:22:55 +0200
+ -- Damyan Ivanov <dmn@debian.org>  Wed, 21 Apr 2010 12:48:11 +0300
 
 libapache2-mod-perl2 (2.0.4-6) unstable; urgency=high
 
