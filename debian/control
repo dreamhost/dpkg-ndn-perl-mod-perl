@@ -2,7 +2,7 @@ Source: libapache2-mod-perl2
 Section: httpd
 Priority: optional
 Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
-Uploaders: Gunnar Wolf <gwolf@debian.org>, Damyan Ivanov <dmn@debian.org>,
+Uploaders: Damyan Ivanov <dmn@debian.org>,
  Niko Tyni <ntyni@debian.org>, gregor herrmann <gregoa@debian.org>
 Standards-Version: 3.8.4
 Homepage: http://perl.apache.org/
