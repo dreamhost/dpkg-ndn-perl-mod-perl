@@ -3,7 +3,8 @@ Section: httpd
 Priority: optional
 Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
 Uploaders: Damyan Ivanov <dmn@debian.org>,
- Niko Tyni <ntyni@debian.org>, gregor herrmann <gregoa@debian.org>
+ Niko Tyni <ntyni@debian.org>, gregor herrmann <gregoa@debian.org>,
+ Nicholas Bamber <nicholas@periapt.co.uk>
 Standards-Version: 3.8.4
 Homepage: http://perl.apache.org/
 Vcs-Svn: svn://svn.debian.org/pkg-perl/trunk/libapache2-mod-perl2/
