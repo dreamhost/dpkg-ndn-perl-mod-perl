@@ -1,7 +1,15 @@
 libapache2-mod-perl2 (2.0.4-8) UNRELEASED; urgency=low
 
+  TODO:
+  - not yet getting a clean build
+  - Upgrade standards version
+  - Clean lintian
+  - Upgrade version
+  - Check copright
+
   * Added myself to Uploaders
   * Upped debian compatibility level to 7 and removed quilt cruft
+  * Refreshed debian/rules (in progress)
 
  -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 15 Mar 2011 11:00:11 +0000
 

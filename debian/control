@@ -11,8 +11,8 @@ Vcs-Svn: svn://svn.debian.org/pkg-perl/trunk/libapache2-mod-perl2/
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-perl/trunk/libapache2-mod-perl2/
 Build-Depends: perl (>= 5.8.7-3), libperl-dev (>= 5.8.7-3),
  apache2-threaded-dev (>= 2.2.3) | apache2-prefork-dev (>= 2.2.3),
- debhelper (>= 7), libwww-perl, libdevel-symdump-perl, libhtml-parser-perl,
- libgdbm-dev, libgtop2-dev, apache2, libcompress-zlib-perl,
+ debhelper (>= 7.0.50~), libwww-perl, libdevel-symdump-perl,
+ libhtml-parser-perl, libgdbm-dev, libgtop2-dev, apache2, libcompress-zlib-perl,
  libbsd-resource-perl, locales-all, netbase,
  perl (>= 5.10.0-14) | libcgi-pm-perl (>= 3.33)
 Build-Conflicts: libapache2-mod-perl2 (<= 1.999.22-1)
