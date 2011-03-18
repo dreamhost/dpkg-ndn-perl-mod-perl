@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
-PKG  := $(shell dh_listpackages)
-TMP  := $(CURDIR)/debian/$(PKG)
+DH_VERBOSE=1
+TMP  := $(CURDIR)/debian/tmp
 BUILDHOME := $(CURDIR)/debian/build
 
 # Allow disabling build optimation by setting noopt in
@@ -29,8 +29,6 @@ endif
 	dh $@
 
 override_dh_auto_configure:
-	dh_testdir
-	# Add commands to compile the package here
 	$(PERL) Makefile.PL \
 		INSTALLDIRS=vendor \
 		MP_USE_GTOP=1 \
@@ -43,10 +41,14 @@ override_dh_auto_configure:
 		MP_INCLUDE_DIR=/usr/include/apr-1.0
 	$(MAKE) OPTIMIZE="$(CFLAGS)" LD_RUN_PATH=""
 
-#	ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
-#	endif
+
+
 override_dh_auto_test:
-	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" LANG=C $(MAKE) test
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" \
+            LANG=C \
+	    dh_auto_test
+endif
 
 override_dh_clean:
 	dh_clean
