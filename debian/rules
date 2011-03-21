@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 DH_VERBOSE=1
-TMP  := $(CURDIR)/debian/tmp
+TMP  := $(CURDIR)/debian/libapache2-mod-perl2
 BUILDHOME := $(CURDIR)/debian/build
 
 # Allow disabling build optimation by setting noopt in
@@ -29,9 +29,8 @@ endif
 	dh $@
 
 override_dh_auto_configure:
-	echo "USER: ${USER}"
 	dh_auto_configure -- \
-	APACHE_TEST_HTTPD=/usr/sbin/apache2 \
+	    APACHE_TEST_HTTPD=/usr/sbin/apache2 \
 		APACHE_TEST_APXS=/usr/bin/apxs2 \
 	APACHE_TEST_USER=www-data \
 		APACHE_TEST_GROUP=www-data \
@@ -44,9 +43,6 @@ override_dh_auto_configure:
 		MP_INCLUDE_DIR=/usr/include/apache2 \
 		MP_APXS=/usr/bin/apxs2 \
 		MP_INCLUDE_DIR=/usr/include/apr-1.0 
-#	$(MAKE) OPTIMIZE="$(CFLAGS)" LD_RUN_PATH=""
-
-
 
 override_dh_auto_test:
 	APACHE_TEST_HTTPD=/usr/sbin/apache2 \
@@ -70,4 +66,9 @@ override_dh_install:
 	mv $(TMP)/usr/bin/mp2bug $(TMP)/usr/share/libapache2-mod-perl2/
 	rm -rf $(TMP)/usr/bin/
 	install -m755 debian/libapache2-mod-perl2.bug $(TMP)/usr/share/bug/libapache2-mod-perl2
+
+.PHONY: build
+
+build:
+	dh build
 
