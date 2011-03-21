@@ -4,12 +4,12 @@ TMP  := $(CURDIR)/debian/libapache2-mod-perl2
 
 # Allow disabling build optimation by setting noopt in
 # $DEB_BUILD_OPTIONS
-CFLAGS = -Wall -g
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-        CFLAGS += -O0
-else
-        CFLAGS += -O2
-endif
+#CFLAGS = -Wall -g
+#ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+#        CFLAGS += -O0
+#else
+#        CFLAGS += -O2
+#endif
 
 %:
 	dh $@
@@ -25,15 +25,6 @@ override_dh_auto_configure:
 		MP_INCLUDE_DIR=/usr/include/apache2 \
 		MP_APXS=/usr/bin/apxs2 \
 		MP_INCLUDE_DIR=/usr/include/apr-1.0 
-
-#		MP_USE_GTOP=1 \
-#		MP_TRACE=0 \
-#		MP_USE_DSO=1 \
-#		MP_USE_STATIC=0 \
-#		MP_CCOPTS="-g -Wall" \
-#		MP_INCLUDE_DIR=/usr/include/apache2 \
-#		MP_APXS=/usr/bin/apxs2 \
-#		MP_INCLUDE_DIR=/usr/include/apr-1.0 \
 
 override_dh_auto_test:
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf"
