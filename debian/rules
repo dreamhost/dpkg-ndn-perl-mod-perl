@@ -11,23 +11,16 @@ else
         CFLAGS += -O2
 endif
 
-#ifndef PERL
-#PERL = /usr/bin/perl
-#endif
-#
-#ifndef MAKE
-#MAKE = /usr/bin/make
-#endif
-
 %:
 	dh $@
 
+#	    APACHE_TEST_HTTPD=/usr/sbin/apache2 \
+#		APACHE_TEST_APXS=/usr/bin/apxs2 \
+#	APACHE_TEST_USER=www-data \
+#		APACHE_TEST_GROUP=www-data \
+
 override_dh_auto_configure:
 	dh_auto_configure -- \
-	    APACHE_TEST_HTTPD=/usr/sbin/apache2 \
-		APACHE_TEST_APXS=/usr/bin/apxs2 \
-	APACHE_TEST_USER=www-data \
-		APACHE_TEST_GROUP=www-data \
 		INSTALLDIRS=vendor \
 		MP_USE_GTOP=1 \
 		MP_TRACE=0 \
