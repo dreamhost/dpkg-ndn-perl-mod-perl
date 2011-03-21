@@ -26,20 +26,19 @@ override_dh_auto_configure:
 		MP_APXS=/usr/bin/apxs2 \
 		MP_INCLUDE_DIR=/usr/include/apr-1.0 
 
-#	APACHE_TEST_HTTPD=/usr/sbin/apache2 \
-#		APACHE_TEST_APXS=/usr/bin/apxs2 \
-# APACHE_TEST_USER=www-data APACHE_TEST_GROUP=www-data dh_auto_test
+#		MP_USE_GTOP=1 \
+#		MP_TRACE=0 \
+#		MP_USE_DSO=1 \
+#		MP_USE_STATIC=0 \
+#		MP_CCOPTS="-g -Wall" \
+#		MP_INCLUDE_DIR=/usr/include/apache2 \
+#		MP_APXS=/usr/bin/apxs2 \
+#		MP_INCLUDE_DIR=/usr/include/apr-1.0 \
 
 override_dh_auto_test:
-		MP_USE_GTOP=1 \
-		MP_TRACE=0 \
-		MP_USE_DSO=1 \
-		MP_USE_STATIC=0 \
-		MP_CCOPTS="-g -Wall" \
-		MP_INCLUDE_DIR=/usr/include/apache2 \
-		MP_APXS=/usr/bin/apxs2 \
-		MP_INCLUDE_DIR=/usr/include/apr-1.0 \
-	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" LANG=C
+	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf"
+		LANG=C \
+		dh_auto_test 
 
 override_dh_clean:
 	dh_clean
