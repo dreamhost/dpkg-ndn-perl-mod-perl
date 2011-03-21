@@ -1,8 +1,7 @@
 #!/usr/bin/make -f
 
-DH_VERBOSE=1
 TMP  := $(CURDIR)/debian/libapache2-mod-perl2
-BUILDHOME := $(CURDIR)/debian/build
+#BUILDHOME := $(CURDIR)/debian/build
 
 # Allow disabling build optimation by setting noopt in
 # $DEB_BUILD_OPTIONS
@@ -15,7 +14,7 @@ endif
 
 # If set to a true value then MakeMaker's prompt function will
 # always return the default without waiting for user input.
-export PERL_MM_USE_DEFAULT=1
+#export PERL_MM_USE_DEFAULT=1
 
 ifndef PERL
 PERL = /usr/bin/perl
@@ -67,6 +66,9 @@ override_dh_install:
 	rm -rf $(TMP)/usr/bin/
 	install -m755 debian/libapache2-mod-perl2.bug $(TMP)/usr/share/bug/libapache2-mod-perl2
 
+# These rules are needed because otherwise the build process
+# gets messed up and the tests fail.
+# Thanks to Damyan Ivanov for figuring this out.
 .PHONY: build
 
 build:
