@@ -1,5 +1,7 @@
 libapache2-mod-perl2 (2.0.4-8) UNRELEASED; urgency=low
 
+  NOTE: I have asked dam for help by email.
+
   TODO:
   - not yet getting a clean build
         Specifically the tests are being run as nobody rather than myself

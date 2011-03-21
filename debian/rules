@@ -22,14 +22,19 @@ PERL = /usr/bin/perl
 endif
 
 ifndef MAKE
-PERL = /usr/bin/make
+MAKE = /usr/bin/make
 endif
 
 %:
 	dh $@
 
 override_dh_auto_configure:
-	$(PERL) Makefile.PL \
+	echo "USER: ${USER}"
+	dh_auto_configure -- \
+	APACHE_TEST_HTTPD=/usr/sbin/apache2 \
+		APACHE_TEST_APXS=/usr/bin/apxs2 \
+	APACHE_TEST_USER=www-data \
+		APACHE_TEST_GROUP=www-data \
 		INSTALLDIRS=vendor \
 		MP_USE_GTOP=1 \
 		MP_TRACE=0 \
@@ -38,17 +43,23 @@ override_dh_auto_configure:
 		MP_CCOPTS="-g -Wall" \
 		MP_INCLUDE_DIR=/usr/include/apache2 \
 		MP_APXS=/usr/bin/apxs2 \
-		MP_INCLUDE_DIR=/usr/include/apr-1.0
-	$(MAKE) OPTIMIZE="$(CFLAGS)" LD_RUN_PATH=""
+		MP_INCLUDE_DIR=/usr/include/apr-1.0 
+#	$(MAKE) OPTIMIZE="$(CFLAGS)" LD_RUN_PATH=""
 
 
 
 override_dh_auto_test:
-ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
-	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" \
-            LANG=C \
-	    dh_auto_test
-endif
+	APACHE_TEST_HTTPD=/usr/sbin/apache2 \
+		APACHE_TEST_APXS=/usr/bin/apxs2 \
+		MP_USE_GTOP=1 \
+		MP_TRACE=0 \
+		MP_USE_DSO=1 \
+		MP_USE_STATIC=0 \
+		MP_CCOPTS="-g -Wall" \
+		MP_INCLUDE_DIR=/usr/include/apache2 \
+		MP_APXS=/usr/bin/apxs2 \
+		MP_INCLUDE_DIR=/usr/include/apr-1.0 \
+	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" LANG=C APACHE_TEST_USER=www-data APACHE_TEST_GROUP=www-data dh_auto_test 
 
 override_dh_clean:
 	dh_clean
