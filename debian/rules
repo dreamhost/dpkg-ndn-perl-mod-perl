@@ -1,7 +1,6 @@
 #!/usr/bin/make -f
 
 TMP  := $(CURDIR)/debian/libapache2-mod-perl2
-#BUILDHOME := $(CURDIR)/debian/build
 
 # Allow disabling build optimation by setting noopt in
 # $DEB_BUILD_OPTIONS
@@ -12,17 +11,13 @@ else
         CFLAGS += -O2
 endif
 
-# If set to a true value then MakeMaker's prompt function will
-# always return the default without waiting for user input.
-#export PERL_MM_USE_DEFAULT=1
-
-ifndef PERL
-PERL = /usr/bin/perl
-endif
-
-ifndef MAKE
-MAKE = /usr/bin/make
-endif
+#ifndef PERL
+#PERL = /usr/bin/perl
+#endif
+#
+#ifndef MAKE
+#MAKE = /usr/bin/make
+#endif
 
 %:
 	dh $@
