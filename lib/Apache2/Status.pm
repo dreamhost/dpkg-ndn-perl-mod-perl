@@ -29,7 +29,7 @@ use File::Spec ();
 
 use Apache2::Const -compile => qw(OK);
 
-$Apache2::Status::VERSION = '4.00'; # mod_perl 2.0
+$Apache2::Status::VERSION = '4.01'; # mod_perl 2.0
 
 use constant IS_WIN32 => ($^O eq "MSWin32");
 
@@ -95,8 +95,8 @@ sub install_hint {
 
 sub status_config {
     my ($r, $key) = @_;
-    return (lc($r->dir_config($key)) eq "on") ||
-        (lc($r->dir_config('StatusOptionsAll')) eq "on");
+    return (lc($r->dir_config($key) || '') eq "on") ||
+        (lc($r->dir_config('StatusOptionsAll') || '') eq "on");
 }
 
 sub menu_item {
@@ -126,7 +126,7 @@ sub handler {
         $r->print(symdump($r, $qs));
     }
     else {
-        my $uri = $r->uri;
+        my $uri = $r->location;
         $r->print('<p>');
         $r->print(
             map { qq[<a href="$uri?$_">$status{$_}</a><br />\n] } sort { lc $a cmp lc $b } keys %status
@@ -178,7 +178,8 @@ sub symdump {
 
     return install_hint("Devel::Symdump") unless has($r, "symdump");
 
-    my $meth = lc($r->dir_config("StatusRdump")) eq "on"
+    # lc generates a (FATAL) warning if $r->dir_config is undef
+    my $meth = lc($r->dir_config("StatusRdump") || '') eq "on"
         ? "rnew" : "new";
     my $sob = Devel::Symdump->$meth($package);
     return $sob->Apache2::Status::as_HTML($package, $r);
@@ -198,7 +199,7 @@ sub status_section_config {
 sub status_inc {
     my ($r) = @_;
 
-    my $uri = $r->uri;
+    my $uri = $r->location;
     my @retval = (
         '<table border="1">',
         "<tr>",
@@ -289,7 +290,7 @@ sub status_rgysubs {
     my ($r) = @_;
 
     local $_;
-    my $uri = $r->uri;
+    my $uri = $r->location;
     my $cache = __PACKAGE__->registry_cache;
 
     my @retval = "<h2>Compiled registry scripts grouped by their handler</h2>";
@@ -765,7 +766,7 @@ sub as_HTML {
     my ($self, $package, $r) = @_;
 
     my @m = qw(<table>);
-    my $uri = $r->uri;
+    my $uri = $r->location;
     my $is_main = $package eq "main";
 
     my $do_dump = has($r, "dumper");

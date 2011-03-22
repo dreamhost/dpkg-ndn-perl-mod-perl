@@ -18,7 +18,7 @@ use APR::Const -compile => 'EMISMATCH';
 sub handler {
     my $r = shift;
 
-    my $tests = 4;
+    my $tests = 5;
 
     plan $r, tests => $tests;
 
@@ -39,6 +39,12 @@ sub handler {
     # reset the timeout
     $socket->timeout_set($orig_val);
     ok t_cmp($socket->timeout_get(), $orig_val, "timeout_get()");
+
+    skip $^O=~/mswin/i ? 'APR::Socket->fileno is not implemented on MSWin' : '',
+        sub {
+            t_debug "client socket fd=".$socket->fileno;
+            $socket->fileno>0
+        };
 
     Apache2::Const::OK;
 }

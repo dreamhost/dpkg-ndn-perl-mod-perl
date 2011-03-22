@@ -46,7 +46,6 @@ my $orig_cwd;
 my $orig_conf_opts;
 
 my %core_files  = ();
-my %original_t_perms = ();
 
 my @std_run      = qw(start-httpd run-tests stop-httpd);
 my @others       = qw(verbose configure clean help ssl http11 bugreport
@@ -55,7 +54,6 @@ my @flag_opts    = (@std_run, @others);
 my @string_opts  = qw(order trace);
 my @ostring_opts = qw(proxy ping);
 my @debug_opts   = qw(debug);
-my @num_opts     = qw(times);
 my @list_opts    = qw(preamble postamble breakpoint);
 my @hash_opts    = qw(header);
 my @help_opts    = qw(clean help);
@@ -67,9 +65,8 @@ my @exit_opts_need_httpd    = (@debug_opts, qw(ping));
 my %usage = (
    'start-httpd'     => 'start the test server',
    'run-tests'       => 'run the tests',
-   'times=N'         => 'repeat the tests N times',
    'order=mode'      => 'run the tests in one of the modes: ' .
-                        '(repeat|rotate|random|SEED)',
+                        '(repeat|random|SEED)',
    'stop-httpd'      => 'stop the test server',
    'no-httpd'        => 'run the tests without configuring or starting httpd',
    'verbose[=1]'     => 'verbose output',
@@ -90,7 +87,6 @@ my %usage = (
    'proxy'           => 'proxy requests (default proxy is localhost)',
    'trace=T'         => 'change tracing default to: warning, notice, ' .
                         'info, debug, ...',
-   'save'            => 'save test paramaters into Apache::TestConfigData',
    'one-process'     => 'run the server in single process mode',
    (map { $_, "\U$_\E url" } @request_opts),
 );
@@ -223,7 +219,6 @@ sub getopts {
     GetOptions(\%opts, @flag_opts, @help_opts,
                (map "$_:s", @debug_opts, @request_opts, @ostring_opts),
                (map "$_=s", @string_opts),
-               (map "$_=i", @num_opts),
                (map { ("$_=s", $vopts{$_} ||= []) } @list_opts),
                (map { ("$_=s", $vopts{$_} ||= {}) } @hash_opts));
 
@@ -507,13 +502,6 @@ sub configure {
     $test_config->generate_httpd_conf;
     $test_config->save;
 
-    # custom config save if
-    # 1) requested to save
-    # 2) no saved config yet
-    if ($self->{opts}->{save} or
-        !Apache::TestConfig::custom_config_exists()) {
-        $test_config->custom_config_save($self->{conf_opts});
-    }
 }
 
 sub try_exit_opts {
@@ -563,7 +551,7 @@ sub start {
         }
     }
 
-    $self->adjust_t_perms();
+    $self->check_runtime_user();
 
     if ($opts->{'start-httpd'}) {
         exit_perl 0 unless $server->start;
@@ -586,7 +574,6 @@ sub run_tests {
     my $test_opts = {
         verbose => $self->{opts}->{verbose},
         tests   => $self->{tests},
-        times   => $self->{opts}->{times},
         order   => $self->{opts}->{order},
         subtests => $self->{subtests} || [],
     };
@@ -602,8 +589,6 @@ sub run_tests {
 
 sub stop {
     my $self = shift;
-
-    $self->restore_t_perms;
 
     return $self->{server}->stop if $self->{opts}->{'stop-httpd'};
 }
@@ -688,9 +673,6 @@ sub run {
 
     $self->getopts(\@argv);
 
-    # must be called after getopts so the tracing will be set right
-    Apache::TestConfig::custom_config_load();
-
     $self->pre_configure();
 
     # can't setup the httpd-specific parts of the config object yet
@@ -719,9 +701,15 @@ sub run {
         $self->opt_clean(1);
     }
 
+    $self->split_test_args;
+
+    $self->die_on_invalid_args;
+
+    $self->default_run_opts;
+
     # if configure() fails for some reason before it has flushed the
     # config to a file, save it so -clean will be able to clean
-    unless ($self->{opts}->{clean}) {
+    if ($self->{opts}->{'start-httpd'} || $self->{opts}->{'configure'}) {
         eval { $self->configure };
         if ($@) {
             error "configure() has failed:\n$@";
@@ -736,12 +724,6 @@ sub run {
         warning "reconfiguration done";
         exit_perl 1;
     }
-
-    $self->default_run_opts;
-
-    $self->split_test_args;
-
-    $self->die_on_invalid_args;
 
     $self->start unless $self->{opts}->{'no-httpd'};
 
@@ -950,172 +932,21 @@ sub warn_core {
     }, $vars->{top_dir});
 }
 
-# this function handles the cases when the test suite is run under
-# 'root':
-#
-# 1. When user 'bar' is chosen to run Apache with, files and dirs
-#    created by 'root' might be not writable/readable by 'bar'
-#
-# 2. when the source is extracted as user 'foo', and the chosen user
-#    to run Apache under is 'bar', in which case normally 'bar' won't
-#    have the right permissions to write into the fs created by 'foo'.
-#
-# We solve that by 'chown -R bar.bar t/' in a portable way.
-#
-# 3. If the parent directory is not rwx for the chosen user, that user
-#    won't be able to read/write the DocumentRoot. In which case we
-#    have nothing else to do, but to tell the user to fix the situation.
-#
-sub adjust_t_perms {
+# catch any attempts to ./t/TEST the tests as root user
+
+sub check_runtime_user {
     my $self = shift;
 
     return if Apache::TestConfig::WINFU;
-
-    %original_t_perms = (); # reset global
 
     my $user = getpwuid($>) || '';
+
     if ($user eq 'root') {
-        my $vars = $self->{test_config}->{vars};
-        my $user = $vars->{user};
-        my($uid, $gid) = (getpwnam($user))[2..3]
-            or die "Can't find out uid/gid of '$user'";
-
-        warning "root mode: ".
-            "changing the files ownership to '$user' ($uid:$gid)";
-        finddepth(sub {
-            $original_t_perms{$File::Find::name} = [(stat $_)[4..5]];
-            chown $uid, $gid, $_;
-        }, $vars->{t_dir});
-
-        $self->check_perms($user, $uid, $gid);
-
-        $self->become_nonroot($user, $uid, $gid);
+        error "Apache cannot spawn child processes as root, therefore the test suite must be run as a non-privileged user.";
+        exit_perl(1);
     }
-}
 
-sub restore_t_perms {
-    my $self = shift;
-
-    return if Apache::TestConfig::WINFU;
-
-    if (%original_t_perms) {
-        warning "root mode: restoring the original files ownership";
-        my $vars = $self->{test_config}->{vars};
-        while (my($file, $ids) = each %original_t_perms) {
-            next unless -e $file; # files could be deleted
-            chown @$ids, $file;
-        }
-    }
-}
-
-# this sub is executed from an external process only, since it
-# "sudo"'s into a uid/gid of choice
-sub run_root_fs_test {
-    my($uid, $gid, $dir) = @_;
-
-    # first must change gid and egid ("$gid $gid" for an empty
-    # setgroups() call as explained in perlvar.pod)
-    my $groups = "$gid $gid";
-    $( = $) = $groups;
-    die "failed to change gid to $gid"
-        unless $( eq $groups && $) eq $groups;
-
-    # only now can change uid and euid
-    $< = $> = $uid+0;
-    die "failed to change uid to $uid" unless $< == $uid && $> == $uid;
-
-    my $file = catfile $dir, ".apache-test-file-$$-".time.int(rand);
-    eval "END { unlink q[$file] }";
-
-    # unfortunately we can't run the what seems to be an obvious test:
-    # -r $dir && -w _ && -x _
-    # since not all perl implementations do it right (e.g. sometimes
-    # acls are ignored, at other times setid/gid change is ignored)
-    # therefore we test by trying to attempt to read/write/execute
-
-    # -w
-    open TEST, ">$file" or die "failed to open $file: $!";
-
-    # -x
-    -f $file or die "$file cannot be looked up";
-    close TEST;
-
-    # -r
-    opendir DIR, $dir or die "failed to open dir $dir: $!";
-    defined readdir DIR or die "failed to read dir $dir: $!";
-    close DIR;
-
-    # all tests passed
-    print "OK";
-}
-
-sub check_perms {
-    my ($self, $user, $uid, $gid) = @_;
-
-    # test that the base dir is rwx by the selected non-root user
-    my $vars = $self->{test_config}->{vars};
-    my $dir  = $vars->{t_dir};
-    my $perl = Apache::TestConfig::shell_ready($vars->{perl});
-
-    # find where Apache::TestRun was loaded from, so we load this
-    # exact package from the external process
-    my $inc = dirname dirname $INC{"Apache/TestRun.pm"};
-    my $sub = "Apache::TestRun::run_root_fs_test";
-    my $check = <<"EOI";
-$perl -Mlib=$inc -MApache::TestRun -e 'eval { $sub($uid, $gid, q[$dir]) }';
-EOI
-    warning "testing whether '$user' is able to -rwx $dir\n$check\n";
-
-    my $res = qx[$check] || '';
-    warning "result: $res";
-    unless ($res eq 'OK') {
-        $self->user_error(1);
-        #$self->restore_t_perms;
-        error <<"EOI";
-You are running the test suite under user 'root'.
-Apache cannot spawn child processes as 'root', therefore
-we attempt to run the test suite with user '$user' ($uid:$gid).
-The problem is that the path (including all parent directories):
-  $dir
-must be 'rwx' by user '$user', so Apache can read and write under that
-path.
-
-There are several ways to resolve this issue. One is to move and
-rebuild the distribution to '/tmp/' and repeat the 'make test'
-phase. The other is not to run 'make test' as root (i.e. building
-under your /home/user directory).
-
-You can test whether some directory is suitable for 'make test' under
-'root', by running a simple test. For example to test a directory
-'$dir', run:
-
-  % $check
-Only if the test prints 'OK', the directory is suitable to be used for
-testing.
-EOI
-        skip_test_suite();
-        exit_perl 0;
-    }
-}
-
-# in case the client side creates any files after the initial chown
-# adjustments we want the server side to be able to read/write them, so
-# they better be with the same permissions. dropping root permissions
-# and becoming the same user as the server side solves this problem.
-sub become_nonroot {
-    my ($self, $user, $uid, $gid) = @_;
-
-    warning "the client side drops 'root' permissions and becomes '$user'";
-
-    # first must change gid and egid ("$gid $gid" for an empty
-    # setgroups() call as explained in perlvar.pod)
-    my $groups = "$gid $gid";
-    $( = $) = $groups;
-    die "failed to change gid to $gid" unless $( eq $groups && $) eq $groups;
-
-    # only now can change uid and euid
-    $< = $> = $uid+0;
-    die "failed to change uid to $uid" unless $< == $uid && $> == $uid;
+    return 1;
 }
 
 sub run_request {
@@ -1173,6 +1004,7 @@ sub opt_ping {
     }
     else {
         warning "no server is running on $name";
+        exit_perl(0);
     }
 
     return $exit; #means call exit() if true
@@ -1299,42 +1131,6 @@ sub exit_shell {
     CORE::exit $_[0];
 }
 
-# successfully abort the test suite execution (to allow automatic
-# tools like CPAN.pm, to continue with installation).
-#
-# if a true value is passed, quit right away
-# otherwise ask the user, if they may want to change their mind which
-# will return them back to where they left
-sub skip_test_suite {
-    my $no_doubt = shift;
-
-    # we can't prompt when STDIN is not attached to tty, unless we
-    # were told that's it OK via env var (in which case some program
-    # will feed the interactive prompts
-    unless (-t STDIN || $ENV{APACHE_TEST_INTERACTIVE_PROMPT_OK}) {
-        $no_doubt = 1;
-    }
-
-    print qq[
-
-Running the test suite is important to make sure that the module that
-you are about to install works on your system. If you choose not to
-run the test suite and you have a problem using this module, make sure
-to return and run this test suite before reporting any problems to the
-developers of this module.
-
-];
-    unless ($no_doubt) {
-        my $default = 'No';
-        my $prompt = 'Skip the test suite?';
-        my $ans = ExtUtils::MakeMaker::prompt($prompt, $default);
-        return if lc($ans) =~ /no/;
-    }
-
-    error "Skipping the test suite execution, while returning success status";
-    exit_perl 1;
-}
-
 1;
 
 __END__
@@ -1420,154 +1216,5 @@ Don't forget to run the super class' c<pre_configure()> method.
 =head2 C<new_test_config>
 
 META: to be completed
-
-
-
-=head1 Persistent Custom Configuration
-
-When C<Apache::Test> is first installed or used, it will save the
-values of C<httpd>, C<apxs>, C<port>, C<user>, and C<group>, if set,
-to a configuration file C<Apache::TestConfigData>.  This information
-will then be used in setting these options for subsequent uses of
-C<Apache-Test> unless temprorarily overridden, either by setting the
-appropriate environment variable (C<APACHE_TEST_HTTPD>,
-C<APACHE_TEST_APXS>, C<APACHE_TEST_PORT>, C<APACHE_TEST_USER>, and
-C<APACHE_TEST_GROUP>) or by giving the relevant option (C<-httpd>,
-C<-apxs>, C<-port>, C<-user>, and C<-group>) when the C<TEST> script
-is run.
-
-To avoid either using previous persistent configurations or saving
-current configurations, set the C<APACHE_TEST_NO_STICKY_PREFERENCES>
-environment variable to a true value.
-
-Finally it's possible to permanently override the previously saved
-options by passing C<L<-save|/Saving_Custom_Configuration_Options>>.
-
-Here is the algorithm of how and when options are saved for the first
-time and when they are used. We will use a few variables to simplify
-the pseudo-code/pseudo-chart flow:
-
-C<$config_exists> - custom configuration has already been saved, to
-get this setting run C<custom_config_exists()>, which tests whether
-either C<apxs> or C<httpd> values are set. It doesn't check for other
-values, since all we need is C<apxs> or C<httpd> to get the test suite
-running. custom_config_exists() checks in the following order
-F<lib/Apache/TestConfigData.pm> (if during Apache-Test build) ,
-F<~/.apache-test/Apache/TestConfigData.pm> and
-F<Apache/TestConfigData.pm> in the perl's libraries.
-
-C<$config_overriden> - that means that we have either C<apxs> or
-C<httpd> values provided by user, via env vars or command line options.
-
-=over
-
-=item 1 Building Apache-Test or modperl-2.0 (or any other project that
-bundles Apache-Test).
-
-  1) perl Apache-Test/Makefile.PL
-  (for bundles top-level Makefile.PL will run this as well)
-
-  if $config_exists
-      do nothing
-  else
-      create lib/Apache/TestConfigData.pm w/ empty config: {}
-
-  2) make
-
-  3) make test
-
-  if $config_exists
-      if $config_overriden
-          override saved options (for those that were overriden)
-      else
-          use saved options
-  else
-      if $config_overriden
-          save them in lib/Apache/TestConfigData.pm
-          (which will be installed on 'make install')
-      else
-          - run interactive prompt for C<httpd> and optionally for C<apxs>
-          - save the custom config in lib/Apache/TestConfigData.pm
-          - restart the currently run program
-
-  modperl-2.0 is a special case in (3). it always overrides 'httpd'
-  and 'apxs' settings. Other settings like 'port', can be used from
-  the saved config.
-
-  4) make install
-
-     if $config_exists only in lib/Apache/TestConfigData.pm
-        it will be installed system-wide
-     else
-        nothing changes (since lib/Apache/TestConfigData.pm won't exist)
-
-=item 2 Testing 3rd party modules (after Apache-Test was installed)
-
-Notice that the following situation is quite possible:
-
-  cd Apache-Test
-  perl Makefile.PL && make install
-
-so that Apache-Test was installed but no custom configuration saved
-(since its C<make test> wasn't run). In which case the interactive
-configuration should kick in (unless config options were passed) and
-in any case saved once configured.
-
-C<$custom_config_path> - perl's F<Apache/TestConfigData.pm> (at the
-same location as F<Apache/TestConfig.pm>) if that area is writable by
-that user (e.g. perl's lib is not owned by 'root'). If not, in
-F<~/.apache-test/Apache/TestConfigData.pm>.
-
-  1) perl Apache-Test/Makefile.PL
-  2) make
-  3) make test
-
-  if $config_exists
-      if $config_overriden
-          override saved options (for those that were overriden)
-      else
-          use saved options
-  else
-      if $config_overriden
-          save them in $custom_config_path
-      else
-          - run interactive prompt for C<httpd> and optionally for C<apxs>
-          - save the custom config in $custom_config_path
-          - restart the currently run program
-
-  4) make install
-
-=back
-
-
-
-=head2 Saving Custom Configuration Options
-
-If you want to override the existing custom configurations options to
-C<Apache::TestConfigData>, use the C<-save> flag when running C<TEST>.
-
-If you are running C<Apache::Test> as a user who does not have
-permission to alter the system C<Apache::TestConfigData>, you can
-place your own private configuration file F<TestConfigData.pm> under
-C<$ENV{HOME}/.apache-test/Apache/>, which C<Apache::Test> will use, if
-present. An example of such a configuration file is
-
-  # file $ENV{HOME}/.apache-test/Apache/TestConfigData.pm
-  package Apache::TestConfigData;
-  use strict;
-  use warnings;
-  use vars qw($vars);
-
-  $vars = {
-      'group' => 'me',
-      'user' => 'myself',
-      'port' => '8529',
-      'httpd' => '/usr/local/apache/bin/httpd',
-
-  };
-  1;
-
-
-
 
 =cut

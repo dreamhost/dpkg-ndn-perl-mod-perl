@@ -586,7 +586,7 @@ static apr_status_t modperl_sys_term(void *data)
     /* PERL_SYS_TERM() needs 'my_perl' as of 5.9.5 */
 #if MP_PERL_VERSION_AT_LEAST(5, 9, 5) && defined(USE_ITHREADS)
     modperl_cleanup_data_t *cdata = (modperl_cleanup_data_t *)data;
-    PerlInterpreter *my_perl = cdata == NULL ? NULL : (PerlInterpreter *)cdata->data;
+    PERL_UNUSED_DECL PerlInterpreter *my_perl = cdata == NULL ? NULL : (PerlInterpreter *)cdata->data;
 #endif
     MP_init_status = 0;
     MP_threads_started = 0;
@@ -896,7 +896,7 @@ void modperl_register_hooks(apr_pool_t *p)
                           NULL, NULL, MODPERL_HOOK_REALLY_REALLY_FIRST);
 
     ap_hook_child_init(modperl_hook_child_init,
-                       NULL, NULL, APR_HOOK_FIRST);
+                       NULL, NULL, MODPERL_HOOK_REALLY_REALLY_FIRST);
 
     modperl_register_handler_hooks();
 }
@@ -991,7 +991,7 @@ apr_status_t modperl_response_finish(request_rec *r)
     return modperl_wbucket_flush(rcfg->wbucket, FALSE);
 }
 
-static int modperl_response_handler_run(request_rec *r, int finish)
+static int modperl_response_handler_run(request_rec *r)
 {
     int retval;
 
@@ -1003,21 +1003,16 @@ static int modperl_response_handler_run(request_rec *r, int finish)
         r->handler = r->content_type; /* let http_core or whatever try */
     }
 
-    if (finish) {
-        apr_status_t rc = modperl_response_finish(r);
-        if (rc != APR_SUCCESS) {
-            retval = rc;
-        }
-    }
-
     return retval;
 }
 
 int modperl_response_handler(request_rec *r)
 {
     MP_dDCFG;
+#ifdef USE_ITHREADS
     MP_dRCFG;
-    apr_status_t retval;
+#endif
+    apr_status_t retval, rc;
 
 #ifdef USE_ITHREADS
     pTHX;
@@ -1041,7 +1036,11 @@ int modperl_response_handler(request_rec *r)
         modperl_env_request_populate(aTHX_ r);
     }
 
-    retval = modperl_response_handler_run(r, TRUE);
+    retval = modperl_response_handler_run(r);
+    rc = modperl_response_finish(r);
+    if (rc != APR_SUCCESS) {
+        retval = rc;
+    }
 
 #ifdef USE_ITHREADS
     if (MpInterpPUTBACK(interp)) {
@@ -1097,7 +1096,7 @@ int modperl_response_handler_cgi(request_rec *r)
 
     modperl_env_request_tie(aTHX_ r);
 
-    retval = modperl_response_handler_run(r, FALSE);
+    retval = modperl_response_handler_run(r);
 
     modperl_env_request_untie(aTHX_ r);
 

@@ -10,6 +10,87 @@ Also refer to the Apache::Test changes log file, at Apache-Test/Changes
 
 =over 3
 
+=item 2.0.5 February 7, 2011
+
+The mod_perl PMC dedicates this release of mod_perl to Randy Kobes, who
+passed away in September 2010.  Randy was a member of the mod_perl project 
+management committee and a co-author of the mod_perl Developer's Cookbook.
+His work helped many Windows mod_perl users. His work with ppm files, and
+Win32 perl users will be sorely missed. He was kind, bright, and always
+willing to lend a hand on the mod_perl user's list.
+
+Prepare modperl for the upcoming perl 5.14 [Torsten Foertsch]
+
+Add lib/ModPerl/MethodLookup.pm to MANIFEST via lib/ModPerl/Manifest.pm
+RT #48103 reported by MARKLE@cpan.org
+[Fred Moyer]
+
+PerlIOApache_write() now throws an APR::Error object, rather than just a string
+error, if modperl_wbucket_write() fails.
+[Steve Hay]
+
+Authentication tests fail with LWP 5.815 and later
+[Doug Schrag]
+
+Concise test won't perform unless StatusTerse is set to ON
+[Doug Schrag]
+
+Look for a usable apxs in $ENV{PATH} if all other options fail, then prompt the user for one.
+[Phred]
+
+Work around bootstrap warnings when Apache2::BuildConfig has not been created yet.
+[Phred]
+
+Remove Apache::test compatibility (part of mod_perl 1.2.7), that code causes build issues and is 4 versions out of date.
+[Phred]
+
+Make sure perl is built either with multiplicity and ithreads or without
+both [Theory, Torsten]
+
+Support for "install_vendor" and "install_site" make targets [Torsten]
+
+Run tests on bundled pure perl Apache::* modules [Gozer, Phred]
+
+Implement a mini-preprocess language for map-files in xs/maps.
+[Torsten Foertsch]
+
+Implement APR::Socket::fileno [Torsten Foertsch]
+
+Export PROXYREQ_RESPONSE, a missing PROXYREQ_* constant [Gozer]
+
+Make sure standard file descriptors are preserved by the perl-script
+handler [Torsten Foertsch]
+
+Fix the filter init handler attribute check in 
+modperl_filter_resolve_init_handler() [Torsten Foertsch]
+
+Make sure buffer is a valid SV in modperl_filter_read() [Torsten Foertsch]
+
+Move modperl_response_finish() out of modperl_response_handler_run in
+mod_perl.c [Torsten Foertsch]
+
+"MODPERL_INC= now correctly supported as an argument to Makefile.PL"
+[Torsten Foertsch]
+
+Fix an XSS issue in Apache2::Status reported by Richard J. Brain
+<richard@procheckup.com>. [Torsten Foertsch]
+
+Add NOTICE file to the distribution. [Joe Schaefer]
+
+Make sure Apache2::RequestIO::read doesn't clear the buffer on end of
+file and handle negative offsets and offsets that are larger than
+the current string length. [Torsten Foertsch]
+
+Fix a problem that could make APR::XSLoader and Apache2::XSLoader
+load the wrong shared library. [Torsten Foertsch]
+
+Fix compilation when using a non-threaded APR.
+[Gozer, Philip M. Gollucci]
+
+Make sure mod_perl's own ChildInitHandlers are run before user
+supplied ones. This fixes the incorrectly reported value of $$
+at ChildInit time [Gozer]
+
 =item 2.0.4 April 16, 2008
 
 Fix $r->location corruption under certain conditions

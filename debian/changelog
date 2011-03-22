@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.4-8) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
   TODO:
   - DEB_BUILD_OPTIONS does not seem to work
@@ -13,8 +13,9 @@ libapache2-mod-perl2 (2.0.4-8) UNRELEASED; urgency=low
   * Upped standards version to 3.9.1
   * Added versioning of depdendency between dev and core packages
   * Registered documents with doc-base (in progress)
+  * New upstream release
 
- -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 15 Mar 2011 11:00:11 +0000
+ -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 22 Mar 2011 14:19:58 +0000
 
 libapache2-mod-perl2 (2.0.4-7) unstable; urgency=low
 
