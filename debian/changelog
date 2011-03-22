@@ -3,7 +3,6 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   TODO:
   - DEB_BUILD_OPTIONS does not seem to work
   - Clean lintian
-  - Upgrade version
   - Review patches
   - Check copright
 
@@ -14,8 +13,8 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Added versioning of depdendency between dev and core packages
   * Registered documents with doc-base (in progress)
   * New upstream release
-  * Reviewed 6 patches
-    - Removed 009_allow_parallel_build.patch
+  * Reviewed 7 patches
+    - Removed 009_allow_parallel_build.patch [applied upstream]
 
  -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 22 Mar 2011 14:19:58 +0000
 
