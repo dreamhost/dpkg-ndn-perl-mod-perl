@@ -16,6 +16,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Reviewed 8 patches
     - Removed 009_allow_parallel_build.patch [applied upstream]
     - Removed 100-svn-XSS-Status.patch [applied upstream]
+    - Removed 110-Fix-two-uninitialized-....patch [applied upstream]
 
  -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 22 Mar 2011 14:19:58 +0000
 
