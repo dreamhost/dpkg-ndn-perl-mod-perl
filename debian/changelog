@@ -12,6 +12,7 @@ libapache2-mod-perl2 (2.0.4-8) UNRELEASED; urgency=low
   * Refreshed debian/rules
   * Upped standards version to 3.9.1
   * Added versioning of depdendency between dev and core packages
+  * Registered documents with doc-base (in progress)
 
  -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 15 Mar 2011 11:00:11 +0000
 
