@@ -14,6 +14,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Added versioning of depdendency between dev and core packages
   * Registered documents with doc-base (in progress)
   * New upstream release
+  * Reviewed 3 patch
 
  -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 22 Mar 2011 14:19:58 +0000
 
