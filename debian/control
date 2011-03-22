@@ -36,7 +36,8 @@ Description: Integration of perl with the Apache2 web server
 Package: libapache2-mod-perl2-dev
 Architecture: all
 Section: libdevel
-Depends: ${misc:Depends}, libapache2-mod-perl2
+Depends: ${misc:Depends}, libapache2-mod-perl2 (>= ${source:Version}),
+ libapache2-mod-perl2 (<< ${source:Version}.1~)
 Description: Integration of perl with the Apache2 web server - development files
  mod_perl allows the use of Perl for just about anything
  Apache-related, including <Perl> sections in the config
