@@ -9,6 +9,10 @@ Instructions for Apache-Test Release Manager
 
   a. edit ./Changes:
      - change -dev to -rc\d+ starting with -rc1
+     - note that you *do not* want to change the version in Apache/Test.pm,
+       this is a significant difference than other Apache::* modules.
+       this means that development proceeds with non '-dev' or '-rc1' version
+       tags, so keep that in mind.
 
   b. nuke any preinstalled Apache-Test libs and run 'make test'
 
@@ -20,7 +24,8 @@ Instructions for Apache-Test Release Manager
 
 2. once confident that the package is good, upload a release candidate
    to perl.apache.org/~username and post 24 hour-ish candidate alert
-   to the various lists
+   to the various lists.  note that you will need to be subscribed to
+   all of the following lists.
 
      o test-dev/perl.apache.org
      o dev/perl.apache.org
@@ -30,7 +35,7 @@ Instructions for Apache-Test Release Manager
    (or maybe longer to give most people a chance to catch up). no need
    to tag this package
 
-   Subject: [RELEASE CANDIDATE] Apache-Test-1.31 RC\d+
+   Subject: [RELEASE CANDIDATE] Apache-Test-1.36 RC\d+
 
   a. if problems are detected during stage 2, repeat stages 1 and 2.
 
@@ -62,7 +67,7 @@ Instructions for Apache-Test Release Manager
 5. Announce the package
 
   a. post ... to the modperl, announce lists
-  Subject: [ANNOUNCE] Apache-Test 1.31
+  Subject: [ANNOUNCE] Apache-Test 1.36
      include 
   - MD5 sig (as it comes from CPAN upload announce).
   - the latest Changes
@@ -74,7 +79,7 @@ Instructions for Apache-Test Release Manager
   b. edit ./Changes:
      - start a new item with incremented version + '-dev'
 
-  =item 1.32-dev
+  =item 1.37-dev
 
   c. bump up version numbers in this file to make it easier to do the
      next release.
@@ -82,4 +87,4 @@ Instructions for Apache-Test Release Manager
      $ perl -pi -e 's/(\d+)\.(\d+)/join(".", $1, $2+1)/eg' RELEASE
 
   d. commit Changes
-     % svn ci -m "start 1.32-dev cycle" Changes RELEASE lib/Apache/Test.pm
+     % svn ci -m "start 1.37-dev cycle" Changes RELEASE lib/Apache/Test.pm

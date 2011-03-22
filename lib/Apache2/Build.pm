@@ -897,6 +897,10 @@ sub default_file {
 
 sub file_path {
     my $self = shift;
+
+    # work around when Apache2::BuildConfig has not been created yet
+    return unless $self && $self->{cwd};
+
     my @files = map { m:^/: ? $_ : join('/', $self->{cwd}, $_) } @_;
     return wantarray ? @files : $files[0];
 }
@@ -2068,6 +2072,7 @@ sub includes {
 }
 
 sub inc {
+    local $_;
     my @includes = map { "-I$_" } @{ shift->includes };
     "@includes";
 }

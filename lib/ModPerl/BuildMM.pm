@@ -76,9 +76,9 @@ sub WriteMakefile {
     $build ||= build_config();
     ModPerl::MM::my_import(__PACKAGE__);
 
-    my $inc;
+    my $inc = $args{INC} || '';
     $inc = $args{INC} if $args{INC};
-    $inc = " " . $build->inc;
+    $inc .= " " . $build->inc;
     if (my $glue_inc = $build->{MP_XS_GLUE_DIR}) {
         for (split /\s+/, $glue_inc) {
             $inc .= " -I$_";
@@ -359,7 +359,7 @@ sub ModPerl::BuildMM::MY::libscan {
 
     $apr_config ||= $build->get_apr_config();
 
-    if ($path =~ m/(Thread|Global)Mutex/) {
+    if ($path =~ m/(Thread|Global)(Mutex|RWLock)/) { 
         return unless $apr_config->{HAS_THREADS};
     }
 

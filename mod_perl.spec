@@ -1,7 +1,7 @@
-%define         _version 2.0.4
-%define         _release 
-%define         _source http://perl.apache.org/dist/mod_perl-2.0.4-dev.tar.gz
-%define         _dirname mod_perl-2.0.4-dev
+%define         _version 2.0.5
+%define         _release 1
+%define         _source http://perl.apache.org/dist/mod_perl-2.0.5.tar.gz
+%define         _dirname mod_perl-2.0.5
 %define         _httpd_min_ver 2.0.47
 %define         _perl_min_ver 5.6.1
 Name:           mod_perl

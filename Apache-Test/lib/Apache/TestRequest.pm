@@ -256,11 +256,16 @@ sub new {
     $self;
 }
 
+sub credentials {
+    my $self = shift;
+    return $self->get_basic_credentials(@_);
+}
+
 sub get_basic_credentials {
     my($self, $realm, $uri, $proxy) = @_;
 
     for ($realm, '__ALL__') {
-        next unless $credentials{$_};
+        next unless $_ && $credentials{$_};
         return @{ $credentials{$_} };
     }
 
@@ -298,7 +303,7 @@ my %getline = (
         do {
             $self->read($c, 1);
             $buf .= $c;
-        } until ($c eq "\n");
+        } until ($c eq "\n" || $c eq "");
         $buf;
     },
 );

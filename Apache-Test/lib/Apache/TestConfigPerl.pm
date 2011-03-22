@@ -45,16 +45,21 @@ sub configure_libmodperl {
     # $server->{rev} could be set to 2 as a fallback, even when
     # the wanted version is 1. So check that we use mod_perl 2
     elsif ($server->{rev} >= 2 && IS_MOD_PERL_2) {
+
         if (my $build_config = $self->modperl_build_config()) {
             if ($build_config->{MODPERL_LIB_SHARED}) {
                 $libname = $build_config->{MODPERL_LIB_SHARED};
                 $vars->{libmodperl} ||= $self->find_apache_module($libname);
+            } else {
+                $vars->{libmodperl} ||= $self->find_apache_module('mod_perl.so');
             }
             # XXX: we have a problem with several perl trees pointing
             # to the same httpd tree. So it's possible that we
             # configure the test suite to run with mod_perl.so built
             # against perl which it wasn't built with. Should we use
             # something like ldd to check the match?
+            # 
+            # For now, we'll default to the first mod_perl.so found.
         }
         else {
             # XXX: can we test whether mod_perl was linked statically
@@ -105,11 +110,20 @@ sub configure_inc {
     my $top = $self->{vars}->{top_dir};
 
     my $inc = $self->{inc};
-    my @trys = (catdir($top, qw(blib lib)),
-                catdir($top, qw(blib arch)));
 
-    for (@trys) {
-        push @$inc, $_ if -d $_;
+    my $found;
+    for (catdir($top, qw(blib lib)), catdir($top, qw(blib arch))) {
+        if (-d $_) {
+	    push @$inc, $_;
+	    $found=1;
+	}
+    }
+
+    # try ../blib as well for Apache::Reload & Co
+    unless ($found) {
+        for (catdir($top, qw(.. blib lib)), catdir($top, qw(.. blib arch))) {
+	    push @$inc, $_ if -d $_;
+	}
     }
 
     # spec: If PERL5LIB is defined, PERLLIB is not used.
@@ -150,7 +164,8 @@ sub configure_env {
     my $self = shift;
     $self->preamble(IfModule => 'mod_perl.c',
                     [ qw(PerlPassEnv APACHE_TEST_TRACE_LEVEL
-                         PerlPassEnv HARNESS_PERL_SWITCHES)
+                         PerlPassEnv HARNESS_PERL_SWITCHES
+                         PerlPassEnv APACHE_TEST_NO_STICKY_PREFERENCES)
                     ]);
 }
 

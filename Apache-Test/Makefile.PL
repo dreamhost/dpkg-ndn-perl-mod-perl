@@ -8,7 +8,19 @@ use warnings;
 
 # was this file invoked directly via perl, or via the top-level
 # (mp2) Makefile.PL? if top-level, this env var will be set
-use constant TOP_LEVEL => !exists $ENV{MOD_PERL_2_BUILD};
+use constant TOP_LEVEL => $ENV{MOD_PERL_2_BUILD};
+
+if (!TOP_LEVEL) {
+    # see if we are building from within mp root, add src lib if we are
+    eval { require File::Spec };
+    unless ($@) {
+        if ( -e File::Spec->catdir('..', 'lib') ) {
+
+            # building A-T from mp subdirectory, use the mp lib
+            unshift @INC, File::Spec->catdir('..', 'lib');
+        }
+    }
+}
 
 use ExtUtils::MakeMaker;
 use Symbol;
@@ -19,11 +31,10 @@ use Apache::TestRun;
 use Apache::TestTrace;
 use Apache::TestReport;
 use Apache::TestConfig ();
+use Apache::TestRunPerl;
 
 my $VERSION;
 set_version();
-
-sanity_check();
 
 Apache::TestMM::filter_args();
 
@@ -35,24 +46,26 @@ finddepth(sub {
     push @scripts, "$File::Find::dir/$1";
 }, '.');
 
+my $has_mp;
+eval { require mod_perl2 };
+if ($@) {
+    eval { require mod_perl };
+    if (!$@) {
+        $has_mp = 1;
+    }
+} else {
+    $has_mp = 2;
+} 
+
 for (@scripts) {
     Apache::TestMM::generate_script($_);
 }
 Apache::TestReport->generate_script;
 
-# if built with mod_perl 2.0, its top-level Makefile.PL already
-# installs the uninstall code
-if (TOP_LEVEL) {
-    require "./install-pl";
-    add_Apache__test_target();
-}
-
-Apache::TestConfig::custom_config_file_stub_write();
-
 my @clean_files =
-    qw(lib/Apache/TestConfigData.pm
-       .mypacklist
+    qw(.mypacklist
        t/TEST
+       t/REPORT
        Makefile.old
       );
 
@@ -133,37 +146,6 @@ sub set_version {
     close $fh;
 }
 
-sub sanity_check {
-    # don't allow running an explicit 'perl Makefile.PL', when
-    # Apache-Test is checked out into the modperl-2.0 tree, since
-    # it then decides that it's a part of the modperl-2.0 build and
-    # will try to use modperl httpd/apxs arguments which could be
-    # unset or wrong
-    if (TOP_LEVEL && -e "../lib/mod_perl2.pm") {
-        error "Do not run 'perl Makefile.PL' when Apache-Test is a " .
-            "subdirectory of modperl-2.0. Copy it elsewhere and run " .
-            "from there.";
-        Apache::TestRun::exit_perl(0);
-    }
-}
-
-if (TOP_LEVEL && $ExtUtils::MakeMaker::VERSION < 6.06) {
-    # now that we're using subversion, make sure that
-    # .svn directories are skipped during the build process
-    # for old versions of MakeMaker
-    *MY::libscan = sub {
-        my $self = shift;
-
-        my $path = shift;
-
-        return '' if $path =~ /\B\.svn\b/;
-
-        return $path;
-    };
-    # avoid warning: used only once: possible typo at ...
-    *MY::libscan = *MY::libscan;
-}
-
 sub MY::postamble {
     my $self = shift;
 
@@ -178,16 +160,41 @@ EOF
     return $string;
 }
 
+sub add_dep {
+    my($string, $targ, $add) = @_;
+    $$string =~ s/($targ\s+::)/$1 $add/;
+}
+
+sub MY::test {
+    my $self = shift;
+
+    # run tests normally if non root user
+    return $self->Apache::TestMM::test(@_) if (($> != 0) # root user
+        or (Apache::TestConfig::WINFU)); # win users
+        # or win32
+
+    return <<EOF
+test::
+\t\@echo
+\t\@echo Apache::Test tests cannot be run as the root user.
+\t\@echo Apache cannot spawn child processes as 'root', therefore
+\t\@echo the test suite must be run with a non privileged user.
+\t\@echo Please build Apache::Test as a non-privileged user to
+\t\@echo run the test suite.
+\t\@echo
+EOF
+}
+
 sub MY::constants {
     my $self = shift;
 
     my $string = $self->MM::constants;
 
-    # mp2 installs A-T into INSTALLSITEARCH, so in order to avoid
+    # mp2 installs this into INSTALLSITEARCH, so in order to avoid
     # problems when users forget 'make install UNINST=1', trick MM into
-    # installing pure perl modules to the sitearch location, when A-T is
+    # installing pure perl modules to the sitearch location, when this is
     # not installed as a part of mp2 build
-    if (TOP_LEVEL) {
+    if (!$ENV{MOD_PERL_2_BUILD}) {
         $string .= <<'EOI';
 
 # install into the same location as mod_perl 2.0
@@ -197,29 +204,4 @@ EOI
     }
 
     $string;
-}
-
-sub add_dep {
-    my($string, $targ, $add) = @_;
-    $$string =~ s/($targ\s+::)/$1 $add/;
-}
-
-sub add_Apache__test_target {
-    use subs qw(MY::install MY::top_targets);
-    *MY::install = sub {
-        my $self = shift;
-
-        my $string = $self->MM::install(@_);
-        add_dep(\$string, pure_install => 'nuke_Apache__test');
-        $string;
-    };
-
-    *MY::top_targets = sub {
-        my $self = shift;
-        my $string = $self->MM::top_targets;
-
-        $string .= Apache::Test::install::nuke_Apache__test_target();
-
-        $string;
-    };
 }

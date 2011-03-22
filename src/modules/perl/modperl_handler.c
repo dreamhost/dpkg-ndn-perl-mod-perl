@@ -36,7 +36,8 @@ modperl_handler_t *modperl_handler_new(apr_pool_t *p, const char *name)
         break;
     }
 
-    handler->cv = NULL;
+    /* not necessary due to apr_pcalloc */
+    /* handler->cv = NULL; */
     handler->name = name;
     MP_TRACE_h(MP_FUNC, "[%s] new handler %s",
                modperl_pid_tid(p), handler->name);
@@ -259,7 +260,7 @@ int modperl_handler_equal(modperl_handler_t *h1, modperl_handler_t *h2)
 MpAV *modperl_handler_array_merge(apr_pool_t *p, MpAV *base_a, MpAV *add_a)
 {
     int i, j;
-    modperl_handler_t **base_h, **add_h, **mrg_h;
+    modperl_handler_t **base_h, **add_h;
     MpAV *mrg_a;
 
     if (!add_a) {
@@ -272,7 +273,6 @@ MpAV *modperl_handler_array_merge(apr_pool_t *p, MpAV *base_a, MpAV *add_a)
 
     mrg_a = apr_array_copy(p, base_a);
 
-    mrg_h  = (modperl_handler_t **)mrg_a->elts;
     base_h = (modperl_handler_t **)base_a->elts;
     add_h  = (modperl_handler_t **)add_a->elts;
 
@@ -515,7 +515,7 @@ modperl_handler_t *modperl_handler_new_from_sv(pTHX_ apr_pool_t *p, SV *sv)
             Perl_croak(aTHX_ "can't resolve the code reference");
         }
         name = apr_pstrcat(p, HvNAME(GvSTASH(gv)), "::", GvNAME(gv), NULL);
-        return modperl_handler_new(p, apr_pstrdup(p, name));
+        return modperl_handler_new(p, name);
       default:
         break;
     };
