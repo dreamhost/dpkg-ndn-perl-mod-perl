@@ -6,8 +6,6 @@ TMP  := $(CURDIR)/debian/libapache2-mod-perl2
 	dh $@
 
 override_dh_auto_configure:
-	cp lib/ModPerl/MethodLookup.pm debian
-	cp lib/ModPerl/DummyVersions.pm debian
 	dh_auto_configure -- \
 		INSTALLDIRS=vendor \
 		MP_USE_GTOP=1 \
@@ -27,8 +25,6 @@ override_dh_auto_test:
 override_dh_clean:
 	dh_clean
 	rm -rf t/htdocs/hooks lib/Apache WrapXS
-	mv debian/MethodLookup.pm lib/ModPerl/
-	mv debian/DummyVersions.pm lib/ModPerl/
 
 override_dh_install:
 	dh_install
