@@ -1,16 +1,32 @@
-Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat
-
-Debianized-By: Thom May <thom@debian.org>
-Debianized-Date: Wed, 23 Oct 2002 16:21:08 +0100
-
-Original-Source-Location: http://perl.apache.org/dist/
-Original-Source-Command: uscan --force
-
-Upstream-Author: mod_perl-2.0 was designed and written by Doug MacEachern, with
- contributions from many others (see Changes files).
+Format-Specification: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?op=file&rev=135
+Maintainer:
+ Doug MaaEachern <dougm@pobox.com>,
+ Phillipe M. Chiasson <gozer@cpan.org>,
+ Geoffrey Young <geoff@cpan.org>,
+ Phillip M. Gollucci <pgollucci@p6m7g8.com>,
+ Fred Moyer <fred@redhotpenguin.com>
+Source: http://perl.apache.org/dist/
+Name: mod_perl
 
 Files: *
-Copyright: © 2002-2008 Doug MacEachern
+Copyright: 2002-2011, Doug MacEachern
+License: Apache-2.0
+
+Files: debian/*
+Copyright: 2002, 2004-2005, Thom May <thom@debian.org>
+ 2003-2006, Andres Salomon <dilinger@debian.org>
+ 2004, Adam Conrad <adconrad@0c3.net>
+ 2006, Andreas Barth <aba@not.so.argh.org>
+ 2006, Luk Claes <luk@debian.org>
+ 2006, Steinar H. Gunderson <sesse@debian.org>
+ 2007-2008, 2010-2011, Damyan Ivanov <dmn@debian.org>
+ 2007-2008, Gunnar Wolf <gwolf@debian.org>
+ 2007, Steve Langasek <vorlon@debian.org>
+ 2008, Niko Tyni <ntyni@debian.org>
+ 2008, gregor herrmann <gregoa@debian.org>
+ 2011, Nicholas Bamber <nicholas@periapt.co.uk>
+License: Apache-2.0
+
 License: Apache-2.0
  Licensed to the Apache Software Foundation (ASF) under one or more
  contributor license agreements.  See the NOTICE file distributed with
@@ -26,18 +42,7 @@ License: Apache-2.0
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
-
-Files: debian/*
-Copyright:
- © 2008 Niko Tyni <ntyni@debian.org>
- © 2007-2008 Gunnar Wolf <gwolf@debian.org>
- © 2007-2008 Damyan Ivanov <dmn@debian.org>
- © 2003-2006 Andres Salomon <dilinger@voxel.net>
- © 2002-2005 Thom May <thom@debian.org>
-License: Apache-2.0
- The packaging work is licensed under the same terms as the software itself.
-
-License: Apache-2.0
+ .
  On Debian systems the Apache License 2.0 can be found at
  `/usr/share/common-licenses/Apache-2.0'.
 

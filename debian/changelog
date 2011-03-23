@@ -3,7 +3,13 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   TODO:
   - DEB_BUILD_OPTIONS does not seem to work
   - Clean lintian
-  - Check copright
+  - Check copyright
+    1.) Is the Apache liense stanza correct
+    2.) We could parse the Changes file to extract a list of 
+    contributers and years. There seems to be support for this
+    in the README
+  - Resolve doc-base issues
+  - Check dependencies
 
   * Added myself to Uploaders
   * Upped debian compatibility level to 7 and removed quilt cruft
@@ -17,6 +23,8 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
     - Removed 100-svn-XSS-Status.patch [applied upstream]
     - Removed 110-Fix-two-uninitialized-....patch [applied upstream]
     - Removed 035-testrequest_add_credentials.patch [applied upstream]
+  * Email change: Andres Salomon -> dilinger@debian.org
+  * Refreshed copyright
 
  -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 22 Mar 2011 14:19:58 +0000
 
