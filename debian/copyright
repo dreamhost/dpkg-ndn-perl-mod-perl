@@ -1,19 +1,19 @@
 Format-Specification: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?op=file&rev=135
 Maintainer:
- Doug MaaEachern <dougm@pobox.com>,
+ Doug MacEachern <dougm@pobox.com>,
  Phillipe M. Chiasson <gozer@cpan.org>,
  Geoffrey Young <geoff@cpan.org>,
  Phillip M. Gollucci <pgollucci@p6m7g8.com>,
  Fred Moyer <fred@redhotpenguin.com>
 Source: http://perl.apache.org/dist/
-Name: mod_perl
+Name: mod_perl2
 
 Files: *
 Copyright: 2002-2011, Doug MacEachern
  2003, Mike Cramer
- 2003, 2004, 2005, 2006, 2007, 2010, Philippe M. Chiasson
- 2005, 2006, Philip M. Gollucci
- 2003, 2004, 2005, 2006, 2007, Geoffrey Young
+ 2003, 2004, 2005, 2006, 2007, 2010, Philippe M. Chiasson <gozer@cpan.org>
+ 2005, 2006, Philip M. Gollucci <pgollucci@p6m7g8.com>
+ 2003, 2004, 2005, 2006, 2007, Geoffrey Young <geoff@cpan.org>
  2004, 2005, 2006, Randy Kobes
  2010, 2011, Torsten Foertsch <torsten.foertsch@gmx.net>
  2011, Stefan Fritsch
@@ -22,7 +22,7 @@ Copyright: 2002-2011, Doug MacEachern
  2004, 2006, 2010, Joe Orton
  2004, Boris Zentner
  2010, Mark A. Hershberger
- 2010, 2011, Fred Moyer
+ 2010, 2011, Fred Moyer <fred@redhotpenguin.com>
  2005, joes
  2004, David Wheeler
  2004, Steve Hay
