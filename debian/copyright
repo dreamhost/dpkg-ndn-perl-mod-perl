@@ -10,6 +10,22 @@ Name: mod_perl
 
 Files: *
 Copyright: 2002-2011, Doug MacEachern
+ 2003, Mike Cramer
+ 2003, 2004, 2005, 2006, 2007, 2010, Philippe M. Chiasson
+ 2005, 2006, Philip M. Gollucci
+ 2003, 2004, 2005, 2006, 2007, Geoffrey Young
+ 2004, 2005, 2006, Randy Kobes
+ 2010, 2011, Torsten Foertsch <torsten.foertsch@gmx.net>
+ 2011, Stefan Fritsch
+ 2004, Ken
+ 2003, 2004, 2005, 2006, Stas
+ 2004, 2006, 2010, Joe Orton
+ 2004, Boris Zentner
+ 2010, Mark A. Hershberger
+ 2010, 2011, Fred Moyer
+ 2005, joes
+ 2004, David Wheeler
+ 2004, Steve Hay
 License: Apache-2.0
 
 Files: debian/*

@@ -1,0 +1,4 @@
+The script debian/parse_apache_changes.pl can be used to parse 
+the Changes and Apache-Test/Changes file to get the contributers
+and their copyright years. It is fairly crude. The users are generally 
+CPAN ids.

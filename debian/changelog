@@ -5,9 +5,6 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   - Clean lintian
   - Check copyright
     1.) Is the Apache liense stanza correct
-    2.) We could parse the Changes file to extract a list of 
-    contributers and years. There seems to be support for this
-    in the README
   - Resolve doc-base issues
   - Check dependencies
 
