@@ -2,9 +2,8 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
   TODO:
   - DEB_BUILD_OPTIONS does not seem to work
-  - Clean lintian
   - Check copyright
-    1.) Is the Apache liense stanza correct
+    1.) Is the Apache license stanza correct
   - Resolve doc-base issues
     Idea: support text, html, pdf
         text: pod2text
