@@ -2,7 +2,6 @@ Document: libapache2-mod-perl2-doc
 Title: Apache2 mod_perl2 documentation
 Author: Nicholas Bamber
 Abstract: 
-Description: 
  Mod_perl allows the use of Perl for just about anything
  Apache-related, including <Perl> sections in the config
  files and the famous Apache::Registry module for caching
@@ -11,11 +10,7 @@ Section: Web Development
 
 Format: Text
 Files:
- /usr/share/doc/libapach2-mod-perl2-doc/TODO
  /usr/share/doc/libapach2-mod-perl2-doc/todo
-
-Format: HTML
-Files:
 
 Format: PDF
 Files:
