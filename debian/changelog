@@ -20,6 +20,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
     - Removed 100-svn-XSS-Status.patch [applied upstream]
     - Removed 110-Fix-two-uninitialized-....patch [applied upstream]
     - Removed 035-testrequest_add_credentials.patch [applied upstream]
+  * Added patch to remove generated files
   * Email change: Andres Salomon -> dilinger@debian.org
   * Refreshed copyright
 

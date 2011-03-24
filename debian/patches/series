@@ -8,3 +8,4 @@
 200_fix-pod-spelling-errors.patch
 210_fix-pod-errors.patch
 220_fix-bad-whatis-entry.patch
+300-clean-build.patch
