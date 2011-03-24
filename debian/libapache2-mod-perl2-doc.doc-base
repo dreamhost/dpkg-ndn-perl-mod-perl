@@ -10,7 +10,8 @@ Section: Web Development
 
 Format: Text
 Files:
- /usr/share/doc/libapach2-mod-perl2-doc/todo
+ /usr/share/doc/libapache2-mod-perl2-doc/TODO
+ /usr/share/doc/libapache2-mod-perl2-doc/todo
 
 Format: PDF
 Files:

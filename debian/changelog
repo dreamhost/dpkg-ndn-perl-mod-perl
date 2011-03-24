@@ -19,6 +19,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Upped standards version to 3.9.1
   * Added versioning of depdendency between dev and core packages
   * Registered documents with doc-base (in progress)
+    - Adding todo files to doc package
   * New upstream release
   * Reviewed patches
     - Removed 009_allow_parallel_build.patch [applied upstream]
