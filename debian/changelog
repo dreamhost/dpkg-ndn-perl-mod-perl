@@ -6,6 +6,11 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   - Check copyright
     1.) Is the Apache liense stanza correct
   - Resolve doc-base issues
+    Idea: support text, html, pdf
+        text: pod2text
+        html: pod2html
+        pdf : Use libpdf-create-perl to convert .png -> .pdf
+    How to recognize what is a raw text file
   - Check dependencies
 
   * Added myself to Uploaders

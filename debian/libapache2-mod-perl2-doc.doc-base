@@ -9,9 +9,14 @@ Description:
  compiled scripts.
 Section: Web Development
 
-Format: HTML
 Format: Text
+Files:
+ /usr/share/doc/libapach2-mod-perl2-doc/TODO
+ /usr/share/doc/libapach2-mod-perl2-doc/todo
+
+Format: HTML
+Files:
+
 Format: PDF
-Format: PostScript
-Format: Info
-Format: DVI
+Files:
+
