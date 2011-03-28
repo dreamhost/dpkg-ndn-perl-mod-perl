@@ -25,6 +25,8 @@ override_dh_auto_test:
 override_dh_clean:
 	dh_clean
 	rm -rf t/htdocs/hooks lib/Apache WrapXS
+        find . -name 'pod2htmd.tmp' -exec rm '{}' \;
+        find . -name 'pod2htmi.tmp' -exec rm '{}' \;
 
 override_dh_install:
 	dh_install
