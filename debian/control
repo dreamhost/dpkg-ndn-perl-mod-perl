@@ -58,4 +58,5 @@ Description: Integration of perl with the Apache2 web server - documentation
  files and the famous Apache::Registry module for caching
  compiled scripts.
  .
- This package contains additional documentation for mod_perl.
+ This package contains additional documentation for mod_perl tailored
+ to be indexed by the doc-base system.

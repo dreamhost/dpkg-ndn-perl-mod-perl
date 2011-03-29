@@ -5,6 +5,7 @@ use File::Find;
 use File::Spec;
 use Pod::Html;
 use File::Path qw(make_path);
+use File::Copy;
 
 # dependencies
 use Readonly;
@@ -20,7 +21,7 @@ croak "No destination directory: $DEST_DIR" if not -d $DEST_DIR;
 # This data structure will end up being
 # a hierarchical index of the HTML formats of 
 # the pod in the form expected by HTML::Template.
-my %data = (links=>[],sections=>[]);
+my %data = (pod=>[],sections=>[]);
 
 find( \&transform_pod2html, $SRC_DIR );
 my $template = HTML::Template->new(filename=>"$CUR_DIR/debian/index.tmpl", die_on_bad_params=>0);
@@ -35,35 +36,45 @@ sub transform_pod2html {
     return if $File::Find::dir =~ m{/\.svn};
     my $name = $_;
     return if $name eq '.svn';
-    return if $name !~ m{\.pod$};
+    return if $name !~ m{\.(\w{3})$};
+    my $ext = $1;
+    return if $ext ne 'pod' and $ext ne 'png';
     my ($v, $directories, $file) = File::Spec->splitpath($File::Find::name);
-    $name =~ s{\.pod$}{\.html};
     my @dirs = File::Spec->splitdir($directories);
     shift @dirs; # should be 'docs'
     my $newdir = File::Spec->catdir($CUR_DIR, $DEST_DIR, @dirs);
     make_path($newdir, {verbose=>1});
-    my $newfile = File::Spec->catfile($newdir, $name);
     my $oldfile = File::Spec->catfile($CUR_DIR, $File::Find::name);
+    if ($ext eq 'pod') {
+        $name =~ s{\.pod$}{\.html};
+    }
+    my $newfile = File::Spec->catfile($newdir, $name);
     print "$File::Find::name -> $newfile\n";
-    pod2html("--infile=$oldfile", "--outfile=$newfile");
+    if ($ext eq 'pod') {
+        pod2html("--infile=$oldfile", "--outfile=$newfile");
+    }
+    else {
+        copy($oldfile, $newfile);
+    }
     my $new_url_dir = File::Spec->catdir(
         'cgi-bin', 'dwww', 'usr', 'share', 'doc', 'libapache2-mod-perl2-doc',
         @dirs
     );    
-    index_file($name, "/$new_url_dir/$name", @dirs);
+    index_file($name, "/$new_url_dir/$name", $ext, @dirs);
     return;
 }
 
 sub index_file {
     my $name = shift;
     my $newfile = shift;
+    my $ext = shift;
     my @dirs = @_;
     my $ptr = \%data;
     foreach my $d (@dirs) {
         last if $d eq '';
         $ptr = find_section($ptr, $d);
     }
-    push @{$ptr->{links}}, {href=>$newfile,text=>$name};
+    push @{$ptr->{$ext}}, {href=>$newfile,text=>$name};
     return;
 }
 
@@ -74,7 +85,7 @@ sub find_section {
     foreach my $s (@sections) {
         return $s if $s->{title} eq $dir;
     }
-    my %ldata = (title=>$dir,links=>[],sections=>[]);
+    my %ldata = (title=>$dir,pod=>[],sections=>[],png=>[]);
     push @{$ptr->{sections}}, \%ldata;
     return \%ldata;
 }

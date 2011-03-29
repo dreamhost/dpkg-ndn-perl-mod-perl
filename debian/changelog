@@ -2,10 +2,6 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
   TODO:
   - DEB_BUILD_OPTIONS does not seem to work
-  - Resolve doc-base issues
-    Check that there are as few broken links as possible
-    Idea: pdf : Use libpdf-create-perl to convert .png -> .pdf
-    Need to index HTML files
   - Check dependencies
 
   * Added myself to Uploaders
@@ -17,6 +13,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
     - Adding todo files to doc package
     - Added dwww as a recommendation to doc package
     - Transformed .pod files to indexed HTML files
+    - Copied .png files and added them to the HTML index
   * New upstream release
   * Reviewed patches
     - Removed 009_allow_parallel_build.patch [applied upstream]
