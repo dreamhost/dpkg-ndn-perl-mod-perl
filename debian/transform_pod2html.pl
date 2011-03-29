@@ -4,11 +4,12 @@ use Carp;
 use File::Find;
 use File::Spec;
 use Pod::Html;
-use HTML::Template;
 use File::Path qw(make_path);
 
-# dependencies: libreadonly-perl
+# dependencies
 use Readonly;
+use autodie qw(open close);
+use HTML::Template;
 
 Readonly my $CUR_DIR => $ARGV[0];
 Readonly my $SRC_DIR => $ARGV[1];
@@ -22,7 +23,11 @@ croak "No destination directory: $DEST_DIR" if not -d $DEST_DIR;
 my %data = (links=>[],sections=>[]);
 
 find( \&transform_pod2html, $SRC_DIR );
-my $template = HTML::Template->new(filename=>"$CUR_DIR/debian/index.tmpl");
+my $template = HTML::Template->new(filename=>"$CUR_DIR/debian/index.tmpl", die_on_bad_params=>0);
+$template->param(%data);
+open my $fh,'>', "$CUR_DIR/$DEST_DIR/index.html";
+print {$fh} $template->output;
+close$fh;
 
 exit(0);
 

@@ -24,11 +24,13 @@ override_dh_auto_test:
 
 override_dh_clean:
 	dh_clean
-	rm -rf t/htdocs/hooks lib/Apache WrapXS
-        find . -name 'pod2htmd.tmp' -exec rm '{}' \;
-        find . -name 'pod2htmi.tmp' -exec rm '{}' \;
+	rm -rf t/htdocs/hooks lib/Apache WrapXS debian/docs
+	find . -name 'pod2htmd.tmp' -exec rm '{}' \;
+	find . -name 'pod2htmi.tmp' -exec rm '{}' \;
 
 override_dh_install:
+	mkdir -p $(CURDIR)/debian/docs/2.0
+	debian/transform_pod2html.pl $(CURDIR) docs debian/docs/2.0
 	dh_install
 	mv $(TMP)/usr/bin/mp2bug $(TMP)/usr/share/libapache2-mod-perl2/
 	rm -rf $(TMP)/usr/bin/

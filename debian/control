@@ -9,12 +9,12 @@ Standards-Version: 3.9.1
 Homepage: http://perl.apache.org/
 Vcs-Svn: svn://svn.debian.org/pkg-perl/trunk/libapache2-mod-perl2/
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-perl/trunk/libapache2-mod-perl2/
-Build-Depends: perl (>= 5.8.7-3), libperl-dev (>= 5.8.7-3),
+Build-Depends: perl (>= 5.8.7-3), libperl-dev (>= 5.8.7-3), libautodie-perl,
  apache2-threaded-dev (>= 2.2.3) | apache2-prefork-dev (>= 2.2.3),
  debhelper (>= 7.0.50~), libwww-perl, libdevel-symdump-perl,
  libhtml-parser-perl, libgdbm-dev, libgtop2-dev, apache2, libcompress-zlib-perl,
- libbsd-resource-perl, locales-all, netbase,
- perl (>= 5.10.0-14) | libcgi-pm-perl (>= 3.33)
+ libbsd-resource-perl, locales-all, netbase, libhtml-template-perl,
+ perl (>= 5.10.0-14) | libcgi-pm-perl (>= 3.33), libreadonly-perl
 Build-Conflicts: libapache2-mod-perl2 (<= 1.999.22-1)
 
 Package: libapache2-mod-perl2
@@ -38,6 +38,7 @@ Architecture: all
 Section: libdevel
 Depends: ${misc:Depends}, libapache2-mod-perl2 (>= ${source:Version}),
  libapache2-mod-perl2 (<< ${source:Version}.1~)
+Recommends: dwww
 Description: Integration of perl with the Apache2 web server - development files
  mod_perl allows the use of Perl for just about anything
  Apache-related, including <Perl> sections in the config

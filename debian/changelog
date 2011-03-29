@@ -3,12 +3,9 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   TODO:
   - DEB_BUILD_OPTIONS does not seem to work
   - Resolve doc-base issues
-    Idea: support text, html, pdf
-        text: pod2text
-        html: pod2html
-        pdf : Use libpdf-create-perl to convert .png -> .pdf
-    Need to index HTML files
     Check that there are as few broken links as possible
+    Idea: pdf : Use libpdf-create-perl to convert .png -> .pdf
+    Need to index HTML files
   - doc package should recommend dwww
   - Check dependencies
 
@@ -19,7 +16,8 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Added versioning of depdendency between dev and core packages
   * Registered documents with doc-base (in progress)
     - Adding todo files to doc package
-    - Experimental script to transform pod files to HTML
+    - Added dwww as a recommendation to doc package
+    - Transformed .pod files to indexed HTML files
   * New upstream release
   * Reviewed patches
     - Removed 009_allow_parallel_build.patch [applied upstream]
