@@ -42,7 +42,7 @@
 <h2><a name="<TMPL_VAR NAME="title">"><TMPL_VAR NAME="title"></a></h2>
 <ul>
 <TMPL_LOOP NAME="pod">
-<li><a name="<TMPL_VAR NAME="href">"><TMPL_VAR NAME="text"></a></li>
+<li><a href="<TMPL_VAR NAME="href">"><TMPL_VAR NAME="text"></a></li>
 </TMPL_LOOP>
 </ul>
 <ul>
@@ -50,14 +50,14 @@
 <h3><a name="<TMPL_VAR NAME="title">"><TMPL_VAR NAME="title"></a></h3>
 <ul>
 <TMPL_LOOP NAME="pod">
-<li><a name="<TMPL_VAR NAME="href">"><TMPL_VAR NAME="text"></a></li>
+<li><a href="<TMPL_VAR NAME="href">"><TMPL_VAR NAME="text"></a></li>
 </TMPL_LOOP>
 </ul>
 <TMPL_IF NAME="png">
 <h4>Diagrams</h4>
 <ul>
 <TMPL_LOOP NAME="png">
-<li><a name="<TMPL_VAR NAME="href">"><TMPL_VAR NAME="text"></a></li>
+<li><a href="<TMPL_VAR NAME="href">"><TMPL_VAR NAME="text"></a></li>
 </TMPL_LOOP>
 </ul>
 </TMPL_IF>
