@@ -46,7 +46,11 @@ sub transform_pod2html {
     my $oldfile = File::Spec->catfile($CUR_DIR, $File::Find::name);
     print "$File::Find::name -> $newfile\n";
     pod2html("--infile=$oldfile", "--outfile=$newfile");
-    index_file($name, $newfile, @dirs);
+    my $new_url_dir = File::Spec->catdir(
+        'cgi-bin', 'dwww', 'usr', 'share', 'doc', 'libapache2-mod-perl2-doc',
+        @dirs
+    );    
+    index_file($name, "/$new_url_dir/$name", @dirs);
     return;
 }
 

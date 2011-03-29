@@ -6,7 +6,6 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
     Check that there are as few broken links as possible
     Idea: pdf : Use libpdf-create-perl to convert .png -> .pdf
     Need to index HTML files
-  - doc package should recommend dwww
   - Check dependencies
 
   * Added myself to Uploaders
