@@ -29,15 +29,13 @@
 </div>
 <!-- INDEX END -->
 
-<ul>
-<TMPL_LOOP NAME="pod">
-<li><a name="<TMPL_VAR NAME="href">"><TMPL_VAR NAME="text"></a></li>
-</TMPL_LOOP>
-</ul>
 <h1><a name="name">NAME</a></h1>
 <p>index of mod_perl2 documentation</p>
-<p>
-</p>
+<ul>
+<TMPL_LOOP NAME="pod">
+<li><a href="<TMPL_VAR NAME="href">"><TMPL_VAR NAME="text"></a></li>
+</TMPL_LOOP>
+</ul>
 <TMPL_LOOP NAME="sections">
 <h2><a name="<TMPL_VAR NAME="title">"><TMPL_VAR NAME="title"></a></h2>
 <ul>

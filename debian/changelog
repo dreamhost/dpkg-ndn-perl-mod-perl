@@ -2,6 +2,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
   TODO:
   - DEB_BUILD_OPTIONS does not seem to work
+  - Still checking broken links in dwww
   - Check dependencies
 
   * Added myself to Uploaders
@@ -9,7 +10,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Refreshed debian/rules
   * Upped standards version to 3.9.1
   * Added versioning of depdendency between dev and core packages
-  * Registered documents with doc-base (in progress)
+  * Registered documents with doc-base
     - Adding todo files to doc package
     - Added dwww as a recommendation to doc package
     - Transformed .pod files to indexed HTML files
