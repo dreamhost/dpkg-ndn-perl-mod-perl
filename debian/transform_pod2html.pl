@@ -15,6 +15,8 @@ use HTML::Template;
 Readonly my $CUR_DIR => $ARGV[0];
 Readonly my $SRC_DIR => $ARGV[1];
 Readonly my $DEST_DIR => $ARGV[2];
+Readonly my $HTML_ROOT =>
+    '/cgi-bin/dwww/usr/share/doc/libapache2-mod-perl2-doc';
 croak "No source directory: $SRC_DIR" if not -d $SRC_DIR;
 croak "No destination directory: $DEST_DIR" if not -d $DEST_DIR;
 
@@ -41,7 +43,6 @@ sub transform_pod2html {
     return if $ext ne 'pod' and $ext ne 'png';
     my ($v, $directories, $file) = File::Spec->splitpath($File::Find::name);
     my @dirs = File::Spec->splitdir($directories);
-    shift @dirs; # should be 'docs'
     my $newdir = File::Spec->catdir($CUR_DIR, $DEST_DIR, @dirs);
     make_path($newdir, {verbose=>1});
     my $oldfile = File::Spec->catfile($CUR_DIR, $File::Find::name);
@@ -51,15 +52,19 @@ sub transform_pod2html {
     my $newfile = File::Spec->catfile($newdir, $name);
     print "$File::Find::name -> $newfile\n";
     if ($ext eq 'pod') {
-        pod2html("--infile=$oldfile", "--outfile=$newfile");
+        pod2html(
+            "--infile=$oldfile",
+            "--outfile=$newfile",
+            "--podroot=$CUR_DIR",
+            "--verbose",
+            "--htmldir=$CUR_DIR/debian/docs",
+            "--htmlroot=$HTML_ROOT",
+        );
     }
     else {
         copy($oldfile, $newfile);
     }
-    my $new_url_dir = File::Spec->catdir(
-        'cgi-bin', 'dwww', 'usr', 'share', 'doc', 'libapache2-mod-perl2-doc',
-        @dirs
-    );    
+    my $new_url_dir = File::Spec->catdir($HTML_ROOT, '2.0', @dirs);    
     index_file($name, "/$new_url_dir/$name", $ext, @dirs);
     return;
 }

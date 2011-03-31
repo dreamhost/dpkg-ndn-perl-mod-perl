@@ -29,8 +29,8 @@ override_dh_clean:
 	find . -name 'pod2htmi.tmp' -exec rm '{}' \;
 
 override_dh_install:
-	mkdir -p $(CURDIR)/debian/docs/2.0
-	perl debian/transform_pod2html.pl $(CURDIR) docs debian/docs/2.0
+	mkdir -p $(CURDIR)/debian/docs
+	perl debian/transform_pod2html.pl $(CURDIR) docs debian/docs
 	dh_install
 	mv $(TMP)/usr/bin/mp2bug $(TMP)/usr/share/libapache2-mod-perl2/
 	rm -rf $(TMP)/usr/bin/
