@@ -15,8 +15,6 @@ use HTML::Template;
 Readonly my $CUR_DIR => $ARGV[0];
 Readonly my $SRC_DIR => $ARGV[1];
 Readonly my $DEST_DIR => $ARGV[2];
-#Readonly my $HTML_ROOT =>
-#    '/cgi-bin/dwww/usr/share/doc/libapache2-mod-perl2-doc';
 croak "No source directory: $SRC_DIR" if not -d $SRC_DIR;
 croak "No destination directory: $DEST_DIR" if not -d $DEST_DIR;
 
@@ -27,7 +25,7 @@ my %data = (pod=>[],sections=>[]);
 
 find( \&transform_pod2html, $SRC_DIR );
 my $template = HTML::Template->new(filename=>"$CUR_DIR/debian/index.tmpl", die_on_bad_params=>0);
-$template->param(%data);
+$template->param(%{$data{sections}->[0]});
 open my $fh,'>', "$CUR_DIR/$DEST_DIR/index.html";
 print {$fh} $template->output;
 close$fh;
@@ -60,7 +58,6 @@ sub transform_pod2html {
             "--podroot=$CUR_DIR",
             "--verbose",
             "--htmldir=$CUR_DIR/debian",
-#            "--htmlroot=$HTML_ROOT",
         );
     }
     else {
