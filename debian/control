@@ -14,7 +14,8 @@ Build-Depends: perl (>= 5.8.7-3), libperl-dev (>= 5.8.7-3), libautodie-perl,
  debhelper (>= 7.0.50~), libwww-perl, libdevel-symdump-perl,
  libhtml-parser-perl, libgdbm-dev, libgtop2-dev, apache2, libcompress-zlib-perl,
  libbsd-resource-perl, locales-all, netbase, libhtml-template-perl,
- perl (>= 5.10.0-14) | libcgi-pm-perl (>= 3.33), libreadonly-perl
+ perl (>= 5.10.0-14) | libcgi-pm-perl (>= 3.33), libreadonly-perl,
+ dpkg-dev (>= 1.15.7~)
 Build-Conflicts: libapache2-mod-perl2 (<= 1.999.22-1)
 
 Package: libapache2-mod-perl2

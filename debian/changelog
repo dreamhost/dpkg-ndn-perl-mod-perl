@@ -1,15 +1,17 @@
 libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
-  [ Nicholas Bamber ]
   TODO:
   - DEB_BUILD_OPTIONS=noopt needs:
-        1) $(CFLAGS) inserted in MP_CCFLAFS, and
+        1) $(CFLAGS) inserted in MP_CCFLAGS, and
         2) patch the build system so that MP_CCFLAGS is used *after*
            the default optimization flags (otherwise it is overriden by
            the defaults)
+    a bit of CFLAGS/OPTIMIZE is implemented, but somewhere down the line the
+    contents of $Config{optimize} (i.e. '-O2 -g') gets added
   - Still checking broken links in dwww
   - Check dependencies
 
+  [ Nicholas Bamber ]
   * Added myself to Uploaders
   * Upped debian compatibility level to 7, migrated to source format '3.0
     (quilt)' and removed quilt cruft
