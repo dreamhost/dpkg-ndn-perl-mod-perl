@@ -4,9 +4,11 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   - DEB_BUILD_OPTIONS=noopt needs:
         1) $(CFLAGS) inserted in MP_CCFLAGS, and
         2) patch the build system so that MP_CCFLAGS is used *after*
-           the default optimization flags (otherwise it is overriden by
+           the default optimization flags (otherwise it is overridden by
            the defaults)
   - Check dependencies
+  - Lintian cleanliness (again!)
+  - Review bug reports
 
   [ Nicholas Bamber ]
   * Added myself to Uploaders
@@ -29,6 +31,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Added patch to remove generated files
   * Email change: Andres Salomon -> dilinger@debian.org
   * Refreshed copyright
+  * Reviewed dependencies
 
   [ Damyan Ivanov ]
   * add avoid-db-linkage.patch: avoids needless linking with libdb, which
