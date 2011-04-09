@@ -2,7 +2,11 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
   [ Nicholas Bamber ]
   TODO:
-  - DEB_BUILD_OPTIONS does not seem to work
+  - DEB_BUILD_OPTIONS=noopt needs:
+        1) $(CFLAGS) inserted in MP_CCFLAFS, and
+        2) patch the build system so that MP_CCFLAGS is used *after*
+           the default optimization flags (otherwise it is overriden by
+           the defaults)
   - Still checking broken links in dwww
   - Check dependencies
 
