@@ -8,3 +8,4 @@ Apache-Test/t/cgi-bin/next_available_port.pl
 ModPerl-Registry/Makefile.old t/conf/perlsection.conf
 t/htdocs/perlio/test
 Makefile
+debian/index.html
