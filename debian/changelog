@@ -1,5 +1,6 @@
 libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
+  [ Nicholas Bamber ]
   TODO:
   - DEB_BUILD_OPTIONS does not seem to work
   - Still checking broken links in dwww
@@ -25,6 +26,10 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Added patch to remove generated files
   * Email change: Andres Salomon -> dilinger@debian.org
   * Refreshed copyright
+
+  [ Damyan Ivanov ]
+  * add avoid-db-linkage.patch: avoids needless linking with libdb, which
+    entangles us in libdb transitions. Closes: #621415
 
  -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 22 Mar 2011 14:19:58 +0000
 
