@@ -30,7 +30,8 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Refreshed copyright
   * Reviewed dependencies
   * Installed gdb scripts to examples for dev package
-
+  * Added lintian override for false positive spelling error
+    - applies to lintian 2.5.0~rc2
 
   [ Damyan Ivanov ]
   * add avoid-db-linkage.patch: avoids needless linking with libdb, which
