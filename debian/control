@@ -12,7 +12,7 @@ Vcs-Browser: http://svn.debian.org/viewsvn/pkg-perl/trunk/libapache2-mod-perl2/
 Build-Depends: perl, libperl-dev, perl (>= 5.10.1) | libautodie-perl,
  apache2-threaded-dev | apache2-prefork-dev,
  debhelper (>= 7.0.50~), libwww-perl, libdevel-symdump-perl,
- libhtml-parser-perl, libgdbm-dev, libgtop2-dev, apache2, libcompress-zlib-perl,
+ libhtml-parser-perl, libgtop2-dev, apache2, libcompress-zlib-perl,
  libbsd-resource-perl, locales-all, netbase, libhtml-template-perl,
  libreadonly-perl
 
