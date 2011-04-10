@@ -19,7 +19,7 @@ override_dh_auto_configure:
 		MP_INCLUDE_DIR=/usr/include/apr-1.0
 
 override_dh_auto_build:
-	dh_auto_build --parallel -- MODPERL_OPTIMIZE="$(CFLAGS)"
+	dh_auto_build --parallel -- MODPERL_OPTIMIZE="$(CFLAGS)" OPTIMIZE="$(CFLAGS)"
 
 override_dh_auto_test:
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf"
