@@ -2,8 +2,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
   TODO:
   - Check for FTBS
-  - dwww works, but can we do it without . -> 2.0?
-  - Lintian cleanliness (again!)
+    ! Cannot install locales-all in chroot: http://paste.debian.net/113630/
   - Review bug reports
 
   [ Nicholas Bamber ]
