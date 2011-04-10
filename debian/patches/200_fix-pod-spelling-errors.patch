@@ -262,3 +262,14 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  chain using the same Apache filter name (the real filter's name is
  stored in ctx-E<gt>handler-E<gt>name.
  
+--- a/Apache-Test/lib/Apache/Test.pm
++++ b/Apache-Test/lib/Apache/Test.pm
+@@ -749,7 +749,7 @@
+ 
+ =item sok
+ 
+-Allows to skip a sub-test, controlled from the command line.  The
++Allows one to skip a sub-test, controlled from the command line.  The
+ argument to sok() is a CODE reference or a BLOCK whose return value
+ will be passed to ok(). By default behaves like ok(). If all sub-tests
+ of the same test are written using sok(), and a test is executed as:
