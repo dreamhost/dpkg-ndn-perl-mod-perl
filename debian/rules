@@ -6,12 +6,6 @@ TMP     = $(CURDIR)/debian/$(PACKAGE)
 %:
 	dh $@ --parallel
 
-# Allow disabling build optimation by setting noopt in
-# DEB_BUILD_OPTIONS
-# (dpkg-buildflags already honours DEB_BUILD_OPTIONS)
-CFLAGS := $(shell dpkg-buildflags --get CFLAGS) -Wall
-export CFLAGS
-
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		INSTALLDIRS=vendor \
@@ -19,11 +13,13 @@ override_dh_auto_configure:
 		MP_TRACE=0 \
 		MP_USE_DSO=1 \
 		MP_USE_STATIC=0 \
-		MP_CCOPTS="$(CFLAGS)" \
+		MP_CCOPTS="$(CFLAGS) -Wall" \
 		MP_INCLUDE_DIR=/usr/include/apache2 \
 		MP_APXS=/usr/bin/apxs2 \
-		MP_INCLUDE_DIR=/usr/include/apr-1.0 \
-		OPTIMIZE="$(CFLAGS)"
+		MP_INCLUDE_DIR=/usr/include/apr-1.0
+
+override_dh_auto_build:
+	dh_auto_build --parallel -- MODPERL_OPTIMIZE="$(CFLAGS)"
 
 override_dh_auto_test:
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf"
