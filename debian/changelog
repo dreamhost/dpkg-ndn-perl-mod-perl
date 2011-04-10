@@ -40,6 +40,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   [ Damyan Ivanov ]
   * add avoid-db-linkage.patch: avoids needless linking with libdb, which
     entangles us in libdb transitions. Closes: #621415
+  * rules: pass --parallel to dh command allowing parallel builds
 
  -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 22 Mar 2011 14:19:58 +0000
 

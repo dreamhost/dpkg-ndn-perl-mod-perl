@@ -4,7 +4,7 @@ PACKAGE = $(firstword $(shell dh_listpackages))
 TMP     = $(CURDIR)/debian/$(PACKAGE)
 
 %:
-	dh $@
+	dh $@ --parallel
 
 # Allow disabling build optimation by setting noopt in
 # DEB_BUILD_OPTIONS
