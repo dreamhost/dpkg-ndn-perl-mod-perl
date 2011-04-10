@@ -6,7 +6,8 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
         2) patch the build system so that MP_CCFLAGS is used *after*
            the default optimization flags (otherwise it is overridden by
            the defaults)
-  - Check dependencies
+  - Check for FTBS
+  - dwww works, but can we do it without . -> 2.0?
   - Lintian cleanliness (again!)
   - Review bug reports
 
