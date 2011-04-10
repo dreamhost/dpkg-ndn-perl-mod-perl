@@ -7,6 +7,8 @@ use Pod::Html;
 use File::Path qw(make_path);
 use File::Copy;
 
+# Q: Would this be better with Pod::Tree?
+
 # dependencies
 use Readonly;
 use autodie qw(open close);
@@ -25,7 +27,7 @@ my %data = (pod=>[],sections=>[]);
 
 find( \&transform_pod2html, $SRC_DIR );
 my $template = HTML::Template->new(filename=>"$CUR_DIR/debian/index.tmpl", die_on_bad_params=>0);
-$template->param(%{$data{sections}->[0]});
+$template->param(%{$data{sections}->[0]->{sections}->[0]});
 open my $fh,'>', "$CUR_DIR/$DEST_DIR/index.html";
 print {$fh} $template->output;
 close$fh;
@@ -41,7 +43,9 @@ sub transform_pod2html {
     return if $ext ne 'pod' and $ext ne 'png';
     my ($v, $directories, $file) = File::Spec->splitpath($File::Find::name);
     my @dirs = File::Spec->splitdir($directories);
-#    shift @dirs; # should be docs
+    my $docs = shift @dirs;
+    unshift @dirs, '2.0';
+    unshift @dirs, $docs;
     my $catdirs = File::Spec->catdir(@dirs);
     my $newdir = File::Spec->catdir($CUR_DIR, $DEST_DIR, $catdirs);
     make_path($newdir, {verbose=>1});
