@@ -1,8 +1,6 @@
 libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
   TODO:
-  - Check for FTBS
-    ! Cannot install locales-all in chroot: http://paste.debian.net/113630/
   - Review bug reports
       Can we close these?
       -------------------
