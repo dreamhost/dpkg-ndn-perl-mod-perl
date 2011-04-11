@@ -9,18 +9,32 @@ Standards-Version: 3.9.1
 Homepage: http://perl.apache.org/
 Vcs-Svn: svn://svn.debian.org/pkg-perl/trunk/libapache2-mod-perl2/
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-perl/trunk/libapache2-mod-perl2/
-Build-Depends: perl, libperl-dev, perl (>= 5.10.1) | libautodie-perl,
+Build-Depends: perl,
+ apache2,
  apache2-threaded-dev | apache2-prefork-dev,
- debhelper (>= 7.0.50~), libwww-perl, libdevel-symdump-perl,
- libhtml-parser-perl, libgtop2-dev, apache2, libcompress-zlib-perl,
- libbsd-resource-perl, locales-all, netbase, libhtml-template-perl,
- libreadonly-perl
+ debhelper (>= 7.0.50~),
+ libbsd-resource-perl,
+ libcompress-zlib-perl,
+ libdevel-symdump-perl,
+ libgtop2-dev,
+ libhtml-parser-perl,
+ libhtml-template-perl,
+ libperl-dev,
+ libreadonly-perl,
+ libwww-perl,
+ locales-all,
+ netbase,
+ perl (>= 5.10.1) | libautodie-perl
 
 Package: libapache2-mod-perl2
 Architecture: any
-Depends: ${misc:Depends}, apache2.2-common, ${perl:Depends}, libwww-perl,
- libdevel-symdump-perl, liburi-perl, ${shlibs:Depends}, netbase,
- apache2 | apache2-mpm-itk
+Depends: ${misc:Depends}, ${perl:Depends}, ${shlibs:Depends},
+ apache2 | apache2-mpm-itk,
+ apache2.2-common,
+ libdevel-symdump-perl,
+ liburi-perl,
+ libwww-perl,
+ netbase
 Recommends: libbsd-resource-perl, libapache2-reload-perl
 Description: Integration of perl with the Apache2 web server
  mod_perl allows the use of Perl for just about anything
@@ -35,7 +49,8 @@ Description: Integration of perl with the Apache2 web server
 Package: libapache2-mod-perl2-dev
 Architecture: all
 Section: libdevel
-Depends: ${misc:Depends}, libapache2-mod-perl2 (>= ${source:Version}),
+Depends: ${misc:Depends},
+ libapache2-mod-perl2 (>= ${source:Version}),
  libapache2-mod-perl2 (<< ${source:Version}.1~)
 Description: Integration of perl with the Apache2 web server - development files
  mod_perl allows the use of Perl for just about anything
