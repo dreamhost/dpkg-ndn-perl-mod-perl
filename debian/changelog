@@ -6,7 +6,6 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
       -------------------
       #617883 - Don't see why he does not just down load the package source.
       #435480 - Ticket seems to state why I think this could be closed.
-      #617884 - Blatant incompatibility. Surely this is mod_perl 1 code.
       #267969 - Cannot find a chronos package and this was a mod_perl 1 ticket.
       #380296 - Ticket says it.
       These look worth investigating
