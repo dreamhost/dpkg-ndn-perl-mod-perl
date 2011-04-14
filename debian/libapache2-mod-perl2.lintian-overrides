@@ -1,4 +1,0 @@
-# This warning is just plain wrong. See #622124
-# Only applies to lintian 2.5.0~rc2
-libapache2-mod-perl2: spelling-error-in-manpage usr/share/man/man3/Apache2::porting.3pm.gz helps to helps one to
-libapache2-mod-perl2: spelling-error-in-manpage usr/share/man/man3/Apache::TestSmoke.3pm.gz helps to helps one to

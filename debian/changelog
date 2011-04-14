@@ -1,30 +1,11 @@
 libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
 
-  TODO:
-  - Review bug reports
-      Can we close these?
-      -------------------
-      #617883 - Don't see why he does not just down load the package source.
-      #435480 - Ticket seems to state why I think this could be closed.
-      #267969 - Cannot find a chronos package and this was a mod_perl 1 ticket.
-      #380296 - Ticket says it.
-      These look worth investigating
-      ---------------------
-      #418825 - Can we add these to a Debian FAQ and close the ticket?
-      #419952 - Can we add these to a Debian FAQ and close the ticket?
-      #428499 - Looks easy to check, patch and forward.
-      #590735 - Ticket seems to be well documented.
-      #620822 - Should be easy to investigate these.
-  - Do we need the lintian override?
-    The fix is already checked in and should hit unstable on Thursday
-    though a delay is possible.
-
   [ Nicholas Bamber ]
   * Added myself to Uploaders
   * Upped debian compatibility level to 7, migrated to source format '3.0
     (quilt)' and removed quilt cruft
   * Refreshed debian/rules
-  * Upped standards version to 3.9.1
+  * Upped standards version to 3.9.2
   * Added versioning of depdendency between dev and core packages
   * Registered documents with doc-base
     - Adding todo files to doc package
@@ -43,8 +24,6 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
   * Refreshed copyright
   * Reviewed dependencies
   * Installed gdb scripts to examples for dev package
-  * Added lintian override for false positive spelling error
-    - applies to lintian 2.5.0~rc2
 
   [ Damyan Ivanov ]
   * add avoid-db-linkage.patch: avoids needless linking with libdb, which
