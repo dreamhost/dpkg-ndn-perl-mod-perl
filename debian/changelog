@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.5-1) unstable; urgency=low
 
   [ Nicholas Bamber ]
   * Added myself to Uploaders
@@ -33,7 +33,7 @@ libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
     dpkg-buildpackage-induced CFLAGS to end up on the compiler command line
   * drop libgdbm-dev from B-D
 
- -- Nicholas Bamber <nicholas@periapt.co.uk>  Tue, 22 Mar 2011 14:19:58 +0000
+ -- Nicholas Bamber <nicholas@periapt.co.uk>  Thu, 14 Apr 2011 22:21:22 +0100
 
 libapache2-mod-perl2 (2.0.4-7) unstable; urgency=low
 
