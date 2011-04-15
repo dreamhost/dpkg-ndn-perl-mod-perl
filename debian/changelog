@@ -1,4 +1,11 @@
-libapache2-mod-perl2 (2.0.5-1) unstable; urgency=low
+libapache2-mod-perl2 (2.0.5-1) UNRELEASED; urgency=low
+
+    TODO: this version comes with Apache::Reload, Apache2::Reload and
+          Apache2::SieLimit. The first perhaps needs not be shipped in the
+          .deb at all. The others may stay either as Provides or as
+          separate binary packages (the now separate source packages should
+          be removed if they are in out tree or their maintainers notified if
+          not);
 
   [ Nicholas Bamber ]
   * Added myself to Uploaders
