@@ -2,11 +2,16 @@
 
 PACKAGE = $(firstword $(shell dh_listpackages))
 TMP     = $(CURDIR)/debian/$(PACKAGE)
+LMP     = lib/ModPerl
 
 %:
 	dh $@ --parallel
 
 override_dh_auto_configure:
+	! [ -e $(LMP)/DummyVersions.pm ] \
+	    || cp $(LMP)/DummyVersions.pm $(LMP)/DummyVersions.pm.save
+	! [ -e $(LMP)/MethodLookup.pm  ] \
+	    || cp $(LMP)/MethodLookup.pm  $(LMP)/MethodLookup.pm.save
 	dh_auto_configure -- \
 		INSTALLDIRS=vendor \
 		MP_USE_GTOP=1 \
@@ -31,6 +36,10 @@ override_dh_clean:
 	rm -rf t/htdocs/hooks lib/Apache WrapXS debian/docs
 	find . -name 'pod2htmd.tmp' -exec rm '{}' \;
 	find . -name 'pod2htmi.tmp' -exec rm '{}' \;
+	! [ -e $(LMP)/DummyVersions.pm.save ] \
+	    || mv $(LMP)/DummyVersions.pm.save $(LMP)/DummyVersions.pm
+	! [ -e $(LMP)/MethodLookup.pm.save  ] \
+	    || mv $(LMP)/MethodLookup.pm.save  $(LMP)/MethodLookup.pm
 
 override_dh_install:
 	mkdir -p $(CURDIR)/debian/docs
