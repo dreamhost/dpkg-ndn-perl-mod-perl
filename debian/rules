@@ -50,16 +50,16 @@ override_dh_install:
 	rm -rf $(TMP)/usr/bin/
 	install -m755 debian/libapache2-mod-perl2.bug $(TMP)/usr/share/bug/libapache2-mod-perl2
 	rm -rf $(TMP)/usr/lib/perl5/Apache2/Reload.pm
-        rm -rf $(TMP)/usr/lib/perl5/Apache/SizeLimit
-        rm -rf $(TMP)/usr/lib/perl5/Apache/SizeLimit.pm
-        rm -rf $(TMP)/usr/lib/perl5/Apache/Reload.pm
+	rm -rf $(TMP)/usr/lib/perl5/Apache/SizeLimit
+	rm -rf $(TMP)/usr/lib/perl5/Apache/SizeLimit.pm
+	rm -rf $(TMP)/usr/lib/perl5/Apache/Reload.pm
 
 override_dh_installman:
 	dh_installman
 	rm -rf $(TMP)/usr/share/man/man3/Apache2::Reload.3pm
-        rm -rf $(TMP)/usr/share/man/man3/Apache::SizeLimit.3pm
-        rm -rf $(TMP)/usr/share/man/man3/Apache::SizeLimit::Core
-        rm -rf $(TMP)/usr/share/man/man3/Apache::Reload.3pm
+	rm -rf $(TMP)/usr/share/man/man3/Apache::SizeLimit.3pm
+	rm -rf $(TMP)/usr/share/man/man3/Apache::SizeLimit::Core
+	rm -rf $(TMP)/usr/share/man/man3/Apache::Reload.3pm
 
 # These rules are needed because otherwise the build process
 # gets messed up and the tests fail.
