@@ -9,9 +9,9 @@ LMP     = lib/ModPerl
 
 override_dh_auto_configure:
 	! [ -e $(LMP)/DummyVersions.pm ] \
-	    || cp $(LMP)/DummyVersions.pm $(LMP)/DummyVersions.pm.save
+	    || cp $(LMP)/DummyVersions.pm debian/DummyVersions.pm.save
 	! [ -e $(LMP)/MethodLookup.pm  ] \
-	    || cp $(LMP)/MethodLookup.pm  $(LMP)/MethodLookup.pm.save
+	    || cp $(LMP)/MethodLookup.pm  debian/MethodLookup.pm.save
 	dh_auto_configure -- \
 		INSTALLDIRS=vendor \
 		MP_USE_GTOP=1 \
@@ -37,10 +37,10 @@ override_dh_clean:
 	rm -rf t/htdocs/hooks lib/Apache WrapXS debian/docs
 	find . -name 'pod2htmd.tmp' -exec rm '{}' \;
 	find . -name 'pod2htmi.tmp' -exec rm '{}' \;
-	! [ -e $(LMP)/DummyVersions.pm.save ] \
-	    || mv $(LMP)/DummyVersions.pm.save $(LMP)/DummyVersions.pm
-	! [ -e $(LMP)/MethodLookup.pm.save  ] \
-	    || mv $(LMP)/MethodLookup.pm.save  $(LMP)/MethodLookup.pm
+	! [ -e debian/DummyVersions.pm.save ] \
+	    || mv debian/DummyVersions.pm.save $(LMP)/DummyVersions.pm
+	! [ -e debian/MethodLookup.pm.save  ] \
+	    || mv debian/MethodLookup.pm.save  $(LMP)/MethodLookup.pm
 
 override_dh_install:
 	mkdir -p $(CURDIR)/debian/docs
