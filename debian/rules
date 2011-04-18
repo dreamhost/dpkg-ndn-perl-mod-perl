@@ -62,8 +62,7 @@ override_dh_installman:
 	rm $(TMP)/usr/share/man/man3/Apache::Reload.3pm
 
 # These rules are needed because otherwise the build process
-# gets messed up and the tests fail.
-# Thanks to Damyan Ivanov for figuring this out.
+# tries to re-make the 'build' directory and fails
 .PHONY: build
 
 build:
