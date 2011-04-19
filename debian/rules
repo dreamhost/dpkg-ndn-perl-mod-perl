@@ -61,6 +61,10 @@ override_dh_installman:
 	rm $(TMP)/usr/share/man/man3/Apache::SizeLimit::Core.3pm
 	rm $(TMP)/usr/share/man/man3/Apache::Reload.3pm
 
+override_dh_installexamples:
+	dh_installexamples
+	prename 's,\.,,' debian/libapache2-mod-perl2-dev/usr/share/doc/libapache2-mod-perl2-dev/examples/code/.debug-*
+
 # These rules are needed because otherwise the build process
 # tries to re-make the 'build' directory and fails
 .PHONY: build

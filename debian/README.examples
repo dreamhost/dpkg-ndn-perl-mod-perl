@@ -1,3 +1,0 @@
-The code directory includes gdb scripts that you might find useful when
-developing with mod_perl2. They are '.' files so you will need
-to do something like 'ls -a code' to see them.
