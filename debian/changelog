@@ -3,7 +3,7 @@ libapache2-mod-perl2 (2.0.5-1) unstable; urgency=low
   [ Nicholas Bamber ]
   * Added myself to Uploaders
   * Upped debian compatibility level to 7, migrated to source format '3.0
-    (quilt)' and removed quilt cruft
+    (quilt)' and removed quilt
   * Refreshed debian/rules
   * Upped standards version to 3.9.2
   * Added versioning of depdendency between dev and core packages
@@ -19,13 +19,10 @@ libapache2-mod-perl2 (2.0.5-1) unstable; urgency=low
     - Removed 110-Fix-two-uninitialized-....patch [applied upstream]
     - Removed 035-testrequest_add_credentials.patch [applied upstream]
     - New lintian version requires new correctons
-  * Added patch to remove generated files
   * Email change: Andres Salomon -> dilinger@debian.org
   * Refreshed copyright
   * Reviewed dependencies
   * Installed gdb scripts to examples for dev package
-  * Removed Apache::Reload and Apache::SizeLimit which relate to mod_perl 1.0
-  * Removed Apache2::Reload which duplicates the libapache2-reload-perl package 
 
   [ Damyan Ivanov ]
   * add avoid-db-linkage.patch: avoids needless linking with libdb, which
@@ -35,7 +32,7 @@ libapache2-mod-perl2 (2.0.5-1) unstable; urgency=low
     dpkg-buildpackage-induced CFLAGS to end up on the compiler command line
   * drop libgdbm-dev from B-D
 
- -- Nicholas Bamber <nicholas@periapt.co.uk>  Sat, 16 Apr 2011 15:00:49 +0100
+ -- Damyan Ivanov <dmn@debian.org>  Tue, 19 Apr 2011 09:47:07 +0300
 
 libapache2-mod-perl2 (2.0.4-7) unstable; urgency=low
 
