@@ -7,8 +7,8 @@ Uploaders: Damyan Ivanov <dmn@debian.org>,
  Nicholas Bamber <nicholas@periapt.co.uk>
 Standards-Version: 3.9.2
 Homepage: http://perl.apache.org/
-Vcs-Svn: svn://svn.debian.org/pkg-perl/trunk/libapache2-mod-perl2/
-Vcs-Browser: http://svn.debian.org/viewsvn/pkg-perl/trunk/libapache2-mod-perl2/
+Vcs-Git: git://git.debian.org/pkg-perl/packages/libapache2-mod-perl2.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-perl/packages/libapache2-mod-perl2.git
 Build-Depends: perl,
  apache2,
  apache2-threaded-dev | apache2-prefork-dev,

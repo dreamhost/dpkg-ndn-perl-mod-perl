@@ -1,3 +1,9 @@
+libapache2-mod-perl2 (2.0.5-3) UNRELEASED; urgency=low
+
+  * debian/control: Convert Vcs-* fields to Git.
+
+ -- Ansgar Burchardt <ansgar@debian.org>  Wed, 27 Jul 2011 18:40:29 +0200
+
 libapache2-mod-perl2 (2.0.5-2) unstable; urgency=low
 
   * Team upload.
