@@ -28,7 +28,7 @@ override_dh_auto_build:
 
 
 override_dh_auto_test:
-	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf"
+	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" \
 		LANG=C \
 		dh_auto_test
 
