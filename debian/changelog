@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.5-3) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.5-3) unstable; urgency=low
 
   [ Ansgar Burchardt ]
   * debian/control: Convert Vcs-* fields to Git.
@@ -7,7 +7,17 @@ libapache2-mod-perl2 (2.0.5-3) UNRELEASED; urgency=low
   * debian/copyright: Replace DEP5 Format-Specification URL from
     svn.debian.org to anonscm.debian.org URL.
 
- -- Ansgar Burchardt <ansgar@debian.org>  Wed, 27 Jul 2011 18:40:29 +0200
+  [ Niko Tyni ]
+  * Improve the test suite coverage (again) with a typo fix. The
+    APACHE_TEST_EXTRA_ARGS setting in debian/rules was introduced in
+    2.0.3-5 to improve the test suite coverage, but got accidentally
+    disabled later with 2.0.5-1 due to a missing line continuation.
+    Closes: #646267
+
+  [ gregor herrmann ]
+  * Bump debhelper compatibility level to 8.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 22 Oct 2011 23:35:26 +0200
 
 libapache2-mod-perl2 (2.0.5-2) unstable; urgency=low
 
