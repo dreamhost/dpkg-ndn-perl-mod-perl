@@ -1,9 +1,11 @@
-libapache2-mod-perl2 (2.0.5-4) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.5-4) unstable; urgency=low
 
   * Add patch from upstream svn adopting the Perl_sv_dup() changes in
-    Perl 5.14 (relates to: #636651)
+    Perl 5.14
+  * Don't strip LFS CFLAGS in lib/Apache2/Build.pm any more
+    (Closes: #636651)
 
- -- Dominic Hargreaves <dom@earth.li>  Thu, 03 Nov 2011 22:16:52 +0000
+ -- Dominic Hargreaves <dom@earth.li>  Sun, 13 Nov 2011 15:14:12 +0000
 
 libapache2-mod-perl2 (2.0.5-3) unstable; urgency=low
 

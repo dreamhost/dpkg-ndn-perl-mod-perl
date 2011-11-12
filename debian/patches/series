@@ -11,3 +11,4 @@ avoid-db-linkage.patch
 220_fix-bad-whatis-entry.patch
 230-test-failures-fix.patch
 240-perl-5.14-svrefcnt.patch
+250-lfs-perl-5.14.patch
