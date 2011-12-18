@@ -1,7 +1,12 @@
 libapache2-mod-perl2 (2.0.5-5) UNRELEASED; urgency=low
 
+  [ gregor herrmann ]
   * Remove build dependency on libcompress-zlib-perl, Compress::Zlib is in
     perl core since 5.9.3.
+
+  [ Dominic Hargreaves ]
+  * Add Build-Conflicts on apache2-mpm-event (marked as experimental)
+    since it causes this package to FTBFS (Closes: #652331)
 
  -- gregor herrmann <gregoa@debian.org>  Sun, 04 Dec 2011 15:27:34 +0100
 
