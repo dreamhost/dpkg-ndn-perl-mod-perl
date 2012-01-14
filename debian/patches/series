@@ -12,3 +12,5 @@ avoid-db-linkage.patch
 230-test-failures-fix.patch
 240-perl-5.14-svrefcnt.patch
 250-lfs-perl-5.14.patch
+260-perl-5.13-reference-counting-bug.patch
+261-another-perl-5.13-reference-counting-bug.patch

@@ -7,6 +7,8 @@ libapache2-mod-perl2 (2.0.5-5) UNRELEASED; urgency=low
   [ Dominic Hargreaves ]
   * Add Build-Conflicts on apache2-mpm-event (marked as experimental)
     since it causes this package to FTBFS (Closes: #652331)
+  * Add patches from Niko fixing reference counting bugs when using perl
+    5.14 (Closes: #650675)
 
  -- gregor herrmann <gregoa@debian.org>  Sun, 04 Dec 2011 15:27:34 +0100
 

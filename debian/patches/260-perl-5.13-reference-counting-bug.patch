@@ -1,0 +1,41 @@
+From 2099956795016f3bd08768dda195aeec7dc2267b Mon Sep 17 00:00:00 2001
+From: Niko Tyni <ntyni@debian.org>
+Date: Wed, 14 Dec 2011 22:51:27 +0200
+Subject: [PATCH] Fix a reference counting bug uncovered by Perl 5.13.6
+
+Forwarded: http://mail-archives.apache.org/mod_mbox/perl-modperl/201201.mbox/%3C20120107065332.GA17481%40madeleine.local.invalid%3E
+
+As seen in
+ http://bugs.debian.org/650675
+ http://article.gmane.org/gmane.comp.apache.mod-perl.devel/9928
+
+perl since 5.13.6 with -Dusethreads makes mod_perl2 issue warnings like
+
+ Attempt to free unreferenced scalar: SV 0x7f9c0c347490, Perl interpreter: 0x7f9c0c1a2dd0 during global destruction.
+
+on startup regardless of the Perl code executed.
+
+The double-freed scalar is the CV pointer for ModPerl::Util::exit()
+whose reference count wasn't increased properly.
+---
+ src/modules/perl/modperl_perl.c |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+
+diff --git a/src/modules/perl/modperl_perl.c b/src/modules/perl/modperl_perl.c
+index e992df4..1a2b3ce 100644
+--- a/src/modules/perl/modperl_perl.c
++++ b/src/modules/perl/modperl_perl.c
+@@ -55,7 +55,9 @@ void modperl_perl_core_global_init(pTHX)
+ 
+     while (cglobals->name) {
+         GV *gv = gv_fetchpv(cglobals->core_name, TRUE, SVt_PVCV);
+-        GvCV_set(gv, get_cv(cglobals->sub_name, TRUE));
++        CV *cv = get_cv(cglobals->sub_name, TRUE);
++        GvCV_set(gv, cv);
++        SvREFCNT_inc(cv);
+         GvIMPORTED_CV_on(gv);
+         cglobals++;
+     }
+-- 
+1.7.7.3
+
