@@ -1,7 +1,5 @@
 libapache2-mod-perl2 (2.0.5-6) UNRELEASED; urgency=low
 
-  WAITS-FOR: debhelper 9 hardening flags fix (#662666)
-
   * Bump debhelper compat level to 9
   * Apply patch from Niko Tyni fixing FTBFS with -Werror=format-security
     (Closes: #661540)

@@ -12,7 +12,7 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-perl/packages/libapache2-mo
 Build-Depends: perl,
  apache2,
  apache2-threaded-dev | apache2-prefork-dev,
- debhelper (>= 9),
+ debhelper (>= 9.20120312),
  libbsd-resource-perl,
  libdevel-symdump-perl,
  libgtop2-dev,
