@@ -1,6 +1,7 @@
 libapache2-mod-perl2 (2.0.6-1) UNRELEASED; urgency=low
 
   * New upstream release
+    - rebase/drop some patches
 
  -- Dominic Hargreaves <dom@earth.li>  Sat, 19 May 2012 18:24:39 +0100
 
