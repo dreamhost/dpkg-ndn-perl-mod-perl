@@ -1,3 +1,10 @@
+libapache2-mod-perl2 (2.0.6-2) UNRELEASED; urgency=low
+
+  * debian/rules: run dh_auto_test with --max-parallel=1.
+    This avoids build failures with -jN and build-arch.
+
+ -- gregor herrmann <gregoa@debian.org>  Sun, 20 May 2012 20:46:15 +0200
+
 libapache2-mod-perl2 (2.0.6-1) unstable; urgency=low
 
   * New upstream release
