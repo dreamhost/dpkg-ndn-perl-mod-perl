@@ -1,9 +1,11 @@
-libapache2-mod-perl2 (2.0.6-2) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.6-2) unstable; urgency=low
 
   * debian/rules: run dh_auto_test with --max-parallel=1.
     This avoids build failures with -jN and build-arch.
+  * debian/copyright: update to Copyright-Format 1.0.
+  * Update packaging copyright years.
 
- -- gregor herrmann <gregoa@debian.org>  Sun, 20 May 2012 20:46:15 +0200
+ -- gregor herrmann <gregoa@debian.org>  Mon, 21 May 2012 23:54:34 +0200
 
 libapache2-mod-perl2 (2.0.6-1) unstable; urgency=low
 
