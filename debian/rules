@@ -50,7 +50,6 @@ override_dh_install:
 	rm -r $(TMP)/usr/bin/
 	install -m755 debian/libapache2-mod-perl2.bug $(TMP)/usr/share/bug/libapache2-mod-perl2
 	rm $(TMP)/usr/lib/perl5/Apache2/Reload.pm
-	rm -r $(TMP)/usr/lib/perl5/Apache/SizeLimit
 	rm $(TMP)/usr/lib/perl5/Apache/SizeLimit.pm
 	rm $(TMP)/usr/lib/perl5/Apache/Reload.pm
 
@@ -58,7 +57,6 @@ override_dh_installman:
 	dh_installman
 	rm $(TMP)/usr/share/man/man3/Apache2::Reload.3pm
 	rm $(TMP)/usr/share/man/man3/Apache::SizeLimit.3pm
-	rm $(TMP)/usr/share/man/man3/Apache::SizeLimit::Core.3pm
 	rm $(TMP)/usr/share/man/man3/Apache::Reload.3pm
 
 override_dh_installexamples:
