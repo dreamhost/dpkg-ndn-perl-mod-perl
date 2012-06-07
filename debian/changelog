@@ -1,11 +1,11 @@
-libapache2-mod-perl2 (2.0.7-1) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.7-1) unstable; urgency=low
 
   * New upstream release
     - fixes FTBFS with perl 5.16 (Closes: #676269)
   * Partially revert change which removes Apache::Sizelimit::Core
     as this is still needed (Closes: #661370)
 
- -- Dominic Hargreaves <dom@earth.li>  Wed, 06 Jun 2012 19:08:52 +0100
+ -- Dominic Hargreaves <dom@earth.li>  Thu, 07 Jun 2012 18:51:16 +0100
 
 libapache2-mod-perl2 (2.0.6-2) unstable; urgency=low
 
