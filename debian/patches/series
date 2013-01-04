@@ -10,3 +10,4 @@ avoid-db-linkage.patch
 210_fix-pod-errors.patch
 220_fix-bad-whatis-entry.patch
 250-lfs-perl-5.14.patch
+260_fix_pipelined_response_deadlock.patch
