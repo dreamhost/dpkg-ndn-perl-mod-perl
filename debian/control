@@ -7,7 +7,7 @@ Uploaders: Damyan Ivanov <dmn@debian.org>,
  Nicholas Bamber <nicholas@periapt.co.uk>, Dominic Hargreaves <dom@earth.li>
 Standards-Version: 3.9.3
 Homepage: http://perl.apache.org/
-Vcs-Git: git://git.debian.org/pkg-perl/packages/libapache2-mod-perl2.git
+Vcs-Git: git://anonscm.debian.org/pkg-perl/packages/libapache2-mod-perl2.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-perl/packages/libapache2-mod-perl2.git
 Build-Depends: perl,
  apache2,
