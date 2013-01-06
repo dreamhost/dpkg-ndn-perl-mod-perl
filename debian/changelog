@@ -1,3 +1,9 @@
+libapache2-mod-perl2 (2.0.7-3) UNRELEASED; urgency=low
+
+  * Change Vcs-Git to canonical URI (git://anonscm.debian.org)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 06 Jan 2013 21:56:58 +0100
+
 libapache2-mod-perl2 (2.0.7-2) unstable; urgency=low
 
   * Apply patch from Zefram fixing occasional FTBFS due to
