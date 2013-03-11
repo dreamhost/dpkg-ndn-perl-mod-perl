@@ -1,6 +1,11 @@
 libapache2-mod-perl2 (2.0.7-3) UNRELEASED; urgency=low
 
+  [ Salvatore Bonaccorso ]
   * Change Vcs-Git to canonical URI (git://anonscm.debian.org)
+
+  [ Dominic Hargreaves ]
+  * Fix FTBFS with versions of perl including the CVE-2013-1667
+    fix (Closes: #702821)
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 06 Jan 2013 21:56:58 +0100
 
