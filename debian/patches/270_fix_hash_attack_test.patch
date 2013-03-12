@@ -1,3 +1,16 @@
+Subject: Fix t/perl/hash_attack.t to work with Perl 5.14.4, 5.16.3 etc
+
+Fix t/perl/hash_attack.t to work with Perl 5.14.4, 5.16.3 etc, which
+contain a fix for CVE-2013-1667 (memory exhaustion with arbitrary hash
+keys). This resolves rt.perl.org #116863, from where the patch by Hugo
+van der Sanden was taken (with a minor edit in a comment by the committer).
+
+Tested by the committer on Windows 7 x64 with VC++ 2010 using Perls 5.14.3,
+5.14.4, 5.16.2 and 5.16.3-RC1, all against Apache 2.2.22.
+
+Bug-Debian: http://bugs.debian.org/702821
+Origin: http://svn.apache.org/viewvc?view=revision&revision=1455340
+
 --- a/t/response/TestPerl/hash_attack.pm	(revision 1451907)
 +++ b/t/response/TestPerl/hash_attack.pm	(working copy)
 @@ -5,10 +5,11 @@
