@@ -1,8 +1,13 @@
-libapache2-mod-perl2 (2.0.7-4) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.8-1) unstable; urgency=low
 
   * watch: add alternative URL on metacpan.org
+  * Imported Upstream version 2.0.8
+    Closes: #708591 -- libapache2-mod-perl2: FTBFS with perl 5.18: hashing
+    updates
+    + Drop 270_fix_hash_attack_test.patch since the problem is fixed upstream
+    + refresh other patches to apply cleanly
 
- -- Damyan Ivanov <dmn@debian.org>  Fri, 17 May 2013 16:16:29 +0300
+ -- Damyan Ivanov <dmn@debian.org>  Fri, 17 May 2013 17:46:10 +0300
 
 libapache2-mod-perl2 (2.0.7-3) unstable; urgency=low
 
