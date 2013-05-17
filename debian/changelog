@@ -1,3 +1,9 @@
+libapache2-mod-perl2 (2.0.7-4) UNRELEASED; urgency=low
+
+  * watch: add alternative URL on metacpan.org
+
+ -- Damyan Ivanov <dmn@debian.org>  Fri, 17 May 2013 16:16:29 +0300
+
 libapache2-mod-perl2 (2.0.7-3) unstable; urgency=low
 
   [ Salvatore Bonaccorso ]

@@ -1,2 +1,3 @@
 version=3
 http://perl.apache.org/dist/mod_perl-([\d\.]+)\.tar\.gz
+https://metacpan.org/release/mod_perl/   .*/mod_perl-v?(\d[\d.]+)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)
