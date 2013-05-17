@@ -50,11 +50,9 @@ since at least apr 1.4.3, possibly earlier."
 
 Bug-Debian: http://bugs.debian.org/636651
 
-diff --git a/lib/Apache2/Build.pm b/lib/Apache2/Build.pm
-index 97e4089..af867b7 100644
 --- a/lib/Apache2/Build.pm
 +++ b/lib/Apache2/Build.pm
-@@ -598,7 +598,12 @@ sub cmp_tuples {
+@@ -643,7 +643,12 @@ sub cmp_tuples {
  sub perl_ccopts {
      my $self = shift;
  
@@ -68,7 +66,7 @@ index 97e4089..af867b7 100644
  
      my $fixup = \&{"ccopts_$^O"};
      if (defined &$fixup) {
-@@ -2077,94 +2082,6 @@ sub inc {
+@@ -2139,94 +2144,6 @@ sub inc {
      "@includes";
  }
  
@@ -163,11 +161,9 @@ index 97e4089..af867b7 100644
  sub define {
      my $self = shift;
  
-diff --git a/xs/APR/PerlIO/Makefile.PL b/xs/APR/PerlIO/Makefile.PL
-index 4a8f60d..30b2773 100644
 --- a/xs/APR/PerlIO/Makefile.PL
 +++ b/xs/APR/PerlIO/Makefile.PL
-@@ -8,22 +8,11 @@ my $build = Apache2::Build->build_config();
+@@ -8,22 +8,11 @@ my $build = Apache2::Build->build_config
  
  my $ccopts = $build->ccopts;
  

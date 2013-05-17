@@ -9,7 +9,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
 
 --- a/Apache-Test/lib/Apache/TestTrace.pm
 +++ b/Apache-Test/lib/Apache/TestTrace.pm
-@@ -126,9 +126,9 @@
+@@ -126,9 +126,9 @@ sub nc_trace {
  }
  
  sub trace_level {
@@ -23,7 +23,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
      # or default
 --- a/Apache-Test/lib/Apache/TestUtil.pm
 +++ b/Apache-Test/lib/Apache/TestUtil.pm
-@@ -859,7 +859,7 @@
+@@ -886,7 +886,7 @@ directory separators. The function is no
  =item t_start_error_log_watch(), t_finish_error_log_watch()
  
  This pair of functions provides an easy interface for checking
@@ -34,7 +34,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  this with a call to one of the t_*_is_expected() functions.
 --- a/ModPerl-Registry/lib/ModPerl/RegistryCooker.pm
 +++ b/ModPerl-Registry/lib/ModPerl/RegistryCooker.pm
-@@ -61,7 +61,7 @@
+@@ -63,7 +63,7 @@ use constant D_WARN    => 2;
  use constant D_COMPILE => 4;
  use constant D_NOISE   => 8;
  
@@ -45,7 +45,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  use constant DEBUG => 0;
 --- a/docs/api/APR.pod
 +++ b/docs/api/APR.pod
-@@ -18,7 +18,7 @@
+@@ -18,7 +18,7 @@ libaprutil Libraries)
  
  =head1 Description
  
@@ -56,7 +56,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  You don't need to use this module explicitly, since it's already
 --- a/docs/api/Apache2/Module.pod
 +++ b/docs/api/Apache2/Module.pod
-@@ -413,7 +413,7 @@
+@@ -413,7 +413,7 @@ Remove a module from the list of loaded
  
  =head2 C<top_module>
  
@@ -67,7 +67,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
    $module = Apache2::Module::top_module();
 --- a/docs/api/Apache2/Util.pod
 +++ b/docs/api/Apache2/Util.pod
-@@ -36,7 +36,7 @@
+@@ -36,7 +36,7 @@ C<Apache2::Util> provides the following
  
  =head2 C<escape_path>
  
@@ -78,7 +78,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
    $escaped_path = Apache2::Util::escape_path($path, $p, $partial);
 --- a/docs/api/ModPerl/MM.pod
 +++ b/docs/api/ModPerl/MM.pod
-@@ -55,7 +55,7 @@
+@@ -55,7 +55,7 @@ hasn't already specified a method I<MY::
  C<ModPerl::MM> will DWIM and do nothing.
  
  In case the functionality of C<ModPerl::MM> methods needs to be
@@ -87,7 +87,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  can be called internally. For example if you need to modify constants
  in addition to the modifications applied by
  C<ModPerl::MM::MY::constants>, call the C<ModPerl::MM::MY::constants>
-@@ -72,7 +72,7 @@
+@@ -72,7 +72,7 @@ not C<ModPerl::MM>), then do your extra
  In certain cases a developers may want to prevent from C<ModPerl::MM>
  to override certain methods. In that case an explicit override in
  I<Makefile.PL> will do the job. For example if you don't want the
@@ -96,7 +96,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  I<Makefile.PL>:
  
    sub MY::constants { shift->MM::constants(@_); }";
-@@ -89,7 +89,7 @@
+@@ -89,7 +89,7 @@ C<ModPerl::MM::WriteMakefile> supplies d
  C<INC> and C<TYPEMAPS> unless they weren't passed to
  C<ModPerl::MM::WriteMakefile> from I<Makefile.PL>.
  
@@ -107,7 +107,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  
 --- a/docs/api/ModPerl/RegistryCooker.pod
 +++ b/docs/api/ModPerl/RegistryCooker.pod
-@@ -25,7 +25,7 @@
+@@ -25,7 +25,7 @@ Provide ingredients that can be used by
  
  =item *
  
@@ -118,7 +118,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  
 --- a/lib/Apache2/compat.pm
 +++ b/lib/Apache2/compat.pm
-@@ -254,7 +254,7 @@
+@@ -254,7 +254,7 @@ sub override_mp2_api {
  }
  
  # restore_mp2_api does the opposite of override_mp2_api(), it removes
@@ -129,7 +129,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  
 --- a/lib/Apache2/porting.pm
 +++ b/lib/Apache2/porting.pm
-@@ -84,9 +84,9 @@
+@@ -84,9 +84,9 @@ BEGIN {
          $package =~ s|/|::|g;
          $package =~ s|.pm$||;
  
@@ -143,7 +143,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
          my $msg = "mod_perl 2.0 API doesn't include package '$package'.";
 --- a/xs/APR/Pool/APR__Pool.h
 +++ b/xs/APR/Pool/APR__Pool.h
-@@ -49,7 +49,7 @@
+@@ -49,7 +49,7 @@ APR_OPTIONAL_FN_TYPE(modperl_thx_interp_
  #define MP_APR_POOL_SV_HAS_OWNERSHIP(sv) mpxs_pool_is_custom(sv)
  
  /* before the magic is freed, one needs to carefully detach the
@@ -154,7 +154,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
   * destruction of the parent pool will destroy the child pool C guts
 --- a/todo/bugs_build
 +++ b/todo/bugs_build
-@@ -71,7 +71,7 @@
+@@ -71,7 +71,7 @@ HPUX11i     DSO
  
  * we have a dependency check problem when xs/*/*.h use code from
    xs/modperl_xs*.h, when the latter change 'make' won't rebuild the
@@ -165,7 +165,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
    Need to put Philippe's smoking test into the core
 --- a/docs/api/Apache2/RequestUtil.pod
 +++ b/docs/api/Apache2/RequestUtil.pod
-@@ -815,7 +815,7 @@ Nothing, except it doesn't work as expected due to this pnotes bug: If the
+@@ -815,7 +815,7 @@ Nothing, except it doesn't work as expec
  same code is called in a sub-request then the pnote of $r-E<gt>prev is magically 
  updated at a distance to the same value!
  
@@ -176,7 +176,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  the code by passing a simple lexical variable as the actual argument. That can be done in-line like this:
 --- a/docs/user/intro/overview.pod
 +++ b/docs/user/intro/overview.pod
-@@ -279,7 +279,7 @@
+@@ -279,7 +279,7 @@ mod_perl 2.0's I<method handlers>. See t
  
  =item *
  
@@ -187,7 +187,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
    use warnings FATAL => 'all';
 --- a/docs/user/handlers/http.pod
 +++ b/docs/user/handlers/http.pod
-@@ -1580,7 +1580,7 @@
+@@ -1580,7 +1580,7 @@ There are several usages for this use ph
  a cleanup code, for example removing temporarily created files. The
  less obvious is to use this phase instead of
  C<L<PerlLogHandler|/PerlLogHandler>> if the logging operation is time
@@ -198,7 +198,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  This phase is of type
 --- a/docs/user/coding/coding.pod
 +++ b/docs/user/coding/coding.pod
-@@ -300,7 +300,7 @@
+@@ -300,7 +300,7 @@ downgrade them to be non-fatal. The foll
    no warnings 'redefine';
    use warnings 'redefine';
  
@@ -209,7 +209,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  
 --- a/docs/api/Apache2/SizeLimit.pod
 +++ b/docs/api/Apache2/SizeLimit.pod
-@@ -147,7 +147,7 @@
+@@ -147,7 +147,7 @@ the patch is included in the mm-tree (li
  to make it into the vanilla kernel in the near future.
  
  F</proc/self/smaps> reports various sizes for each memory segment of a
@@ -220,7 +220,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  and if the C<Linux::Smaps> module is installed it will use them instead of
 --- a/docs/api/Apache2/RequestRec.pod
 +++ b/docs/api/Apache2/RequestRec.pod
-@@ -804,7 +804,7 @@
+@@ -804,7 +804,7 @@ Get/set MIME response headers, printed o
  
  =back
  
@@ -231,7 +231,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  
 --- a/docs/api/ModPerl/RegistryLoader.pod
 +++ b/docs/api/ModPerl/RegistryLoader.pod
-@@ -175,7 +175,7 @@
+@@ -175,7 +175,7 @@ otherwise the C<$virtual_hostname> argum
  C<ModPerl::RegistryLoader> performs a very simple job, at run time it
  loads and sub-classes the module passed via the I<package> attribute
  and overrides some of its functions, to emulate the run-time
@@ -242,7 +242,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  =head1 Authors
 --- a/docs/devel/core/mod_perl_specific.pod
 +++ b/docs/devel/core/mod_perl_specific.pod
-@@ -131,7 +131,7 @@
+@@ -131,7 +131,7 @@ a normal Perl handler by modperl_run_fil
                         retrieve ctx->handler
    modperl_output_filter_handler -> modperl_run_filter -> modperl_callback
  
@@ -253,7 +253,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  
 --- a/Apache-Test/lib/Apache/Test.pm
 +++ b/Apache-Test/lib/Apache/Test.pm
-@@ -749,7 +749,7 @@
+@@ -749,7 +749,7 @@ Same as I<Test::ok>, see I<Test.pm> docu
  
  =item sok
  
