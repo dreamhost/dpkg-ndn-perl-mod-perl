@@ -13,6 +13,12 @@ override_dh_auto_configure:
 	! [ -e $(LMP)/MethodLookup.pm  ] \
 	    || cp $(LMP)/MethodLookup.pm  debian/MethodLookup.pm.save
 	dh_auto_configure -- \
+		INSTALLDIRS=vendor \
+		MP_USE_GTOP=1 \
+		MP_TRACE=0 \
+		MP_USE_DSO=1 \
+		MP_USE_STATIC=0 \
+		MP_CCOPTS="$(CFLAGS) -Wall" \
 		MP_APR_CONFIG=/usr/bin/apr-config
 
 override_dh_auto_build:
