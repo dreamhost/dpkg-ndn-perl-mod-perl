@@ -47,6 +47,7 @@ override_dh_install:
 	mkdir -p $(CURDIR)/debian/docs
 	perl debian/transform_pod2html.pl $(CURDIR) docs debian
 	dh_install
+	dh_apache2
 	mv $(TMP)/usr/bin/mp2bug $(TMP)/usr/share/libapache2-mod-perl2/
 	rm -r $(TMP)/usr/bin/
 	install -m755 debian/libapache2-mod-perl2.bug $(TMP)/usr/share/bug/libapache2-mod-perl2
