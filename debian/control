@@ -10,9 +10,9 @@ Homepage: http://perl.apache.org/
 Vcs-Git: git://anonscm.debian.org/pkg-perl/packages/libapache2-mod-perl2.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-perl/packages/libapache2-mod-perl2.git
 Build-Depends: perl,
- apache2,
- apache2-threaded-dev | apache2-prefork-dev,
+ apache2-dev (>> 2.4~),
  debhelper (>= 9.20120312),
+ dh-apache2,
  libbsd-resource-perl,
  libdevel-symdump-perl,
  libgtop2-dev,
@@ -29,8 +29,7 @@ Build-Conflicts: apache2-mpm-event
 Package: libapache2-mod-perl2
 Architecture: any
 Depends: ${misc:Depends}, ${perl:Depends}, ${shlibs:Depends},
- apache2 | apache2-mpm-itk,
- apache2.2-common,
+ apache2-api-20120211,
  libdevel-symdump-perl,
  liburi-perl,
  libwww-perl,
