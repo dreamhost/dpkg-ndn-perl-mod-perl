@@ -29,13 +29,14 @@ override_dh_auto_build:
 
 
 override_dh_auto_test:
+	mkdir -p $(CURDIR)/t/run
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" \
 		LANG=C \
 		dh_auto_test --max-parallel=1
 
 override_dh_clean:
 	dh_clean
-	rm -rf t/htdocs/hooks lib/Apache WrapXS debian/docs
+	rm -rf t/htdocs/hooks t/run lib/Apache WrapXS debian/docs
 	find . -name 'pod2htmd.tmp' -exec rm '{}' \;
 	find . -name 'pod2htmi.tmp' -exec rm '{}' \;
 	! [ -e debian/DummyVersions.pm.save ] \
