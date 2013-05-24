@@ -3,6 +3,7 @@
 PACKAGE = $(firstword $(shell dh_listpackages))
 TMP     = $(CURDIR)/debian/$(PACKAGE)
 LMP     = lib/ModPerl
+MPR     = ModPerl-Registry
 
 %:
 	dh $@ --parallel --with apache2
@@ -32,6 +33,13 @@ override_dh_auto_test:
 		LANG=C \
 		dh_auto_test --max-parallel=1 || true
 
+	[ -d $(MPR)/t/run ] || mkdir $(MPR)/t/run
+	[ -d $(MPR)/t/logs ] || mkdir $(MPR)/t/logs
+	touch $(MPR)/t/logs/error.log
+	cd $(MPR) && APACHE_TEST_EXTRA_ARGS="-httpd_conf $(CURDIR)/debian/apache2.conf" \
+		LANG=C \
+		$(MAKE) test
+
 override_dh_clean:
 	dh_clean
 	rm -rf t/htdocs/hooks t/run lib/Apache WrapXS debian/docs
@@ -42,7 +50,7 @@ override_dh_clean:
 	! [ -e debian/MethodLookup.pm.save  ] \
 	    || mv debian/MethodLookup.pm.save  $(LMP)/MethodLookup.pm
 	# these shouldn't be needed really
-	rm -rf t/logs t/run
+	rm -rf t/logs t/run $(MPR)/t/logs $(MPR)/t/run
 	find . -name 'Makefile.old' -exec rm '{}' \;
 	rm -f Apache-Test/Apache-TestItSelf/t/SMOKE t/core
 
