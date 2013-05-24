@@ -41,6 +41,10 @@ override_dh_clean:
 	    || mv debian/DummyVersions.pm.save $(LMP)/DummyVersions.pm
 	! [ -e debian/MethodLookup.pm.save  ] \
 	    || mv debian/MethodLookup.pm.save  $(LMP)/MethodLookup.pm
+	# these shouldn't be needed really
+	rm -rf t/logs t/run
+	find . -name 'Makefile.old' -exec rm '{}' \;
+	rm -f Apache-Test/Apache-TestItSelf/t/SMOKE t/core
 
 override_dh_auto_install:
 	rm -f t/core
