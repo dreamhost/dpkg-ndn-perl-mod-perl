@@ -28,9 +28,9 @@ Bug-Debian: http://bugs.debian.org/676754
 Bug: https://rt.cpan.org/Public/Bug/Display.html?id=82409
 Origin: https://rt.cpan.org/Public/Bug/Display.html?id=82409
 
---- a/t/filter/TestFilter/in_str_declined.pm	2011-02-08 02:00:11.000000000 +0000
-+++ b/t/filter/TestFilter/in_str_declined.pm	2013-01-04 16:08:14.000000000 +0000
-@@ -35,13 +35,17 @@
+--- a/t/filter/TestFilter/in_str_declined.pm
++++ b/t/filter/TestFilter/in_str_declined.pm
+@@ -35,13 +35,17 @@ sub handler {
  sub response {
      my $r = shift;
  
@@ -50,9 +50,9 @@ Origin: https://rt.cpan.org/Public/Bug/Display.html?id=82409
          ok t_cmp(length $data, 20000, "the request body received ok");
      }
  
---- a/t/filter/TestFilter/in_str_declined_read.pm	2011-02-08 02:00:11.000000000 +0000
-+++ b/t/filter/TestFilter/in_str_declined_read.pm	2013-01-04 16:06:28.000000000 +0000
-@@ -31,14 +31,19 @@
+--- a/t/filter/TestFilter/in_str_declined_read.pm
++++ b/t/filter/TestFilter/in_str_declined_read.pm
+@@ -31,14 +31,19 @@ sub handler {
  sub response {
      my $r = shift;
  
@@ -75,9 +75,9 @@ Origin: https://rt.cpan.org/Public/Bug/Display.html?id=82409
      }
  
      Apache2::Const::OK;
---- a/t/filter/TestFilter/in_str_msg.pm	2011-02-08 02:00:11.000000000 +0000
-+++ b/t/filter/TestFilter/in_str_msg.pm	2013-01-04 16:08:27.000000000 +0000
-@@ -76,10 +76,10 @@
+--- a/t/filter/TestFilter/in_str_msg.pm
++++ b/t/filter/TestFilter/in_str_msg.pm
+@@ -76,10 +76,10 @@ my $expected = "UPCASED";
  sub response {
      my $r = shift;
  
@@ -90,9 +90,9 @@ Origin: https://rt.cpan.org/Public/Bug/Display.html?id=82409
      ok t_cmp($received, $expected,
               "request filter must have upcased the data");
  
---- a/t/response/TestModperl/post_utf8.pm	2011-02-08 02:00:12.000000000 +0000
-+++ b/t/response/TestModperl/post_utf8.pm	2013-01-04 16:04:39.000000000 +0000
-@@ -29,14 +29,14 @@
+--- a/t/response/TestModperl/post_utf8.pm
++++ b/t/response/TestModperl/post_utf8.pm
+@@ -29,14 +29,14 @@ sub handler {
  #    $r->content_type("text/plain; charset=utf-8");
  #    $r->print("expected: $expected_utf8\n");
  

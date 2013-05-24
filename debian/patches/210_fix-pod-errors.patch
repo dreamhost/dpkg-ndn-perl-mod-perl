@@ -5,7 +5,7 @@ Last-Update: 2011-03-22
 Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
 --- a/Apache-Test/lib/Apache/Test.pm
 +++ b/Apache-Test/lib/Apache/Test.pm
-@@ -1020,6 +1020,8 @@
+@@ -1020,6 +1020,8 @@ if no reason is given a default reason w
  
  =head1 Additional Configuration Variables
  
@@ -14,7 +14,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  =item basic_config
  
    my $basic_cfg = Apache::Test::basic_config();
-@@ -1052,6 +1054,8 @@
+@@ -1052,6 +1054,8 @@ If no arguments are passed, the referenc
  returned. If one or more arguments are passed the corresponding values
  are returned.
  

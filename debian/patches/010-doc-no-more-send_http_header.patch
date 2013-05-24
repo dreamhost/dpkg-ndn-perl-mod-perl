@@ -8,7 +8,7 @@ Forwarded: yes
 Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
 --- a/docs/api/ModPerl/Registry.pod
 +++ b/docs/api/ModPerl/Registry.pod
-@@ -31,7 +31,6 @@
+@@ -31,7 +31,6 @@ For example:
  
    my $r = Apache2::RequestUtil->request;
    $r->content_type("text/html");
