@@ -1,0 +1,43 @@
+From ce60ebed111b66381b639c51363cb685fb07fd09 Mon Sep 17 00:00:00 2001
+From: Niko Tyni <ntyni@debian.org>
+Date: Fri, 24 May 2013 15:30:29 +0300
+Subject: [PATCH] Run "httpd -V" with the test config and server root if
+ available
+
+The system configuration may not be available to the user
+building mod_perl, or may depend on special environment variables
+or the like, so try to bypass the system configuration altogether.
+---
+ Apache-Test/lib/Apache/TestConfigParse.pm |    7 +++++++
+ 1 file changed, 7 insertions(+)
+
+--- libapache2-mod-perl2.orig/Apache-Test/lib/Apache/TestConfigParse.pm
++++ libapache2-mod-perl2/Apache-Test/lib/Apache/TestConfigParse.pm
+@@ -435,6 +435,13 @@
+ 
+     $httpd = shell_ready($httpd);
+     my $cmd = "$httpd -l";
++
++    my $httpdconf = $self->{vars}->{httpd_conf};
++    $cmd .= " -f $httpdconf" if $httpdconf;
++
++    my $serverroot = $self->{vars}->{serverroot};
++    $cmd .= " -d $serverroot" if $serverroot;
++
+     my $list = $self->open_cmd($cmd);
+ 
+     while (<$list>) {
+@@ -456,6 +463,13 @@
+ 
+     $httpd = shell_ready($httpd);
+     my $cmd = "$httpd -V";
++
++    my $httpdconf = $self->{vars}->{httpd_conf};
++    $cmd .= " -f $httpdconf" if $httpdconf;
++
++    my $serverroot = $self->{vars}->{serverroot};
++    $cmd .= " -d $serverroot" if $serverroot;
++
+     my $proc = $self->open_cmd($cmd);
+ 
+     while (<$proc>) {
