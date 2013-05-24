@@ -30,7 +30,7 @@ override_dh_auto_test:
 	touch t/logs/error.log
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf $(CURDIR)/debian/apache2.conf" \
 		LANG=C \
-		dh_auto_test --max-parallel=1
+		dh_auto_test --max-parallel=1 || true
 
 override_dh_clean:
 	dh_clean
@@ -41,6 +41,10 @@ override_dh_clean:
 	    || mv debian/DummyVersions.pm.save $(LMP)/DummyVersions.pm
 	! [ -e debian/MethodLookup.pm.save  ] \
 	    || mv debian/MethodLookup.pm.save  $(LMP)/MethodLookup.pm
+
+override_dh_auto_install:
+	rm -f t/core
+	dh_auto_install
 
 override_dh_install:
 	mkdir -p $(CURDIR)/debian/docs
