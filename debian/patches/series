@@ -1,6 +1,5 @@
 avoid-db-linkage.patch
 099-fix-url-on-index_top.patch
-001-gtop2.patch
 004-bugs-to-debian-bts.patch
 006_man_section_and_build_warnings.patch
 010-doc-no-more-send_http_header.patch
