@@ -2,3 +2,12 @@ The script debian/parse_apache_changes.pl can be used to parse
 the Changes and Apache-Test/Changes file to get the contributers
 and their copyright years. It is fairly crude. The users are generally 
 CPAN ids.
+
+---
+
+The 2.0.8+httpd24 "orig" tarball is created
+- from the httpd24 branch in upstream svn
+- with the 2.0.8 tag merged in
+- and then the directory tarred up.
+
+SVN URL:  http://svn.apache.org/repos/asf/perl/modperl/
