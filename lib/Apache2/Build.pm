@@ -281,13 +281,18 @@ my %threaded_mpms = map { $_ => 1 }
 sub mpm_is_threaded {
     my $self = shift;
     my $mpm_name = $self->mpm_name();
-    return $threaded_mpms{$mpm_name} || 0;
+    return exists $threaded_mpms{$mpm_name} ? 1 : 0;
 }
 
 sub mpm_name {
     my $self = shift;
 
     return $self->{mpm_name} if $self->{mpm_name};
+
+    if ($self->httpd_version =~ /^(\d+)\.(\d+)\.(\d+)/) {
+	delete $threaded_mpms{dynamic} if $self->mp_nonthreaded_ok;
+	return $self->{mpm_name} = 'dynamic' if ($1*1000+$2)*1000+$3>=2003000;
+    }
 
     # XXX: hopefully apxs will work on win32 one day
     return $self->{mpm_name} = 'winnt' if WIN32;
@@ -2207,7 +2212,8 @@ sub has_large_files_conflict {
     # with it is that we didn't have such a case yet, but may need to
     # deal with it later
 
-    return $perl_lfs64 ^ $apr_lfs64;
+    return 0;
+    # $perl_lfs64 ^ $apr_lfs64;
 }
 
 # if perl is built with uselargefiles, but apr not, the build won't
