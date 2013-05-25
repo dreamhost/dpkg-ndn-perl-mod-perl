@@ -5,7 +5,7 @@ Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
 Uploaders: Damyan Ivanov <dmn@debian.org>,
  Niko Tyni <ntyni@debian.org>, gregor herrmann <gregoa@debian.org>,
  Nicholas Bamber <nicholas@periapt.co.uk>, Dominic Hargreaves <dom@earth.li>
-Standards-Version: 3.9.3
+Standards-Version: 3.9.4
 Homepage: http://perl.apache.org/
 Vcs-Git: git://anonscm.debian.org/pkg-perl/packages/libapache2-mod-perl2.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-perl/packages/libapache2-mod-perl2.git
