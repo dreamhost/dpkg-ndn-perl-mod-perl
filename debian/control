@@ -21,8 +21,7 @@ Build-Depends: perl,
  libreadonly-perl,
  libwww-perl,
  locales-all,
- netbase,
- perl (>= 5.10.1) | libautodie-perl
+ netbase
 Build-Conflicts: apache2-mpm-event
 
 Package: libapache2-mod-perl2
