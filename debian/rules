@@ -13,15 +13,6 @@ override_dh_auto_configure:
 	! [ -e $(LMP)/MethodLookup.pm  ] \
 	    || cp $(LMP)/MethodLookup.pm  debian/MethodLookup.pm.save
 	dh_auto_configure -- \
-		INSTALLDIRS=vendor \
-		MP_USE_GTOP=1 \
-		MP_TRACE=0 \
-		MP_USE_DSO=1 \
-		MP_USE_STATIC=0 \
-		MP_CCOPTS="$(CFLAGS) -Wall" \
-		MP_INCLUDE_DIR=/usr/include/apache2 \
-		MP_APXS=/usr/bin/apxs2 \
-		MP_INCLUDE_DIR=/usr/include/apr-1.0 \
 		MP_APR_CONFIG=/usr/bin/apr-config
 
 override_dh_auto_build:
@@ -30,9 +21,17 @@ override_dh_auto_build:
 
 override_dh_auto_test:
 	mkdir -p $(CURDIR)/t/run
-	APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" \
-		LANG=C \
-		dh_auto_test --max-parallel=1
+
+	# doesn't work in a makefile
+	#. /etc/apache2/envvars
+
+	#APACHE_TEST_EXTRA_ARGS="-httpd_conf /etc/apache2/apache2.conf" \
+	#	LANG=C \
+	#	dh_auto_test --max-parallel=1
+
+	# manually
+	APACHE_TEST_GROUP= APACHE_TEST_HTTPD= APACHE_TEST_PORT= APACHE_TEST_USER= APACHE_TEST_APXS= \
+		/usr/bin/perl -Iblib/arch -Iblib/lib t/TEST  -verbose=0
 
 override_dh_clean:
 	dh_clean
