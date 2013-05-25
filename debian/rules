@@ -6,7 +6,7 @@ LMP     = lib/ModPerl
 MPR     = ModPerl-Registry
 
 %:
-	dh $@ --parallel --with apache2
+	dh $@ --parallel --with-apache2
 
 override_dh_auto_configure:
 	! [ -e $(LMP)/DummyVersions.pm ] \
@@ -42,7 +42,7 @@ override_dh_auto_test:
 
 override_dh_clean:
 	dh_clean
-	rm -rf t/htdocs/hooks t/run lib/Apache WrapXS debian/docs
+	rm -rf t/htdocs/hooks lib/Apache WrapXS debian/docs
 	find . -name 'pod2htmd.tmp' -exec rm '{}' \;
 	find . -name 'pod2htmi.tmp' -exec rm '{}' \;
 	! [ -e debian/DummyVersions.pm.save ] \
