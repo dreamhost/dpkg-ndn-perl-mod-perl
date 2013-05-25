@@ -33,12 +33,14 @@ override_dh_auto_test:
 		LANG=C \
 		dh_auto_test --max-parallel=1 || true
 
+ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
 	[ -d $(MPR)/t/run ] || mkdir $(MPR)/t/run
 	[ -d $(MPR)/t/logs ] || mkdir $(MPR)/t/logs
 	touch $(MPR)/t/logs/error.log
 	cd $(MPR) && APACHE_TEST_EXTRA_ARGS="-httpd_conf $(CURDIR)/debian/apache2.conf" \
 		LANG=C \
 		$(MAKE) test
+endif
 
 override_dh_clean:
 	dh_clean
