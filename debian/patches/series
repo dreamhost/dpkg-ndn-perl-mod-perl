@@ -10,3 +10,4 @@ avoid-db-linkage.patch
 220_fix-bad-whatis-entry.patch
 260_fix_pipelined_response_deadlock.patch
 280-ignore-sysconf-for-defines.patch
+290-httpd-transition-test-todo.patch

@@ -31,7 +31,7 @@ override_dh_auto_test:
 	touch t/logs/error.log
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf $(CURDIR)/debian/apache2.conf" \
 		LANG=C \
-		dh_auto_test --max-parallel=1 || true
+		dh_auto_test --max-parallel=1
 
 ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
 	[ -d $(MPR)/t/run ] || mkdir $(MPR)/t/run

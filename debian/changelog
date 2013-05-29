@@ -44,6 +44,8 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) UNRELEASED; urgency=low
 
   [ Dominic Hargreaves ]
   * Add Build-Depends on apache2, which is needed for the test suite
+  * Mark individual failing tests as TODO rather than ignore the overall
+    test suite exit status
 
  -- gregor herrmann <gregoa@debian.org>  Fri, 24 May 2013 15:06:43 +0200
 
