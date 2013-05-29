@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) experimental; urgency=low
 
   [ gregor herrmann ]
   * New upstream release.
@@ -38,7 +38,7 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) UNRELEASED; urgency=low
   * Mark individual failing tests as TODO for now. We can't fix these for
     the Apache 2.4 transition
 
- -- gregor herrmann <gregoa@debian.org>  Fri, 24 May 2013 15:06:43 +0200
+ -- Dominic Hargreaves <dom@earth.li>  Thu, 30 May 2013 00:07:54 +0100
 
 libapache2-mod-perl2 (2.0.8-1) unstable; urgency=low
 
