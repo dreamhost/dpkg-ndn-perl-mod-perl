@@ -44,6 +44,9 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) UNRELEASED; urgency=low
   * debian/control: drop explicit build dependency on autodie. autodie is
     in perl core since 5.10.1, which is available in oldstable.
 
+  [ Dominic Hargreaves ]
+  * Add Build-Depends on apache2, which is needed for the test suite
+
  -- gregor herrmann <gregoa@debian.org>  Fri, 24 May 2013 15:06:43 +0200
 
 libapache2-mod-perl2 (2.0.8-1) unstable; urgency=low
