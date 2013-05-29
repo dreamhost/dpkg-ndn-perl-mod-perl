@@ -1,9 +1,5 @@
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) UNRELEASED; urgency=low
 
-  * TODO for later (file bugs for these?)
-    + investigate test suite failures and re-enable the test suite again
-    + the ModPerl-Registry test suite still looks for /etc/apache2/httpd.conf
-
   [ gregor herrmann ]
   * New upstream release.
 
@@ -20,18 +16,13 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) UNRELEASED; urgency=low
     get these from /etc/apache2, but this is much more robust. Also, when
     using the test directory as server root, Apache seems to require
     existing run/ and logs/ directories, so create them when necessary.
-  * Ignore the test suite failures for now. We can't fix these for the
-    Apache 2.4 transition, so ignore the failures for now. Also remove a
-    possible leftover core file before the install phase, as the build
-    system complains rather excessively about those.
+  * Remove a possible leftover core file before the install phase, as the
+    build system complains rather excessively about those.
   * Run "httpd -V" with the test config and server root if available. The
     system configuration may not be available to the user building
     mod_perl, or may depend on special environment variables or the like,
     so try to bypass the system configuration altogether.
-  * Improve the "clean" target. This is still incomplete: some stages of
-    the build leave files that are not removed properly. At least the
-    lingering 'Makefile.old' files may be upstream bugs as the build
-    system probably should clean up after itself.
+  * Improve the "clean" target.
   * Run the ModPerl-Registry tests too. TODO: the test suite still looks
     for /etc/apache2/httpd.conf
 
@@ -44,8 +35,8 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) UNRELEASED; urgency=low
 
   [ Dominic Hargreaves ]
   * Add Build-Depends on apache2, which is needed for the test suite
-  * Mark individual failing tests as TODO rather than ignore the overall
-    test suite exit status
+  * Mark individual failing tests as TODO for now. We can't fix these for
+    the Apache 2.4 transition
 
  -- gregor herrmann <gregoa@debian.org>  Fri, 24 May 2013 15:06:43 +0200
 
