@@ -1,7 +1,5 @@
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) UNRELEASED; urgency=low
 
-  * TODO for an upload to experimental:
-    + the 'clean' target needs some more work
   * TODO for later (file bugs for these?)
     + investigate test suite failures and re-enable the test suite again
     + the ModPerl-Registry test suite still looks for /etc/apache2/httpd.conf
