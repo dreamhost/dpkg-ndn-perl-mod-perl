@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.8+httpd24-r1449661-2) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-2) unstable; urgency=low
 
   [ Dominic Hargreaves ]
   * Credit for the Apache 2.4 patch (from the upstream httpd24 branch)
@@ -7,8 +7,13 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-2) UNRELEASED; urgency=low
   [ gregor herrmann ]
   * Upload to unstable now that apache 2.4.4-4 is there.
     Closes: #666822
+  * Add a lintian override for non-standard-apache2-module-package-name.
+    lintian is technically right, but changing the name after 13 years
+    doesn't sound appealing.
+  * Add a lintian override for spelling-error-in-binary. The string is
+    nowhere in the code.
 
- -- Dominic Hargreaves <dom@earth.li>  Thu, 30 May 2013 00:19:19 +0100
+ -- gregor herrmann <gregoa@debian.org>  Fri, 31 May 2013 00:49:37 +0200
 
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-1) experimental; urgency=low
 
