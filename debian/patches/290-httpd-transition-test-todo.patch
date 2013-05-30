@@ -1,3 +1,10 @@
+Description: Mark individual failing tests as TODO rather than ignore the overall test suite exit status
+Origin: vendor
+Forwarded: no
+Author: Dominic Hargreaves <dom@earth.li>
+Reviewed-by: gregor herrmann <gregoa@debian.org>
+Last-Update: 2013-05-31
+
 diff --git a/t/directive/perlloadmodule3.t b/t/directive/perlloadmodule3.t
 index 8c1d0dc..92d7199 100644
 --- a/t/directive/perlloadmodule3.t
