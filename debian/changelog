@@ -5,7 +5,8 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-2) UNRELEASED; urgency=low
     applied in this and the previous release goes to Jan Kaluza
 
   [ gregor herrmann ]
-  * 2.0.8+httpd24-r1449661-* also (hopefully) closes: #666822.
+  * Upload to unstable now that apache 2.4.4-4 is there.
+    Closes: #666822
 
  -- Dominic Hargreaves <dom@earth.li>  Thu, 30 May 2013 00:19:19 +0100
 
