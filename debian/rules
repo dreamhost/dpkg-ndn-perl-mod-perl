@@ -2,8 +2,9 @@
 
 PACKAGE = $(firstword $(shell dh_listpackages))
 TMP     = $(CURDIR)/debian/$(PACKAGE)
-LMP     = lib/ModPerl
-MPR     = ModPerl-Registry
+LMP     = $(CURDIR)/lib/ModPerl
+MPR     = $(CURDIR)/ModPerl-Registry
+APR     = $(CURDIR)/Apache-Reload
 
 %:
 	dh $@ --parallel --with apache2
@@ -26,21 +27,18 @@ override_dh_auto_build:
 
 
 override_dh_auto_test:
-	[ -d t/run ] || mkdir t/run
-	[ -d t/logs ] || mkdir t/logs
-	touch t/logs/error.log
+	[ -d $(CURDIR)/t/run ] || mkdir $(CURDIR)/t/run
+	[ -d $(CURDIR)/t/logs ] || mkdir $(CURDIR)/t/logs
+	touch $(CURDIR)/t/logs/error_log
+	[ -d $(MPR)/t/run ] || mkdir $(MPR)/t/run
+	[ -d $(MPR)/t/logs ] || mkdir $(MPR)/t/logs
+	touch $(MPR)/t/logs/error_log
+	[ -d $(APR)/t/run ] || mkdir $(APR)/t/run
+	[ -d $(APR)/t/logs ] || mkdir $(APR)/t/logs
+	touch $(APR)/t/logs/error_log
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf $(CURDIR)/debian/apache2.conf" \
 		LANG=C \
 		dh_auto_test --max-parallel=1
-
-ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
-	[ -d $(MPR)/t/run ] || mkdir $(MPR)/t/run
-	[ -d $(MPR)/t/logs ] || mkdir $(MPR)/t/logs
-	touch $(MPR)/t/logs/error.log
-	cd $(MPR) && APACHE_TEST_EXTRA_ARGS="-httpd_conf $(CURDIR)/debian/apache2.conf" \
-		LANG=C \
-		$(MAKE) test
-endif
 
 override_dh_clean:
 	dh_clean
@@ -52,7 +50,7 @@ override_dh_clean:
 	! [ -e debian/MethodLookup.pm.save  ] \
 	    || mv debian/MethodLookup.pm.save  $(LMP)/MethodLookup.pm
 	# these shouldn't be needed really
-	rm -rf t/logs t/run $(MPR)/t/logs $(MPR)/t/run
+	rm -rf $(CURDIR)/t/logs $(CURDIR)/t/run $(MPR)/t/logs $(MPR)/t/run $(APR)/t/logs $(APR)/t/run
 	find . -name 'Makefile.old' -exec rm '{}' \;
 	rm -f Apache-Test/Apache-TestItSelf/t/SMOKE t/core
 
