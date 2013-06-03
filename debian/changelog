@@ -1,3 +1,20 @@
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-3) UNRELEASED; urgency=low
+
+  * Add a patch to handle a test failure with newer HTTP::Headers.
+    Thanks to Niko Tyni for the analysis. (Closes: #710873)
+  * Load the mod_auth_digest module in debian/apache2.conf and remove the
+    TODOs from the t/hooks/authen_digest.t in debian/patches/290-httpd-
+    transition-test-todo.patch.
+    This addresses parts of #710327. Thanks to Niko Tyni for the pointer.
+  * After loading mod_auth_digest, the tests behave differently. Tests in
+    ModPerl-Registry/ and Apache-Reload/ are now run by dh_auto_test.
+    Adjust debian/rules.
+  * New patch 310-rundir.patch: The tests in ModPerl-Registry/ and Apache-
+    Reload/ need DefaultRuntimeDir set, otherwise mod_auth_digest tries to
+    write to /var/run and fails.
+
+ -- gregor herrmann <gregoa@debian.org>  Mon, 03 Jun 2013 20:42:53 +0200
+
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-2) unstable; urgency=low
 
   [ Dominic Hargreaves ]
