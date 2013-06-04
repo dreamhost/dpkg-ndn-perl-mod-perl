@@ -12,4 +12,4 @@ avoid-db-linkage.patch
 280-ignore-sysconf-for-defines.patch
 290-httpd-transition-test-todo.patch
 300-http-headers-version.patch
-310-rundir.patch
+310-defaultruntimedir.patch

@@ -1,0 +1,19 @@
+Description: Since Apache 2.4, DefaultRuntimeDir needs to be set,
+ otherwise mod_auth_digest tries to write to /var/run and fails (depending
+ on permissions). Set DefaultRuntimeDir in the generated httpd.conf of
+ Apache::Test.
+Origin: vendor
+Forwarded: no
+Author: gregor herrmann <gregoa@debian.org>
+Last-Update: 2013-06-04
+
+--- a/Apache-Test/lib/Apache/TestConfig.pm
++++ b/Apache-Test/lib/Apache/TestConfig.pm
+@@ -2142,6 +2142,7 @@
+ Listen     0.0.0.0:@Port@
+ 
+ ServerRoot   "@ServerRoot@"
++DefaultRuntimeDir "@ServerRoot@/run"
+ DocumentRoot "@DocumentRoot@"
+ 
+ PidFile     @t_pid_file@
