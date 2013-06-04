@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.8+httpd24-r1449661-3) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-3) unstable; urgency=low
 
   * Add a patch to handle a test failure with newer HTTP::Headers.
     Thanks to Niko Tyni for the analysis. (Closes: #710873)
@@ -14,8 +14,9 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-3) UNRELEASED; urgency=low
     /var/run and fails. Add patch 310-defaultruntimedir.patch:
     Set DefaultRuntimeDir in the created apache config for Apache::Test in
     Apache-Test/lib/Apache/TestConfig.pm.
+    Thanks to Niko Tyni for his help in teaking this patch.
 
- -- gregor herrmann <gregoa@debian.org>  Mon, 03 Jun 2013 20:42:53 +0200
+ -- gregor herrmann <gregoa@debian.org>  Tue, 04 Jun 2013 19:01:10 +0200
 
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-2) unstable; urgency=low
 
