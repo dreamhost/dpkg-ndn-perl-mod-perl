@@ -13,21 +13,7 @@ or the like, so try to bypass the system configuration altogether.
 
 --- libapache2-mod-perl2.orig/Apache-Test/lib/Apache/TestConfigParse.pm
 +++ libapache2-mod-perl2/Apache-Test/lib/Apache/TestConfigParse.pm
-@@ -435,6 +435,13 @@
- 
-     $httpd = shell_ready($httpd);
-     my $cmd = "$httpd -l";
-+
-+    my $httpdconf = $self->{vars}->{httpd_conf};
-+    $cmd .= " -f $httpdconf" if $httpdconf;
-+
-+    my $serverroot = $self->{vars}->{serverroot};
-+    $cmd .= " -d $serverroot" if $serverroot;
-+
-     my $list = $self->open_cmd($cmd);
- 
-     while (<$list>) {
-@@ -456,6 +463,13 @@
+@@ -456,6 +456,13 @@
  
      $httpd = shell_ready($httpd);
      my $cmd = "$httpd -V";
