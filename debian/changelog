@@ -1,3 +1,14 @@
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-4) unstable; urgency=low
+
+  * Add 320-cleanup-authn-authz-providers.patch from Niko Tyni.
+    The patch makes sure authn and authz providers are cleaned up in time by
+    registering them in the configuration pool rather than the server process
+    pool.
+    Thanks to Stefan Fritsch for suggesting the fix. (Closes: #711213)
+  * Update lintian override (false positive spelling-error).
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 15 Jun 2013 17:29:02 +0200
+
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-3) unstable; urgency=low
 
   * Add a patch to handle a test failure with newer HTTP::Headers.
