@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.8+httpd24-r1449661-5) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-5) unstable; urgency=low
 
   * Update debian/patches/280-ignore-sysconf-for-defines.patch not
     to unnecessarily use explicit configuration file and server root
@@ -8,7 +8,7 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-5) UNRELEASED; urgency=low
   * Include the contents of t/logs/error_log in the build log
     if the test suite fails, to debug #711167 on ia64.
 
- -- Niko Tyni <ntyni@debian.org>  Wed, 19 Jun 2013 22:10:37 +0300
+ -- Niko Tyni <ntyni@debian.org>  Wed, 19 Jun 2013 23:26:43 +0300
 
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-4) unstable; urgency=low
 
