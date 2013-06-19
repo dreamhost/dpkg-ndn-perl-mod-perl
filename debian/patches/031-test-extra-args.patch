@@ -2,7 +2,7 @@ Author: Niko Tyni <ntyni@debian.org>
 Subject: APACHE_TEST_EXTRA
  Honour $(APACHE_TEST_EXTRA_ARGS); Makefile.PL has apparently not been updated
  since this was added to Apache::Test.
-Forwarded: not-needed
+Forwarded: http://www.gossamer-threads.com/lists/modperl/dev/105354
 Last-Update: 2012-05-19
 Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
 --- a/Makefile.PL
