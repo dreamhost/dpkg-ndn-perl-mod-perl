@@ -13,7 +13,7 @@ or the like, so try to bypass the system configuration altogether.
 
 --- libapache2-mod-perl2.orig/Apache-Test/lib/Apache/TestConfigParse.pm
 +++ libapache2-mod-perl2/Apache-Test/lib/Apache/TestConfigParse.pm
-@@ -456,6 +456,13 @@
+@@ -458,6 +458,13 @@
  
      $httpd = shell_ready($httpd);
      my $cmd = "$httpd -V";
