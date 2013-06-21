@@ -1,0 +1,20 @@
+Description: adjust test to mod_rewrite changes in 2.4
+Origin: Gentoo
+Forwarded: no
+Author: Jorge Manuel B. S. Vicetto
+Reviewed-by: gregor herrmann <gregoa@debian.org>
+Last-Update: 2013-06-21
+
+--- a/ModPerl-Registry/t/conf/extra.conf.in
++++ b/ModPerl-Registry/t/conf/extra.conf.in
+@@ -218,8 +218,8 @@
+ <IfModule mod_rewrite.c>
+ 
+     RewriteEngine On
+-    RewriteLogLevel 9
+-    RewriteLog @ServerRoot@/logs/rewrite_log
++    LogLevel rewrite:trace8
++    ErrorLog @ServerRoot@/logs/rewrite_log
+     RewriteRule /rewritetest /rewrite_env/env_val.pl?REWRITE_TEST [E=REWRITE_TEST:GOTCHA,PT,NS,L]
+ 
+     <Location /rewrite_env>
