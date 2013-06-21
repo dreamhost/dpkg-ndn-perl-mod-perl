@@ -1,0 +1,20 @@
+Description: adjust test config to mod_authz_core changes in 2.4
+Origin: Gentoo
+Forwarded: no
+Author: Jorge Manuel B. S. Vicetto
+Reviewed-by: gregor herrmann <gregoa@debian.org>
+Last-Update: 2013-06-21
+
+--- a/t/response/TestModules/proxy.pm
++++ b/t/response/TestModules/proxy.pm
+@@ -47,9 +47,7 @@
+     <IfModule mod_proxy.c>
+         <Proxy http://@servername@:@port@/*>
+             <IfModule @ACCESS_MODULE@>
+-                Order Deny,Allow
+-                Deny from all
+-                Allow from @servername@
++                Require host @servername@
+             </IfModule>
+         </Proxy>
+ 
