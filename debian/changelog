@@ -1,3 +1,15 @@
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) UNRELEASED; urgency=low
+
+
+  * Add patch from Jorge Manuel B. S. Vicetto to adjust test module
+    configuration to mod_authz_core changes in 2.4. Currently disabled since
+    it doesn't seem to be needed during Debian builds.
+  * Add patch from Jorge Manuel B. S. Vicetto to handle mod_rewrite
+    changes in apache 2.4.
+    Load rewrite_module in debian/apache2.conf.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 22 Jun 2013 03:18:33 +0200
+
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-5) unstable; urgency=low
 
   * Update debian/patches/280-ignore-sysconf-for-defines.patch not
