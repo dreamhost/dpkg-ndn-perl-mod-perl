@@ -7,6 +7,8 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) UNRELEASED; urgency=low
   * Add patch from Jorge Manuel B. S. Vicetto to handle mod_rewrite
     changes in apache 2.4.
     Load rewrite_module in debian/apache2.conf.
+  * Drop lintian override (spelling-error-in-binary).
+    lintian 2.5.14 ignores "teH" in ELF binaries.
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 22 Jun 2013 03:18:33 +0200
 
