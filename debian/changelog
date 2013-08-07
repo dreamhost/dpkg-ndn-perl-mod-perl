@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) UNRELEASED; urgency=low
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) unstable; urgency=low
 
   [ gregor herrmann ]
   * Add patch from Jorge Manuel B. S. Vicetto to adjust test module
@@ -16,7 +16,7 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) UNRELEASED; urgency=low
     https://rt.cpan.org/Public/Bug/Display.html?id=87620
   * Add myself to Uploaders:
 
- -- gregor herrmann <gregoa@debian.org>  Sat, 22 Jun 2013 03:18:33 +0200
+ -- Ivan Kohler <ivan-debian@420.am>  Tue, 06 Aug 2013 21:53:01 -0700
 
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-5) unstable; urgency=low
 
