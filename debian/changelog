@@ -12,7 +12,9 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) UNRELEASED; urgency=low
 
   [ Ivan Kohler ]
   * Add patch from Michael Schout to add a conditional define for Apache 2.4
-    (-D APACHE24) from https://rt.cpan.org/Public/Bug/Display.html?id=87620
+    (-D APACHE24) to Apache::Test, from
+    https://rt.cpan.org/Public/Bug/Display.html?id=87620
+  * Add myself to Uploaders:
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 22 Jun 2013 03:18:33 +0200
 
