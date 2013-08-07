@@ -1,6 +1,6 @@
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) UNRELEASED; urgency=low
 
-
+  [ gregor herrmann ]
   * Add patch from Jorge Manuel B. S. Vicetto to adjust test module
     configuration to mod_authz_core changes in 2.4. Currently disabled since
     it doesn't seem to be needed during Debian builds.
@@ -9,6 +9,10 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) UNRELEASED; urgency=low
     Load rewrite_module in debian/apache2.conf.
   * Drop lintian override (spelling-error-in-binary).
     lintian 2.5.14 ignores "teH" in ELF binaries.
+
+  [ Ivan Kohler ]
+  * Add patch from Michael Schout to add a conditional define for Apache 2.4
+    (-D APACHE24) from https://rt.cpan.org/Public/Bug/Display.html?id=87620
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 22 Jun 2013 03:18:33 +0200
 
