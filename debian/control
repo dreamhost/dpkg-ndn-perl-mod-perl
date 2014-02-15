@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
 Uploaders: Damyan Ivanov <dmn@debian.org>,
  Niko Tyni <ntyni@debian.org>, gregor herrmann <gregoa@debian.org>,
- Nicholas Bamber <nicholas@periapt.co.uk>, Dominic Hargreaves <dom@earth.li>,
+ Dominic Hargreaves <dom@earth.li>,
  Ivan Kohler <ivan-debian@420.am>
 Standards-Version: 3.9.4
 Homepage: http://perl.apache.org/
