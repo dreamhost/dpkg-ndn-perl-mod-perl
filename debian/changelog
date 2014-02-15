@@ -1,3 +1,10 @@
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-7) UNRELEASED; urgency=medium
+
+  * debian/control: remove Nicholas Bamber from Uploaders on request of
+    the MIA team.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
+
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) unstable; urgency=low
 
   [ gregor herrmann ]
