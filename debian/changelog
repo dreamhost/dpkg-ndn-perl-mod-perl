@@ -5,7 +5,8 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-7) UNRELEASED; urgency=medium
     the MIA team.
 
   [ Daniel Lintott ]
-  * [d5f0b7f4] Update debian/watch with correct URL for apache.org
+  * Update debian/watch with correct URL for apache.org
+  * Add dversion mangle to remove +httpd24-r... suffix
 
   [ gregor herrmann ]
   * Strip trailing slash from metacpan URLs.
