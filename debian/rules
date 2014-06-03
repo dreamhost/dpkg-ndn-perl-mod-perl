@@ -5,6 +5,7 @@ TMP     = $(CURDIR)/debian/$(PACKAGE)
 LMP     = $(CURDIR)/lib/ModPerl
 MPR     = $(CURDIR)/ModPerl-Registry
 APR     = $(CURDIR)/Apache-Reload
+PVA	= $(shell perl -MConfig -e'print substr($$Config{vendorarch},1)')
 
 %:
 	dh $@ --parallel --with apache2
@@ -69,9 +70,9 @@ override_dh_install:
 	mv $(TMP)/usr/bin/mp2bug $(TMP)/usr/share/libapache2-mod-perl2/
 	rm -r $(TMP)/usr/bin/
 	install -m755 debian/libapache2-mod-perl2.bug $(TMP)/usr/share/bug/libapache2-mod-perl2
-	rm $(TMP)/usr/lib/perl5/Apache2/Reload.pm
-	rm $(TMP)/usr/lib/perl5/Apache/SizeLimit.pm
-	rm $(TMP)/usr/lib/perl5/Apache/Reload.pm
+	rm $(TMP)/$(PVA)/Apache2/Reload.pm
+	rm $(TMP)/$(PVA)/Apache/SizeLimit.pm
+	rm $(TMP)/$(PVA)/Apache/Reload.pm
 
 override_dh_installman:
 	dh_installman
