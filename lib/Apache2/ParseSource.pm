@@ -1,3 +1,4 @@
+# please insert nothing before this line: -*- mode: cperl; cperl-indent-level: 4; cperl-continued-statement-offset: 4; indent-tabs-mode: nil -*-
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -539,7 +540,16 @@ sub write_pm {
 
     my ($subdir) = (split '::', $name)[0];
 
-    my $tdir = 'xs/tables/current';
+    my $tdir = '';
+    my $build = Apache2::Build->new(init => 1);
+    my $httpd_version = $build->httpd_version;
+    if ($httpd_version lt '2.4.0') {
+        $tdir='xs/tables/current';
+    }
+    else {
+        $tdir='xs/tables/current24';
+    }
+
     if (-d "$tdir/$subdir") {
         $file = "$tdir/$subdir/$file";
     }

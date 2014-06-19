@@ -1,3 +1,4 @@
+# please insert nothing before this line: -*- mode: cperl; cperl-indent-level: 4; cperl-continued-statement-offset: 4; indent-tabs-mode: nil -*-
 use strict;
 use warnings FATAL => 'all';
 
@@ -25,7 +26,7 @@ my $location = '/TestAPI__err_headers_out';
     local $HTTP::Headers::TRANSLATE_UNDERSCORE=
 	$HTTP::Headers::TRANSLATE_UNDERSCORE;
     undef $HTTP::Headers::TRANSLATE_UNDERSCORE
-	if defined HTTP::Headers->VERSION and HTTP::Headers->VERSION==6.00;
+	if defined HTTP::Headers->VERSION and HTTP::Headers->VERSION >= 6.00;
 
     ok t_cmp $res->header('X-err_headers_out'), "err_headers_out",
         "X-err_headers_out: made it";
@@ -50,7 +51,7 @@ my $location = '/TestAPI__err_headers_out';
     local $HTTP::Headers::TRANSLATE_UNDERSCORE=
 	$HTTP::Headers::TRANSLATE_UNDERSCORE;
     undef $HTTP::Headers::TRANSLATE_UNDERSCORE
-	if defined HTTP::Headers->VERSION and HTTP::Headers->VERSION==6.00;
+	if defined HTTP::Headers->VERSION and HTTP::Headers->VERSION >= 6.00;
 
     ok t_cmp $res->header('X-err_headers_out'), "err_headers_out",
         "X-err_headers_out: made it";

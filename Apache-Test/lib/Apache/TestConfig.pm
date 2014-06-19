@@ -2148,6 +2148,12 @@ PidFile     @t_pid_file@
 ErrorLog    @t_logs@/error_log
 LogLevel    debug
 
+<IfModule mod_version.c>
+<IfVersion > 2.4.1>
+    DefaultRunTimeDir "@t_logs@"
+</IfVersion>
+</IfModule>
+
 <IfModule mod_log_config.c>
     TransferLog @t_logs@/access_log
 </IfModule>

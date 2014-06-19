@@ -1,3 +1,4 @@
+# please insert nothing before this line: -*- mode: cperl; cperl-indent-level: 4; cperl-continued-statement-offset: 4; indent-tabs-mode: nil -*-
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -149,7 +150,7 @@ EOI
     require Apache2::Connection;
     require APR::SockAddr;
     require Socket;
-    my $orig_sub = *Apache2::Connection::client_addr{CODE};
+    my $orig_sub = *Apache2::Connection::remote_addr{CODE};
     *Apache2::Connection::remote_addr = sub {
         my $c = shift;
         if (@_) {

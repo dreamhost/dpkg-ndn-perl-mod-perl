@@ -45,7 +45,15 @@ APLOG_USE_MODULE(perl);
 
 #if AP_SERVER_MAJORVERSION_NUMBER>2 || \
     (AP_SERVER_MAJORVERSION_NUMBER == 2 && AP_SERVER_MINORVERSION_NUMBER>=3)
+#include "ap_provider.h"
 #include "mod_auth.h"
 #endif
 
 #endif /* MODPERL_APACHE_INCLUDES_H */
+
+/*
+ * Local Variables:
+ * c-basic-offset: 4
+ * indent-tabs-mode: nil
+ * End:
+ */
