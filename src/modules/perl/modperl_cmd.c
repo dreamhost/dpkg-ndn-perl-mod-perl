@@ -69,17 +69,15 @@ char *modperl_cmd_push_filter_handlers(MpAV **handlers,
      */
     if (*name == '-') {
         MP_TRACE_h(MP_FUNC,
-                   "[%s] warning: filter handler %s will be not autoloaded. "
+                   "warning: filter handler %s will be not autoloaded. "
                    "Unless the module defining this handler is explicitly "
-                   "preloaded, filter attributes will be ignored.\n",
-                   modperl_pid_tid(p), h->name);
+                   "preloaded, filter attributes will be ignored.");
     }
     else {
         MpHandlerAUTOLOAD_On(h);
         MP_TRACE_h(MP_FUNC,
-                   "[%s] filter handler %s will be autoloaded (to make "
-                   "the filter attributes available)\n",
-                   modperl_pid_tid(p), h->name);
+                   "filter handler %s will be autoloaded (to make "
+                   "the filter attributes available)", h->name);
     }
 
     if (!*handlers) {
@@ -417,9 +415,12 @@ MP_CMD_SRV_DECLARE(init_handlers)
     return modperl_cmd_post_read_request_handlers(parms, mconfig, arg);
 }
 
+#if AP_SERVER_MAJORVERSION_NUMBER>2 || \
+    (AP_SERVER_MAJORVERSION_NUMBER == 2 && AP_SERVER_MINORVERSION_NUMBER>=3)
+
 MP_CMD_SRV_DECLARE2(authz_provider)
 {
-    apr_pool_t *p = parms->server->process->pool;
+    apr_pool_t *p = parms->pool;
     char *name = apr_pstrdup(p, arg1);
     char *cb = apr_pstrdup(p, arg2);
 
@@ -431,7 +432,7 @@ MP_CMD_SRV_DECLARE2(authz_provider)
 
 MP_CMD_SRV_DECLARE2(authn_provider)
 {
-    apr_pool_t *p = parms->server->process->pool;
+    apr_pool_t *p = parms->pool;
     char *name = apr_pstrdup(p, arg1);
     char *cb = apr_pstrdup(p, arg2);
 
@@ -440,6 +441,8 @@ MP_CMD_SRV_DECLARE2(authn_provider)
                                         AP_AUTH_INTERNAL_PER_CONF);
     return NULL;
 }
+
+#endif
 
 static const char *modperl_cmd_parse_args(apr_pool_t *p,
                                           const char *args,
@@ -581,6 +584,11 @@ MP_CMD_SRV_DECLARE(perldo)
         arg = apr_pstrcat(p, "package ", pkg_name, ";", line_header,
                           arg, NULL);
     }
+
+#ifdef USE_ITHREADS
+    MP_TRACE_i(MP_FUNC, "using interp %lx to execute perl section:\n%s",
+               scfg->mip->parent, arg);
+#endif
 
     {
         SV *server = MP_PERLSECTIONS_SERVER_SV;
@@ -857,3 +865,10 @@ MP_CMD_INTERP_POOL_IMP(min_spare);
 MP_CMD_INTERP_POOL_IMP(max_requests);
 
 #endif /* USE_ITHREADS */
+
+/*
+ * Local Variables:
+ * c-basic-offset: 4
+ * indent-tabs-mode: nil
+ * End:
+ */

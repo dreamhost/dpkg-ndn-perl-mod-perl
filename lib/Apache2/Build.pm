@@ -1,3 +1,4 @@
+# please insert nothing before this line: -*- mode: cperl; cperl-indent-level: 4; cperl-continued-statement-offset: 4; indent-tabs-mode: nil -*-
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -75,6 +76,7 @@ use constant OPENBSD => $^O eq 'openbsd';
 use constant WIN32   => $^O eq 'MSWin32';
 
 use constant MSVC => WIN32() && ($Config{cc} eq 'cl');
+use constant DMAKE => WIN32() && ($Config{make} eq 'dmake');
 
 use constant REQUIRE_ITHREADS => grep { $^O eq $_ } qw(MSWin32);
 use constant PERL_HAS_ITHREADS =>
@@ -1158,18 +1160,7 @@ sub apr_bindir {
 
 sub apr_generation {
     my ($self) = @_;
-
-    my $httpd_v = $self->httpd_version_as_int;
-
-    if ($httpd_v =~ m/2[4-9]\d+/) {
-        return 2;
-    }
-    elsif ($httpd_v =~ m/2[1-3]\d+/) {
-        return 1;
-    }
-    else {
-        return;
-    }
+    return $self->httpd_version_as_int =~ m/2[1-9]\d+/ ? 1 : 0;
 }
 
 # returns an array of apr/apu linking flags (--link-ld --libs) if found
@@ -1229,8 +1220,7 @@ sub apru_config_path {
         $self->{$key} = $self->{$mp_key};
     }
 
-    my $apr_generation = $self->apr_generation;
-    my $config = $apr_generation ? "$what-${apr_generation}-config" : "$what-config";
+    my $config = $self->apr_generation ? "$what-1-config" : "$what-config";
 
     if (!$self->{$key}) {
         my @tries = ();
@@ -1983,6 +1973,11 @@ lib: $(MODPERL_LIB)
 EOF
 
     print $fh $install;
+
+    print $fh <<'EOF' if DMAKE;
+
+.USESHELL :
+EOF
 
     print $fh <<'EOF';
 
