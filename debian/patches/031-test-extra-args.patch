@@ -7,7 +7,7 @@ Last-Update: 2012-05-19
 Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
 --- a/Makefile.PL
 +++ b/Makefile.PL
-@@ -788,12 +788,12 @@ TEST_FILES =
+@@ -840,12 +840,12 @@ TEST_FILES =
  
  test_clean :
  	$(FULLPERL) -I$(INST_ARCHLIB) -I$(INST_LIB) \

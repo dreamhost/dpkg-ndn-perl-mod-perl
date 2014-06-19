@@ -34,7 +34,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  this with a call to one of the t_*_is_expected() functions.
 --- a/ModPerl-Registry/lib/ModPerl/RegistryCooker.pm
 +++ b/ModPerl-Registry/lib/ModPerl/RegistryCooker.pm
-@@ -63,7 +63,7 @@ use constant D_WARN    => 2;
+@@ -64,7 +64,7 @@ use constant D_WARN    => 2;
  use constant D_COMPILE => 4;
  use constant D_NOISE   => 8;
  
@@ -118,7 +118,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  
 --- a/lib/Apache2/compat.pm
 +++ b/lib/Apache2/compat.pm
-@@ -254,7 +254,7 @@ sub override_mp2_api {
+@@ -255,7 +255,7 @@ sub override_mp2_api {
  }
  
  # restore_mp2_api does the opposite of override_mp2_api(), it removes
@@ -129,7 +129,7 @@ Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>
  
 --- a/lib/Apache2/porting.pm
 +++ b/lib/Apache2/porting.pm
-@@ -84,9 +84,9 @@ BEGIN {
+@@ -85,9 +85,9 @@ BEGIN {
          $package =~ s|/|::|g;
          $package =~ s|.pm$||;
  
