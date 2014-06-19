@@ -12,7 +12,6 @@ avoid-db-linkage.patch
 290-httpd-transition-test-todo.patch
 300-http-headers-version.patch
 310-defaultruntimedir.patch
-320-cleanup-authn-authz-providers.patch
 #330-mod_authz_core.patch
 340-rewrite-2.4.patch
 350-ap-test-apache24-define.patch
