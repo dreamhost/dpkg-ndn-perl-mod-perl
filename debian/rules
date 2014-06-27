@@ -5,7 +5,7 @@ TMP     = $(CURDIR)/debian/$(PACKAGE)
 LMP     = $(CURDIR)/lib/ModPerl
 MPR     = $(CURDIR)/ModPerl-Registry
 APR     = $(CURDIR)/Apache-Reload
-PVA	= $(shell perl -MConfig -e'print substr($$Config{vendorarch},1)')
+PVA     = $(shell perl -MConfig -e'print substr($$Config{vendorarch},1)')
 
 %:
 	dh $@ --parallel --with apache2
