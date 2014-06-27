@@ -18,6 +18,10 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
   * Imported Upstream snapshot from to-be version 2.0.9 trunk, revision
     1604013
     + update upstream source description in README.source
+  * drop 280-ignore-sysconf-for-defines.patch, applied upstream
+  * refresh all patches to apply cleanly some hunks are just dropped as
+    upstream has them
+  * drop 320-cleanup-authn-authz-providers.patch, applied upstream
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
