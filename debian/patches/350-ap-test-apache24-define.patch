@@ -1,5 +1,10 @@
-diff --git a/Apache-Test/lib/Apache/TestServer.pm b/Apache-Test/lib/Apache/TestServer.pm
-index 254aec6..a3bc3ab 100644
+Description: add a conditional define for Apache 2.4 (-D APACHE24)
+Origin: CPAN RT
+Bug: https://rt.cpan.org/Public/Bug/Display.html?id=87620
+Author: Michael Schout
+Reviewed-by: Ivan Kohler <ivan@freeside.biz>
+Last-Update: 2014-06-27
+
 --- a/Apache-Test/lib/Apache/TestServer.pm
 +++ b/Apache-Test/lib/Apache/TestServer.pm
 @@ -85,6 +85,15 @@ sub post_config {
