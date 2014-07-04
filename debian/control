@@ -34,7 +34,7 @@ Depends: ${misc:Depends}, ${perl:Depends}, ${shlibs:Depends},
  liburi-perl,
  libwww-perl,
  netbase
-Recommends: libbsd-resource-perl, libapache2-reload-perl
+Recommends: libbsd-resource-perl, libapache2-reload-perl, liblinux-pid-perl
 Description: Integration of perl with the Apache2 web server
  mod_perl allows the use of Perl for just about anything
  Apache-related, including <Perl> sections in the config
