@@ -23,6 +23,10 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
     upstream has them
   * drop 320-cleanup-authn-authz-providers.patch, applied upstream
 
+  [ gregor herrmann ]
+  * Add liblinux-pid-perl to Recommends. Used by Apache2::SizeLimit.
+    (Closes: #684290)
+
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) unstable; urgency=low
