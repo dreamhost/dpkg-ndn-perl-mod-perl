@@ -17,3 +17,4 @@ avoid-db-linkage.patch
 #330-mod_authz_core.patch
 340-rewrite-2.4.patch
 350-ap-test-apache24-define.patch
+360-conditional-linux-pid-module.patch
