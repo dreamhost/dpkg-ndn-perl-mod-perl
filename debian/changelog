@@ -24,8 +24,10 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
   * drop 320-cleanup-authn-authz-providers.patch, applied upstream
 
   [ gregor herrmann ]
-  * Add liblinux-pid-perl to Recommends. Used by Apache2::SizeLimit.
-    (Closes: #684290)
+  * Build with gcc-4.8 for the time being to work around problem with
+    gcc-4.9. (Closes: #754308)
+  * Add patch to make Linux::Pid conditional in Apache::SizeLimit. Thanks
+    to Guillem Jover for the patch. (Closes: #684290)
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
