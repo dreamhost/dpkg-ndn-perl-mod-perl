@@ -1,20 +1,6 @@
 libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
 
-  [ gregor herrmann ]
-  * debian/control: remove Nicholas Bamber from Uploaders on request of
-    the MIA team.
-
-  [ Daniel Lintott ]
-  * Update debian/watch with correct URL for apache.org
-  * Add dversion mangle to remove +httpd24-r... suffix
-
-  [ gregor herrmann ]
-  * Strip trailing slash from metacpan URLs.
-
   [ Damyan Ivanov ]
-  * add libcgi-pm-perl to b-d, in-core version is deprecated in 5.20
-  * rules: replace hard-coded usr/lib/perl5 with the value of
-    $Config{vendorarch}
   * Imported Upstream snapshot from to-be version 2.0.9 trunk, revision
     1604013
     + update upstream source description in README.source
@@ -22,12 +8,6 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
   * refresh all patches to apply cleanly some hunks are just dropped as
     upstream has them
   * drop 320-cleanup-authn-authz-providers.patch, applied upstream
-
-  [ gregor herrmann ]
-  * Build with gcc-4.8 for the time being to work around problem with
-    gcc-4.9. (Closes: #754308)
-  * Add patch to make Linux::Pid conditional in Apache::SizeLimit. Thanks
-    to Guillem Jover for the patch. (Closes: #684290)
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
