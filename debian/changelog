@@ -1,16 +1,12 @@
-libapache2-mod-perl2 (2.0.8+httpd24-r1449661-7) UNRELEASED; urgency=medium
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-7) unstable; urgency=medium
 
   [ gregor herrmann ]
   * debian/control: remove Nicholas Bamber from Uploaders on request of
     the MIA team.
-
-  [ Daniel Lintott ]
-  * Update debian/watch with correct URL for apache.org
-
-  [ gregor herrmann ]
   * Strip trailing slash from metacpan URLs.
 
   [ Daniel Lintott ]
+  * Update debian/watch with correct URL for apache.org
   * Add dversion mangle to remove +httpd24-r... suffix
 
   [ Damyan Ivanov ]
@@ -24,7 +20,7 @@ libapache2-mod-perl2 (2.0.8+httpd24-r1449661-7) UNRELEASED; urgency=medium
   * Add patch to make Linux::Pid conditional in Apache::SizeLimit. Thanks
     to Guillem Jover for the patch. (Closes: #684290)
 
- -- gregor herrmann <gregoa@debian.org>  Wed, 09 Jul 2014 23:30:20 +0200
+ -- gregor herrmann <gregoa@debian.org>  Sun, 13 Jul 2014 15:36:53 +0200
 
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-6) unstable; urgency=low
 
