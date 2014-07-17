@@ -11,6 +11,8 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
 
   [ gregor herrmann ]
   * Declare compliance with Debian Policy 3.9.5.
+  * Drop 370-Fix-t-directive-perlloadmodule2.t.patch, was taken from
+    upstream.
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
