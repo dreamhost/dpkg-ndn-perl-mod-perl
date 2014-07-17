@@ -1,0 +1,28 @@
+From e2dba731a20ae4866c2a10e42282f8b25993383e Mon Sep 17 00:00:00 2001
+From: Niko Tyni <ntyni@debian.org>
+Date: Tue, 15 Jul 2014 21:20:06 +0300
+Subject: [PATCH 2/2] Fix reload.t as per r1565579. Reported in CPAN RT#96656.
+
+Author: Steve Hay <steve.m.hay@googlemail.com>
+Origin: upstream, http://svn.apache.org/viewvc?view=revision&revision=1605020
+Bug: https://rt.cpan.org/Public/Bug/Display.html?id=96656
+---
+ Apache-Reload/t/lib/Apache2/TestReload.pm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Apache-Reload/t/lib/Apache2/TestReload.pm b/Apache-Reload/t/lib/Apache2/TestReload.pm
+index 65f0f04..aa4215f 100644
+--- a/Apache-Reload/t/lib/Apache2/TestReload.pm
++++ b/Apache-Reload/t/lib/Apache2/TestReload.pm
+@@ -15,7 +15,7 @@ our $pass = 0;
+ sub handler {
+     my $r = shift;
+     $pass++;
+-    if ($r->args eq 'last') {
++    if (defined $r->args and $r->args eq 'last') {
+         Apache2::Reload->unregister_module($package);
+         ModPerl::Util::unload_package($package);
+         $pass = 0;
+-- 
+2.0.1
+

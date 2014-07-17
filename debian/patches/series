@@ -16,3 +16,5 @@ avoid-db-linkage.patch
 340-rewrite-2.4.patch
 350-ap-test-apache24-define.patch
 360-conditional-linux-pid-module.patch
+370-Fix-t-directive-perlloadmodule2.t.patch
+380-Fix-reload.t-as-per-r1565579.-Reported-in-CPAN-RT-96.patch

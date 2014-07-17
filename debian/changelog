@@ -14,6 +14,13 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-8) unstable; urgency=medium
+
+  * Add two upstream patches fixing test suite problems with Perl 5.20.
+    (Closes: #750240)
+
+ -- Niko Tyni <ntyni@debian.org>  Wed, 16 Jul 2014 21:07:37 +0300
+
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-7) unstable; urgency=medium
 
   [ gregor herrmann ]
