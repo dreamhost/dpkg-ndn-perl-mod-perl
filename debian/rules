@@ -24,7 +24,7 @@ override_dh_auto_configure:
 		MP_APR_CONFIG=/usr/bin/apr-config
 
 override_dh_auto_build:
-	dh_auto_build --parallel -- MODPERL_OPTIMIZE="$(CFLAGS)" OPTIMIZE="$(CFLAGS)" MODPERL_CC=gcc-4.8
+	dh_auto_build --parallel -- MODPERL_OPTIMIZE="$(CFLAGS)" OPTIMIZE="$(CFLAGS)"
 
 
 override_dh_auto_test:
