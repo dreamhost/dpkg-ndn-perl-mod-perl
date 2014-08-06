@@ -20,3 +20,4 @@ avoid-db-linkage.patch
 360-conditional-linux-pid-module.patch
 370-Fix-t-directive-perlloadmodule2.t.patch
 380-Fix-reload.t-as-per-r1565579.-Reported-in-CPAN-RT-96.patch
+390-Disable-the-tree-dse-gcc-optimization-for-modperl_en.patch

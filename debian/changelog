@@ -1,6 +1,7 @@
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-9) UNRELEASED; urgency=medium
 
-  * 
+  * Work around gcc-4.9 breakage by disabling the tree-dse
+    optimization for modperl_env_table_populate(). (See #754901)
 
  -- Niko Tyni <ntyni@debian.org>  Wed, 06 Aug 2014 15:56:11 +0300
 
