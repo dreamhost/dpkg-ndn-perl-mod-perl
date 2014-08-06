@@ -16,6 +16,14 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
+libapache2-mod-perl2 (2.0.8+httpd24-r1449661-9) unstable; urgency=medium
+
+  * Build with gcc-4.9 again. (Closes: #754901)
+    + work around gcc-4.9 breakage by disabling the tree-dse
+      optimization for modperl_env_table_populate().
+
+ -- Niko Tyni <ntyni@debian.org>  Wed, 06 Aug 2014 16:02:28 +0300
+
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-8) unstable; urgency=medium
 
   * Add two upstream patches fixing test suite problems with Perl 5.20.

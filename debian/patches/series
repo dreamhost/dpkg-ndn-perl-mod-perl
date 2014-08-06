@@ -17,3 +17,4 @@ avoid-db-linkage.patch
 350-ap-test-apache24-define.patch
 360-conditional-linux-pid-module.patch
 380-Fix-reload.t-as-per-r1565579.-Reported-in-CPAN-RT-96.patch
+390-Disable-the-tree-dse-gcc-optimization-for-modperl_en.patch
