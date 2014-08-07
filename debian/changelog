@@ -25,6 +25,7 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
     not a regression from previous releases.
   * Drop 300-http-headers-version.patch in favour of the upstream fix.
   * Drop 310-defaultruntimedir.patch, applied upstream.
+  * Clean up obsolete complications in debian/rules.
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
