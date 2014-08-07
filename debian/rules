@@ -25,11 +25,7 @@ override_dh_auto_build:
 override_dh_auto_test:
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf $(CURDIR)/debian/apache2.conf" \
 		LANG=C \
-		dh_auto_test --max-parallel=1 || ( RET=$$?; \
-            echo "--- test suite failed with code $$RET, t/logs/error_log starts ---"; \
-            cat t/logs/error_log; \
-            echo "--- test suite failed with code $$RET, t/logs/error_log ends   ---"; \
-            exit $$RET )
+		dh_auto_test --max-parallel=1
 
 override_dh_clean:
 	dh_clean
