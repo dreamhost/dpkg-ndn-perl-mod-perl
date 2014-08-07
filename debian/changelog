@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
+libapache2-mod-perl2 (2.0.9~1604013-1) experimental; urgency=medium
 
   [ Damyan Ivanov ]
   * Imported Upstream snapshot from to-be version 2.0.9 trunk, revision
@@ -29,7 +29,7 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
     + don't dump the error log after test failures, it was never very
       useful and causes more trouble than it's worth. (See #711167)
 
- -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
+ -- Niko Tyni <ntyni@debian.org>  Thu, 07 Aug 2014 20:42:34 +0300
 
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-9) unstable; urgency=medium
 
