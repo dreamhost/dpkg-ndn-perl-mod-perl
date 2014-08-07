@@ -19,6 +19,8 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
     (Closes: #710327)
   * Fix builds with gcc -O0 (DEB_BUILD_OPTIONS=noopt) by defining
     MP_IN_XS in APR and APR/PerlIO builds. (Closes: #756989)
+  * Fix t/compat/conn_rec.t failures by restoring httpd-2.4 compatibility
+    in lib/Apache2/compat.pm.
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 

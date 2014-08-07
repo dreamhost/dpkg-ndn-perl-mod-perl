@@ -1,0 +1,39 @@
+From f1f1b1de72ee8be062bf6fa28410feb023c5efc2 Mon Sep 17 00:00:00 2001
+From: Niko Tyni <ntyni@debian.org>
+Date: Thu, 7 Aug 2014 00:18:23 +0300
+Subject: [PATCH 2/3] Restore httpd-2.4 compatibility in lib/Apache2/compat.pm
+
+This fixes t/compat/conn_rec.t. failures with Apache 2.4,
+broken with r1497279.
+
+Apache2::compat is supposed to provide mod_perl 1.0 backward
+compatibility, so we want to offer remote_addr() there even with
+Apache 2.4.
+
+Upstream thread at
+ http://mail-archives.apache.org/mod_mbox/perl-dev/201408.mbox/%3C20140807113247.GA30569%40estella.local.invalid%3E
+---
+ lib/Apache2/compat.pm | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/lib/Apache2/compat.pm b/lib/Apache2/compat.pm
+index e7e2c0f..9c3eccd 100644
+--- a/lib/Apache2/compat.pm
++++ b/lib/Apache2/compat.pm
+@@ -150,7 +150,12 @@ EOI
+     require Apache2::Connection;
+     require APR::SockAddr;
+     require Socket;
+-    my $orig_sub = *Apache2::Connection::remote_addr{CODE};
++    my $orig_sub;
++    if (defined *Apache2::Connection::client_addr{CODE}) { # httpd-2.4
++        $orig_sub = *Apache2::Connection::client_addr{CODE};
++    } else { # httpd-2.2
++        $orig_sub = *Apache2::Connection::remote_addr{CODE};
++    }
+     *Apache2::Connection::remote_addr = sub {
+         my $c = shift;
+         if (@_) {
+-- 
+2.1.0.rc1
+
