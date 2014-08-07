@@ -9,7 +9,6 @@ avoid-db-linkage.patch
 210_fix-pod-errors.patch
 220_fix-bad-whatis-entry.patch
 260_fix_pipelined_response_deadlock.patch
-310-defaultruntimedir.patch
 #330-mod_authz_core.patch
 340-rewrite-2.4.patch
 350-ap-test-apache24-define.patch
