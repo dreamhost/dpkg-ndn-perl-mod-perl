@@ -14,6 +14,10 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
   * Drop 370-Fix-t-directive-perlloadmodule2.t.patch, was taken from
     upstream.
 
+  [ Niko Tyni ]
+  * Drop 290-httpd-transition-test-todo.patch, issue fixed upstream.
+    (Closes: #710327)
+
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
 libapache2-mod-perl2 (2.0.8+httpd24-r1449661-9) unstable; urgency=medium
