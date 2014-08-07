@@ -33,15 +33,11 @@ override_dh_auto_test:
 
 override_dh_clean:
 	dh_clean
-	rm -rf t/htdocs/hooks lib/Apache WrapXS debian/docs
+	rm -rf t/htdocs/hooks debian/docs
 	find . -name 'pod2htmd.tmp' -exec rm '{}' \;
 	find . -name 'pod2htmi.tmp' -exec rm '{}' \;
 	find . -name 'Makefile.old' -exec rm '{}' \;
-	rm -f Apache-Test/Apache-TestItSelf/t/SMOKE t/core
-
-override_dh_auto_install:
-	rm -f t/core
-	dh_auto_install
+	rm -f Apache-Test/Apache-TestItSelf/t/SMOKE
 
 override_dh_install:
 	mkdir -p $(CURDIR)/debian/docs
