@@ -23,15 +23,6 @@ override_dh_auto_build:
 
 
 override_dh_auto_test:
-	[ -d $(CURDIR)/t/run ] || mkdir $(CURDIR)/t/run
-	[ -d $(CURDIR)/t/logs ] || mkdir $(CURDIR)/t/logs
-	touch $(CURDIR)/t/logs/error_log
-	[ -d $(MPR)/t/run ] || mkdir $(MPR)/t/run
-	[ -d $(MPR)/t/logs ] || mkdir $(MPR)/t/logs
-	touch $(MPR)/t/logs/error_log
-	[ -d $(APR)/t/run ] || mkdir $(APR)/t/run
-	[ -d $(APR)/t/logs ] || mkdir $(APR)/t/logs
-	touch $(APR)/t/logs/error_log
 	APACHE_TEST_EXTRA_ARGS="-httpd_conf $(CURDIR)/debian/apache2.conf" \
 		LANG=C \
 		dh_auto_test --max-parallel=1 || ( RET=$$?; \
@@ -45,8 +36,6 @@ override_dh_clean:
 	rm -rf t/htdocs/hooks lib/Apache WrapXS debian/docs
 	find . -name 'pod2htmd.tmp' -exec rm '{}' \;
 	find . -name 'pod2htmi.tmp' -exec rm '{}' \;
-	# these shouldn't be needed really
-	rm -rf $(CURDIR)/t/logs $(CURDIR)/t/run $(MPR)/t/logs $(MPR)/t/run $(APR)/t/logs $(APR)/t/run
 	find . -name 'Makefile.old' -exec rm '{}' \;
 	rm -f Apache-Test/Apache-TestItSelf/t/SMOKE t/core
 
