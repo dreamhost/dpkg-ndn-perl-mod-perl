@@ -2,7 +2,6 @@
 
 PACKAGE = $(firstword $(shell dh_listpackages))
 TMP     = $(CURDIR)/debian/$(PACKAGE)
-LMP     = $(CURDIR)/lib/ModPerl
 MPR     = $(CURDIR)/ModPerl-Registry
 APR     = $(CURDIR)/Apache-Reload
 PVA     = $(shell perl -MConfig -e'print substr($$Config{vendorarch},1)')
@@ -11,10 +10,6 @@ PVA     = $(shell perl -MConfig -e'print substr($$Config{vendorarch},1)')
 	dh $@ --parallel --with apache2
 
 override_dh_auto_configure:
-	! [ -e $(LMP)/DummyVersions.pm ] \
-	    || cp $(LMP)/DummyVersions.pm debian/DummyVersions.pm.save
-	! [ -e $(LMP)/MethodLookup.pm  ] \
-	    || cp $(LMP)/MethodLookup.pm  debian/MethodLookup.pm.save
 	dh_auto_configure -- \
 		INSTALLDIRS=vendor \
 		MP_TRACE=0 \
@@ -50,10 +45,6 @@ override_dh_clean:
 	rm -rf t/htdocs/hooks lib/Apache WrapXS debian/docs
 	find . -name 'pod2htmd.tmp' -exec rm '{}' \;
 	find . -name 'pod2htmi.tmp' -exec rm '{}' \;
-	! [ -e debian/DummyVersions.pm.save ] \
-	    || mv debian/DummyVersions.pm.save $(LMP)/DummyVersions.pm
-	! [ -e debian/MethodLookup.pm.save  ] \
-	    || mv debian/MethodLookup.pm.save  $(LMP)/MethodLookup.pm
 	# these shouldn't be needed really
 	rm -rf $(CURDIR)/t/logs $(CURDIR)/t/run $(MPR)/t/logs $(MPR)/t/run $(APR)/t/logs $(APR)/t/run
 	find . -name 'Makefile.old' -exec rm '{}' \;
