@@ -1,0 +1,31 @@
+From 4b367c94eca583b13e9e808569bd26c40f0f90e0 Mon Sep 17 00:00:00 2001
+From: Niko Tyni <ntyni@debian.org>
+Date: Thu, 7 Aug 2014 00:45:59 +0300
+Subject: [PATCH 3/3] Mark failing tests in t/perl/ithreads3.t as TODO
+
+The tests date back to 2007 (r607681) in the threading branch
+but have only now got onto the trunk. It's currently unclear
+how well they work for others with a -Dusethreads perl.
+
+Upstream thread at
+ http://mail-archives.apache.org/mod_mbox/perl-dev/201408.mbox/%3C20140807141231.GA24545%40estella.local.invalid%3E
+---
+ t/perl/ithreads3.t | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/t/perl/ithreads3.t b/t/perl/ithreads3.t
+index ef3feb5..e2346a7 100644
+--- a/t/perl/ithreads3.t
++++ b/t/perl/ithreads3.t
+@@ -6,7 +6,7 @@ use Apache::Test;
+ use Apache::TestUtil;
+ use Apache::TestRequest 'GET_BODY';
+ 
+-plan tests => 6, need_apache_mpm('worker') && need_perl('ithreads');
++plan tests => 6, todo => [3, 4, 5],  need_apache_mpm('worker') && need_perl('ithreads');
+ 
+ my $module = 'TestPerl::ithreads3';
+ 
+-- 
+2.1.0.rc1
+

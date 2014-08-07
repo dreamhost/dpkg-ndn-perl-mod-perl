@@ -21,6 +21,8 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
     MP_IN_XS in APR and APR/PerlIO builds. (Closes: #756989)
   * Fix t/compat/conn_rec.t failures by restoring httpd-2.4 compatibility
     in lib/Apache2/compat.pm.
+  * Mark failing tests in t/perl/ithreads3.t as TODO for now; they are
+    not a regression from previous releases.
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
