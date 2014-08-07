@@ -23,6 +23,7 @@ libapache2-mod-perl2 (2.0.9~1604013-1) UNRELEASED; urgency=medium
     in lib/Apache2/compat.pm.
   * Mark failing tests in t/perl/ithreads3.t as TODO for now; they are
     not a regression from previous releases.
+  * Drop 300-http-headers-version.patch in favour of the upstream fix.
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 15 Feb 2014 20:25:47 +0100
 
