@@ -4,6 +4,7 @@ libapache2-mod-perl2 (2.0.9~1604013-2) UNRELEASED; urgency=medium
   * Fix invalid code in modperl_env.c that was the root cause of
     the gcc-4.9 breakage. Thanks to Matthias Klose and Richard Biener.
     (Closes: #757240)
+    + enable the tree-dse GCC optimization again.
 
  -- Niko Tyni <ntyni@debian.org>  Sat, 09 Aug 2014 16:48:01 +0300
 
