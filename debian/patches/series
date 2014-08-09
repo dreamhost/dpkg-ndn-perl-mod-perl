@@ -19,3 +19,4 @@ avoid-db-linkage.patch
 410-Restore-httpd-2.4-compatibility-in-lib-Apache2-compa.patch
 420-Mark-failing-tests-in-t-perl-ithreads3.t-as-TODO.patch
 430-Don-t-answer-anything-to-the-client-before-it-s-done.patch
+440-Fix-invalid-code-that-breaks-with-GCC-4.9-ftree-dse-.patch
