@@ -1,3 +1,9 @@
+libapache2-mod-perl2 (2.0.9~1604013-3) UNRELEASED; urgency=medium
+
+  * Update Vcs-Browser URL to cgit web frontend
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 16 Aug 2014 09:29:31 +0200
+
 libapache2-mod-perl2 (2.0.9~1604013-2) experimental; urgency=medium
 
   * Fix intermittent failures in t/apache/read3.t. (Closes: #697682) 
