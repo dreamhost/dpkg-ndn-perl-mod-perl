@@ -1,4 +1,4 @@
-libapache2-mod-perl2 (2.0.9~1624218-1) UNRELEASED; urgency=medium
+libapache2-mod-perl2 (2.0.9~1624218-1) unstable; urgency=medium
 
   [ Salvatore Bonaccorso ]
   * Update Vcs-Browser URL to cgit web frontend
@@ -7,8 +7,9 @@ libapache2-mod-perl2 (2.0.9~1624218-1) UNRELEASED; urgency=medium
   * Imported upstream snapshot from to-be version 2.0.9 trunk, revision
     1624218
     + remove five patches integrated upstream.
+  * Upload to unstable.
 
- -- Niko Tyni <ntyni@debian.org>  Sun, 28 Sep 2014 11:02:40 +0300
+ -- Niko Tyni <ntyni@debian.org>  Sun, 28 Sep 2014 11:20:12 +0300
 
 libapache2-mod-perl2 (2.0.9~1604013-2) experimental; urgency=medium
 
