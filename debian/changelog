@@ -1,3 +1,9 @@
+libapache2-mod-perl2 (2.0.9~1624218-2) UNRELEASED; urgency=medium
+
+  * Add autopkgtest support.
+
+ -- Niko Tyni <ntyni@debian.org>  Sun, 05 Oct 2014 09:54:14 +0300
+
 libapache2-mod-perl2 (2.0.9~1624218-1) unstable; urgency=medium
 
   [ Salvatore Bonaccorso ]
