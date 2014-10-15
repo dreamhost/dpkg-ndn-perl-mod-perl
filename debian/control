@@ -26,6 +26,7 @@ Build-Depends: perl,
  locales-all,
  netbase
 Build-Conflicts: apache2-mpm-event
+Testsuite: autopkgtest
 
 Package: libapache2-mod-perl2
 Architecture: any
