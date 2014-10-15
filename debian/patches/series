@@ -14,3 +14,4 @@ avoid-db-linkage.patch
 360-conditional-linux-pid-module.patch
 380-Fix-reload.t-as-per-r1565579.-Reported-in-CPAN-RT-96.patch
 420-Mark-failing-tests-in-t-perl-ithreads3.t-as-TODO.patch
+430-Don-t-call-modperl_threaded_mpm-et-al.-from-XS-code.patch

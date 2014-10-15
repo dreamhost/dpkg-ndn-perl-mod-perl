@@ -1,0 +1,51 @@
+From 24822cbe0efcbbac116100cafb7e475b990275b2 Mon Sep 17 00:00:00 2001
+From: Niko Tyni <ntyni@debian.org>
+Date: Tue, 14 Oct 2014 23:04:41 +0300
+Subject: [PATCH] Don't call modperl_threaded_mpm() et al. from XS code
+
+r594345 (and later r1241983 and r1245916, all merged into trunk with
+r1602105) modified modperl_trace() to call functions that are provided
+by mod_perl.c. However, the same code is compiled into the APR XS module
+without mod_perl.o linkage, so we end up with missing symbols in APR.so.
+
+% objdump -T blib/arch/auto/APR/APR.so|grep UND|grep modperl
+0000000000000000      D  *UND*  0000000000000000              modperl_is_running
+0000000000000000      D  *UND*  0000000000000000              modperl_threaded_mpm
+0000000000000000      D  *UND*  0000000000000000              modperl_threads_started
+
+For the most part these missing symbols don't matter when modperl_trace()
+doesn't actually get called, but CPAN modules like Apache-Gallery that
+use APR and run their suites with PERL_DL_NONLAZY=1 now fail their tests
+because of this.
+
+Guard the problematic invocations with #ifndef MP_IN_XS, which is
+defined for the XS module builds.
+
+Bug-Debian: https://bugs.debian.org/765174
+---
+ src/modules/perl/modperl_common_log.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/modules/perl/modperl_common_log.c b/src/modules/perl/modperl_common_log.c
+index 3335257..3bdb359 100644
+--- a/src/modules/perl/modperl_common_log.c
++++ b/src/modules/perl/modperl_common_log.c
+@@ -53,6 +53,7 @@ void modperl_trace(const char *func, const char *fmt, ...)
+        http://apr.apache.org/docs/apr/1.4/group__apr__lib.html#gad2cd3594aeaafd45931d1034965f48c1
+      */
+ 
++#ifndef MP_IN_XS
+     /* PERL_GET_CONTEXT yields nonsense until the first interpreter is
+      * created. Hence the modperl_is_running() question. */
+     if (modperl_threaded_mpm()) {
+@@ -77,6 +78,7 @@ void modperl_trace(const char *func, const char *fmt, ...)
+         apr_file_printf(logfile, "[pid=%lu] ", (unsigned long)getpid());
+ #endif
+     }
++#endif
+ 
+     if (func && *func) {
+         apr_file_printf(logfile, "%s: ", func);
+-- 
+2.1.1
+
