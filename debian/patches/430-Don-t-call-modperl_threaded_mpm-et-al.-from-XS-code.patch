@@ -22,6 +22,7 @@ Guard the problematic invocations with #ifndef MP_IN_XS, which is
 defined for the XS module builds.
 
 Bug-Debian: https://bugs.debian.org/765174
+Applied-Upstream: in revision 1632172
 ---
  src/modules/perl/modperl_common_log.c | 2 ++
  1 file changed, 2 insertions(+)
