@@ -7,6 +7,7 @@ install:
     - sudo apt-get install -y -q build-essential debhelper devscripts equivs pristine-tar
     - sudo mk-build-deps --install debian/control
     - pristine-tar checkout libapache2-mod-perl2_2.0.9~1624218.orig.tar.xz
+    - mv libapache2-mod-perl2_2.0.9~1624218.orig.tar.xz ..
 script:
     - debuild -S -us -uc --lintian-opts --profile ndn
     - debuild -us -uc --lintian-opts --profile ndn
