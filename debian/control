@@ -1,15 +1,17 @@
 Source: ndn-perl-apache2-mod-perl
-Section: unknown
+Section: httpd
 Priority: optional
-Maintainer: Chris Weyl <Chris Weyl <cweyl@alumni.drew.edu>>
-Build-Depends: debhelper (>= 8.0.0)
+Maintainer: Chris Weyl <chris.weyl@dreamhost.com>
+Build-Depends: debhelper (>= 8.0.0), ndn-perl, ndn-perl-modules,
+ ndn-lintian-profile, apache2-dev (>= 2.4~), apache2 (>= 2.4~), dh-apache2,
+ netbase
 Standards-Version: 3.9.4
-Homepage: <insert the upstream URL, if relevant>
-#Vcs-Git: git://git.debian.org/collab-maint/ndn-perl-apache2-mod-perl.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/ndn-perl-apache2-mod-perl.git;a=summary
+Homepage: http://perl.apache.org
+Vcs-Git: https://github.com/dreamhost/dpkg-ndn-perl-mod-perl.git
+Vcs-Browser: https://github.com/dreamhost/dpkg-ndn-perl-mod-perl
 
 Package: ndn-perl-apache2-mod-perl
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: mod_perl for us!
+ mod_perl linked against the perl in ndn-perl.
