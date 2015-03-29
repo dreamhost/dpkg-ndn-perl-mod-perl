@@ -1,0 +1,37 @@
+# our pkg building bits
+debian/ndn-perl-apache2-mod-perl.debhelper.log
+
+# anything part of the mod_perl build process we shouldn't be tracking
+*.lo
+*.so
+MYMETA.*
+Makefile
+Makefile.old
+Apache-Test/t/SMOKE
+Apache-Test/t/cgi-bin/cookies.pl
+Apache-Test/t/cgi-bin/next_available_port.pl
+REPORT
+SMOKE
+TEST
+WrapXS/
+blib/
+lib/Apache2/BuildConfig.pm
+lib/ModPerl/DummyVersions.pm
+lib/ModPerl/MethodLookup.pm
+lib/typemap
+pm_to_blib
+src/modules/perl/ldopts
+src/modules/perl/modperl_constants.c
+src/modules/perl/modperl_constants.h
+src/modules/perl/modperl_directives.c
+src/modules/perl/modperl_directives.h
+src/modules/perl/modperl_exports.c
+src/modules/perl/modperl_flags.c
+src/modules/perl/modperl_flags.h
+src/modules/perl/modperl_hooks.c
+src/modules/perl/modperl_hooks.h
+src/modules/perl/modperl_largefiles.h
+src/modules/perl/modperl_trace.h
+src/modules/perl/modperl_xsinit.c
+xs/modperl_xs_sv_convert.h
+xs/modperl_xs_typedefs.h
