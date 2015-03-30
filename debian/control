@@ -7,7 +7,6 @@ Build-Depends: debhelper (>= 8.0.0),
  ndn-perl-modules,
  ndn-lintian-profile,
  apache2-dev (>= 2.4~),
- dh-apache2,
  netbase
 Standards-Version: 3.9.4
 Homepage: http://perl.apache.org
