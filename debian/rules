@@ -27,3 +27,7 @@ override_dh_auto_configure:
 
 override_dh_auto_build:
 	dh_auto_build --parallel -- MODPERL_OPTIMIZE="$(CFLAGS)" OPTIMIZE="$(CFLAGS)"
+
+override_dh_auto_clean:
+	dh_auto_clean
+	git clean -f -X # remove all files git ignores (typically build artifacts)
