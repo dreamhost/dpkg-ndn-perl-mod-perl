@@ -1,4 +1,4 @@
-Source: ndn-perl-apache2-mod-perl
+Source: ndn-perl-mod-perl
 Section: httpd
 Priority: optional
 Maintainer: Chris Weyl <chris.weyl@dreamhost.com>
@@ -13,7 +13,7 @@ Homepage: http://perl.apache.org
 Vcs-Git: https://github.com/dreamhost/dpkg-ndn-perl-mod-perl.git
 Vcs-Browser: https://github.com/dreamhost/dpkg-ndn-perl-mod-perl
 
-Package: ndn-perl-apache2-mod-perl
+Package: ndn-perl-mod-perl
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: mod_perl for us!
