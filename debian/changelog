@@ -1,5 +1,5 @@
-ndn-perl-apache2-mod-perl (0~pre0) unstable; urgency=low
+ndn-perl-apache2-mod-perl (5.20.2.1) unstable; urgency=low
 
   * Initial Release.
 
- -- Chris Weyl <Chris Weyl <cweyl@alumni.drew.edu>>  Wed, 18 Mar 2015 09:39:53 -0700
+ -- Chris Weyl <chris.weyl@dreamhost.com>  Wed, 18 Mar 2015 09:39:53 -0700
